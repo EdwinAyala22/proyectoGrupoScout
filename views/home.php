@@ -114,13 +114,13 @@ $n = count($productos) - 1;
         </div>
         <div class="row row-cols-lg-2 row-cols-sm-1">
             <div>
-                <h2 class="text-center fw-bold titulo">MISION</h2>
+                <h2 class="text-center fw-bold titulo mt-2">MISION</h2>
                 <p class="p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia alias, tempore cumque eligendi ducimus harum vitae iste asperiores
                     cupiditate eos fugit doloremque. Officiis nulla iure natus nesciunt excepturi et, laborum molestiae dolorem quos hic? Neque, quod
                     architecto est non optio eos laboriosam, odio assumenda tenetur aperiam minus aliquam in placeat?</p>
             </div>
             <div>
-                <h2 class="text-center fw-bold titulo">VISION</h2>
+                <h2 class="text-center fw-bold titulo mt-2">VISION</h2>
                 <p class="p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam minus voluptas ab perspiciatis alias repellat quisquam modi.
                     Sequi vel rem atque quos expedita nulla temporibus itaque molestiae autem laborum, soluta repudiandae, natus dolores? Illum
                     atque obcaecati repudiandae cumque labore enim et quaerat, debitis autem cupiditate alias numquam delectus ducimus odio.</p>
@@ -128,3 +128,7 @@ $n = count($productos) - 1;
         </div>
     </div>
 </section>
+
+<div id="button-up">
+    <i class="fas fa-chevron-up"></i>
+</div>

@@ -23,7 +23,7 @@ $btnRegistro = "Registrarse";
 </head>
 
 <body>
-<div class="container-fluid nav_scout d-flex pt-2 w-100 justify-content-center">
+<div class="container-fluid nav_scout d-flex pt-2 w-100 justify-content-center" id="nav">
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 w-100">
             <div class="pt-2">
                 <a href="" class="text-white text-decoration-none titulo_nav"><img src="/proyectoGrupoScout/assets/img/LOGOOO-SINTXT.png" alt="" width="100" class="img-fluid nav_logo">Grupo Scout 662 León Blanco</a>
@@ -37,7 +37,7 @@ $btnRegistro = "Registrarse";
             </div>
         </div>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-dark nav_scout">
+    <nav class="navbar navbar-expand-lg navbar-dark nav_scout" >
         
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -57,7 +57,7 @@ $btnRegistro = "Registrarse";
                         <a class="nav-link text-center" href="/proyectoGrupoScout/">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-center" href="#qs">¿Quiénes somos?</a>
+                        <a class="nav-link text-center" href="/proyectoGrupoScout/#qs">¿Quiénes somos?</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-center" href="#">Actividades</a>
@@ -80,7 +80,7 @@ $btnRegistro = "Registrarse";
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-center" href="">Contáctenos</a>
+                        <a class="nav-link text-center" href="/proyectoGrupoScout/views/contacto.php">Contáctenos</a>
                     </li>
                     <li class="nav-item text-center">
                         <a class="nav-link fas fa-map-marker-alt" href="https://goo.gl/maps/3xtKRSvRhEG4kThS8" target="blank"></a>

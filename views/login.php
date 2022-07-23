@@ -35,7 +35,7 @@ if(isset($_POST['documento']) && isset($_POST['contrasena'])){
     $row = $query->fetch(PDO::FETCH_NUM);
     if($row == true){
         //entro
-        $rol = $row[15];
+        $rol = $row[16];
         $_SESSION['rol'] = $rol;
         switch($_SESSION['rol']){
             case 1:
@@ -85,13 +85,13 @@ require '../views/templates/header.php';
                     <!-- <input type="hidden" value="modalUsu" name="idModal"> -->
                 </div>
                 <div class="mb-4 text-center">
-                    <p class="titulo fst-italic">¿Olvidaste la contraseña? <a href="#" class="titulo fw-bold link_login">Click aquí</a></p>
+                    <p class="titulo fst-italic">¿Olvidaste la contraseña? <a href="/proyectoGrupoScout/views/rcontra.php" class="titulo fw-bold link_login">Click aquí</a></p>
                 </div>
                 <div class="mb-4 text-center">
                     <button type="submit" class="btn btn_general">INGRESAR</button>
                 </div>
                 <div class="mb-4 text-center">
-                    <p class="titulo fst-italic">¿No tienes una cuenta? <a href="#" class="titulo fw-bold link_login">Registrarse</a></p>
+                    <p class="titulo fst-italic">¿No tienes una cuenta? <a href="/proyectoGrupoScout/views/register.php" class="titulo fw-bold link_login">Registrarse</a></p>
                 </div>
             </form>
 
