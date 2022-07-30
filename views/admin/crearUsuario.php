@@ -1,9 +1,11 @@
-<title>Crear Evento</title>
+<title>Crear nuevo usuario</title>
 <?php
 
 require '../templates/header.php';
 
 ?>
+<a href="/proyectoGrupoScout/views/admin/listUsers.php" class="btn links_nav m-2">Volver</a>
+
 <div class="container w-75 mt-5 mb-5 container_general">
         <div class="row align-items-stretch">
             <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
@@ -15,35 +17,42 @@ require '../templates/header.php';
                         <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid">
                     </div>
                 </div>
-                <h2 class="titulo fw-bold text-center py-3">Crear actividad</h2>
+                <h2 class="titulo fw-bold text-center py-3">Crear nuevo usuario</h2>
                 <!-- formlario registro -->
                 <form action="./validaciones/vCrearEvento.php" method="POST" class="p-3 form_registro justify-content-center align-items-center">
-                    <div class="row row-cols-md-2 row-cols-sm-1">
+                    <div class="row row-cols-md-3 row-cols-sm-1">
                         <div class="">
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="responsable" autofocus
-                                placeholder="Responsable de la actividad" title="Responsable de la actividad" required>
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus
+                                placeholder="Nombres" title="Nombres" required>
                         </div>
                         <div class="">
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="objetivo_act"
-                                placeholder="Objetivo" title="Objetivo" required>
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido1" autofocus
+                                placeholder="Primer apellido" title="Primer apellido" required>
                         </div>
-
+                        <div class="">
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido2"
+                                placeholder="Segundo apellido" title="Objetivo" required>
+                        </div>
                     </div>
-                    <div class="row row-cols-md-2 row-cols-sm-1">
+                    <div class="row row-cols-md-3 row-cols-sm-1">
+                    <div class="">
+                            <select class="form-select mb-3 fw-bold input_login" name="tipodoc" required data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Seleccione el tipo de documento">
+                                <option disabled selected value>Tipo de Documento</option>
+                                <option value="TI">Tarjeta de Identidad</option>
+                                <option value="CC">Cédula de Ciudadania</option>
+                                <option value="CE">Cédula de Extranjería</option>
+                            </select>
+                        </div>
+                        <div class="">
+                            <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" 
+                            placeholder="No. de documento" title="Número de documento" required>
+                        </div>
                         <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="area"
                                 placeholder="Área" title="Área" required>
                         </div>
-                        <div class="">
-                            <select class="form-select mb-3 fw-bold input_login" name="rama" required title="Seleccione la rama">
-                                <option disabled selected value>Seleccione la rama</option>
-                                <option value="Lobatos">Lobatos</option>
-                                <option value="Scuts">Scouts</option>
-                                <option value="Caminantes">Caminantes</option>
-                                <option value="Rovers">Rovers</option>
-                                <option value="Dirigentes">Dirigentes</option>
-                            </select>
-                        </div>
+                        
 
                     </div>
                     <div class="row row-cols-md-2 row-cols-sm-1">
@@ -102,6 +111,16 @@ require '../templates/header.php';
                             <input type="number" class="form-control mb-3 fw-bold input_login" name="costo"
                                 placeholder="Costo actividad" title="Costo actividad" required>
                         </div>
+                        <div class="">
+                            <select class="form-select mb-3 fw-bold input_login" name="rama" required title="Seleccione la rama">
+                                <option disabled selected value>Seleccione la rama</option>
+                                <option value="Lobatos">Lobatos</option>
+                                <option value="Scuts">Scouts</option>
+                                <option value="Caminantes">Caminantes</option>
+                                <option value="Rovers">Rovers</option>
+                                <option value="Dirigentes">Dirigentes</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -114,4 +133,8 @@ require '../templates/header.php';
         </div>
     </div>
 
-<a href="/proyectoGrupoScout/views/admin/menuAdmin.php">Volver</a>
+<?php
+
+require '../templates/footer.php';
+
+?>

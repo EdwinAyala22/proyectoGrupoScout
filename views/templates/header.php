@@ -2,6 +2,16 @@
 
 $btnInicio = "block";
 $btnRegistro = "Registrarse";
+
+// function botonIniciar ($name){
+//     $btnIniciar = $name;
+//     return $btnIniciar;
+// }
+
+// function botonRegistro ($name){
+//     $btnRegistro = $name;
+//     return $btnRegistro;
+// }
 ?>
 
 <!DOCTYPE html>
