@@ -2,7 +2,7 @@
 
 include_once '../../queries/conexion.php';
 
-$consulta = "SELECT * FROM usuarios";
+$consulta = "SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol";
 $result = mysqli_query($conn, $consulta);
 
 ?>
@@ -16,9 +16,9 @@ require '../templates/header.php';
 
 <a href="/proyectoGrupoScout/views/admin/menuAdmin.php" class="btn links_nav m-2">Volver</a>
 
-<div class="container">
+<div class="container bg-light p-3 containerCrud">
     <h1 class="titulo fw-bold text-center m-3">Lista de usuarios</h1>
-    <a class="mb-1 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearUsuario.php">Crear nuevo</a>
+    <a class="mb-1 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearUsuario.php/#newUser">Crear nuevo</a>
     <table class="table table-borderless table-bordered" style="border-radius: 5px;">
         <thead class="cabeceraTablas text-center">
             <tr>
@@ -27,7 +27,7 @@ require '../templates/header.php';
                 <th scope="col">T.D</th>
                 <th scope="col">Documento</th>
                 <th scope="col">Correo</th>
-                <th scope="col">Rama</th>
+                <th scope="col">Rol</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -43,7 +43,7 @@ require '../templates/header.php';
                     <td><?php echo $mostrar['tipodoc'] ?></td>
                     <td><?php echo $mostrar['documento'] ?></td>
                     <td><?php echo $mostrar['correo'] ?></td>
-                    <td><?php echo $mostrar['rama'] ?></td>
+                    <td><?php echo $mostrar['rol'] ?></td>
                     <td class="text-center">
                         <a class="m-1 btn btnDetalles" href="">Detalles</a>
                         <a class="m-1 btn btnEditar" href="">Editar</a>

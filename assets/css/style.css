@@ -27,6 +27,10 @@
   color: white;
 }
 
+.links_nav:focus{
+  box-shadow: none;
+}
+
 .links_nav:hover {
   background-color: white;
   border-radius: 20px;
@@ -353,7 +357,6 @@ input[type="number"] {
 
 /* tablasCrud */
 .containerCrud{
-  box-shadow: 0 0 10px #1e0941;
   border-radius: 10px;
 }
 .cabeceraTablas{
