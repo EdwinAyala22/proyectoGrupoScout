@@ -2,7 +2,7 @@
 
 include_once '../../queries/conexion.php';
 
-$consulta = "SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol";
+$consulta = 'SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol';
 $result = mysqli_query($conn, $consulta);
 
 ?>
@@ -16,9 +16,9 @@ require '../templates/header.php';
 
 <a href="/proyectoGrupoScout/views/admin/menuAdmin.php" class="btn links_nav m-2">Volver</a>
 
-<div class="container bg-light p-3 containerCrud">
+<div class="container bg-light p-3 containerCrud mb-3">
     <h1 class="titulo fw-bold text-center m-3">Lista de usuarios</h1>
-    <a class="mb-1 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearUsuario.php/#newUser">Crear nuevo</a>
+    <a class="mb-3 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearUsuario.php/#newUser">Crear nuevo</a>
     <table class="table table-borderless table-bordered" style="border-radius: 5px;">
         <thead class="cabeceraTablas text-center">
             <tr>
@@ -60,7 +60,7 @@ require '../templates/header.php';
                             </div>
                             <div class="modal-body">
                                 ¿Desea eliminar este usuario?
-                                <p><?php echo $mostrar['nombres'].' '. $mostrar['apellido1'] . ' ' . $mostrar['apellido2'] ?></p>
+                                <p><?php echo $mostrar['nombres'].' '. $mostrar['apellido1'] ?></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btnCerrar" data-bs-dismiss="modal">Cerrar</button>

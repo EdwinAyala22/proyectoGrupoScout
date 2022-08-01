@@ -427,3 +427,7 @@ input[type="number"] {
   color: #635d6e;
   background-color: white;
 }
+
+.mCardImg{
+  width: 130px;
+}

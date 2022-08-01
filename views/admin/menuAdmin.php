@@ -28,40 +28,52 @@ require '../templates/header.php';
     <div class="container d-flex flex-wrap justify-content-center">
         <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
-                <img src="" class="card-img-top" alt="Eventos">
-                <div class="card-footer">Eventos</div>
+                <div class="card-body">
+                    <img src="" class="" alt="Eventos">
+                </div>
+                <div class="card-footer fw-bold">Eventos</div>
             </div>
         </a>
         <a href="/proyectoGrupoScout/views/admin/listUsers.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
-                <img src="" class="card-img-top" alt="Usuarios">
-                <div class="card-footer">Usuarios</div>
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <img src="../../assets/img/userScout.png" class="card-img-top mCardImg" alt="Usuarios">
+                </div>
+                <div class="card-footer fw-bold">Usuarios</div>
             </div>
         </a>
         <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
-                <img src="" class="card-img-top" alt="Progresión Scout">
-                <div class="card-footer">Progresión Scout</div>
+                <div class="card-body">
+                    <img src="" class="card-img-top" alt="Progresión Scout">
+                </div>
+                <div class="card-footer fw-bold">Progresión Scout</div>
             </div>
         </a>
     </div>
     <div class="container d-flex flex-wrap justify-content-center">
         <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
-                <img src="" class="card-img-top" alt="Reportes">
-                <div class="card-footer">Reportes</div>
+                <div class="card-body">
+                    <img src="" class="card-img-top" alt="Reportes">
+                </div>
+                <div class="card-footer fw-bold">Reportes</div>
             </div>
         </a>
         <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
-                <img src="" class="card-img-top" alt="Contactos">
-                <div class="card-footer ">Contactos</div>
+                <div class="card-body">
+                    <img src="" class="card-img-top" alt="Contactos">
+                </div>
+                <div class="card-footer fw-bold">Contactos</div>
             </div>
         </a>
         <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
-                <img src="" class="card-img-top" alt="Contactos">
-                <div class="card-footer">Contactos</div>
+                <div class="card-body">
+                    <img src="" class="card-img-top" alt="Contactos">
+                </div>
+                <div class="card-footer fw-bold">Contactos</div>
             </div>
         </a>
     </div>
