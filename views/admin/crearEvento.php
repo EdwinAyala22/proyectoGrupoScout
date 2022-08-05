@@ -1,9 +1,23 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['rol'])) {
+    header("Location: ../login.php");
+} else {
+    if ($_SESSION['rol'] != 1) {
+        header("Location: ../login.php");
+    }
+}
+
+?>
 <title>Crear Evento</title>
 <?php
 
 require '../templates/header.php';
 
 ?>
+<a href="/proyectoGrupoScout/views/admin/menuAdmin.php" class="btn links_nav m-2">Volver</a>
 <div class="container w-75 mt-5 mb-5 container_general">
         <div class="row align-items-stretch">
             <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">

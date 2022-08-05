@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['rol'])) {
+    header("Location: ../login.php");
+} else {
+    if ($_SESSION['rol'] != 1) {
+        header("Location: ../login.php");
+    }
+}
+
+?>
+
 <title>Crear nuevo usuario</title>
 <?php
 

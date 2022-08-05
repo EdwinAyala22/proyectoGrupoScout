@@ -1,5 +1,19 @@
 <?php
 
+session_start();
+
+if (!isset($_SESSION['rol'])) {
+    header("Location: ../login.php");
+} else {
+    if ($_SESSION['rol'] != 1) {
+        header("Location: ../login.php");
+    }
+}
+
+?>
+
+<?php
+
 include_once '../../queries/conexion.php';
 
 $consulta = 'SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol';

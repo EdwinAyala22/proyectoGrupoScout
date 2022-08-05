@@ -31,6 +31,10 @@
   box-shadow: none;
 }
 
+/* .productos_nav:hover{
+  color: rgba(255,255,255,.55);
+} */
+
 .links_nav:hover {
   background-color: white;
   border-radius: 20px;
