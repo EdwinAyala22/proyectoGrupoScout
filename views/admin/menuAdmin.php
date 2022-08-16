@@ -29,7 +29,7 @@ require '../templates/header.php';
         <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
-                    <img src="" class="" alt="Eventos">
+                    <img src="../../assets/img/eventosMenu.png" class="" alt="Eventos">
                 </div>
                 <div class="card-footer fw-bold">Eventos</div>
             </div>
@@ -42,7 +42,7 @@ require '../templates/header.php';
                 <div class="card-footer fw-bold">Usuarios</div>
             </div>
         </a>
-        <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
+        <a href="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
                     <img src="" class="card-img-top" alt="Progresión Scout">
