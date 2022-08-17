@@ -56,9 +56,26 @@ require '../templates/header.php';
                     </div>
 
                     <div class="row row-cols-md-2 row-cols-sm-1">
-                        <div class="">
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="t_plan" placeholder="Tipo de plan"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Tipo de plan" required>
+                    <div class="">
+                            <select id="tipoElemento" class="form-select mb-3 fw-bold input_login" name="tipo" required data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Seleccione el tipo">
+                                <option disabled selected value>Tipo</option>
+                                <option value="1">Manada</option>
+                                <option value="2">Tropa</option>
+                                <option value="3">Comunidad</option>
+                                <option value="4">Clan</option>
+                                <option value="5">Dirigente</option>
+                                <option value="6">Consejo</option>
+                                <option value="12">Orden del león blanco</option>
+                                <option value="13">Estimulo nacional</option>
+                                <option value="14">Estimulo regional</option>
+                                <option value="15">Estimulo distrital</option>
+                                <option value="16">Especialidad</option>
+                                <option value="17">Investidura</option>
+                                <option value="18">Pañoleta</option>
+                                <option value="19">Gracias de grupo</option>
+                                <option value="20">Otros reconocimientos</option>
+                            </select>
                         </div>
                         <!-- <div class="">
                             <input type="date" class="form-control mb-3 fw-bold input_login" name="f_entrega" placeholder="Fecha de entrega"
@@ -94,3 +111,9 @@ require '../templates/header.php';
     </div>
 
 <a href="/proyectoGrupoScout/views/admin/menuAdmin.php">Volver</a>
+
+<?php
+
+require '../templates/footer.php';
+
+?>
