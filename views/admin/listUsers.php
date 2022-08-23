@@ -19,6 +19,20 @@ include_once '../../queries/conexion.php';
 $consulta = 'SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol';
 $result = mysqli_query($conn, $consulta);
 
+
+if(isset($_GET['delete'])){
+    $documento = $_GET['delete'];
+    $query = "DELETE FROM usuarios WHERE documento = '$documento'";
+    $result = mysqli_query($conn,$query);
+    if($result){
+        header("Location: /proyectoGrupoScout/views/admin/listUsers.php");
+    }
+    else{
+        echo "Error";
+    }
+}
+
+
 ?>
 <title>Usuarios</title>
 
@@ -78,7 +92,7 @@ require '../templates/header.php';
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btnCerrar" data-bs-dismiss="modal">Cerrar</button>
-                                <a href="" class="btn links_nav">Eliminar</a>
+                                <a href="/proyectoGrupoScout/views/admin/listUsers.php?delete=<?php echo $mostrar['documento'] ?>" class="btn links_nav">Eliminar</a>
                             </div>
                         </div>
                     </div>

@@ -12,13 +12,49 @@ if (!isset($_SESSION['rol'])) {
 
 ?>
 
+<?php
+
+include_once '../../queries/conexion.php';
+
+if (isset($_POST['crear'])) {
+    $nombres = $_POST['nombres'];
+    $apellido1 = $_POST['apellido1'];
+    $apellido2 = $_POST['apellido2'];
+    $tipodoc = $_POST['tipodoc'];
+    $documento = $_POST['documento'];
+    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $telefono = $_POST['telefono'];
+    $direccion = $_POST['direccion'];
+    $eps = $_POST['eps'];
+    $rh = $_POST['rh'];
+    $genero = $_POST['genero'];
+    $grupo_anterior = $_POST['grupo_anterior'];
+    $ciudad = $_POST['ciudad'];
+    $correo = $_POST['correo'];
+    $contrasena = $_POST['contrasena'];
+    $id_rama = $_POST['id_rama'];
+    $id_rol = $_POST['id_rol'];
+
+    $sql = "INSERT INTO usuarios (nombres, apellido1, apellido2, tipodoc, documento, fecha_nacimiento, telefono, direccion, eps, rh, genero, grupo_anterior, ciudad, correo, contrasena, id_rama, id_rol)  values ('$nombres','$apellido1','$apellido2','$tipodoc','$documento','$fecha_nacimiento','$telefono','$direccion','$eps','$rh','$genero','$grupo_anterior','$ciudad','$correo','$contrasena','$id_rama','$id_rol')";
+    $result = mysqli_query($conn,$sql);
+    if ($result) {
+        header("Location: /proyectoGrupoScout/views/admin/listUsers.php");
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+
+
+?>
+
 <title>Crear nuevo usuario</title>
 <?php
 
 require '../templates/header.php';
 
 ?>
-<a href="/proyectoGrupoScout/views/admin/listUsers.php" class="btn links_nav m-2"  id="newUser">Volver</a>
+<a href="/proyectoGrupoScout/views/admin/listUsers.php" class="btn links_nav m-2" id="newUser">Volver</a>
 
 <div class="container w-100 mt-1 mb-5 container_general">
     <div class="row align-items-stretch">
@@ -33,7 +69,7 @@ require '../templates/header.php';
             </div>
             <h2 class="titulo fw-bold text-center py-3">Crear nuevo usuario</h2>
             <!-- formlario registro -->
-            <form action="./validaciones/vCrearEvento.php" method="POST" class="p-3 form_registro justify-content-center align-items-center">
+            <form action="/proyectoGrupoScout/views/admin/crearUsuario.php" method="POST" class="p-3 form_registro justify-content-center align-items-center">
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres" title="Nombres" required>
@@ -141,7 +177,7 @@ require '../templates/header.php';
 
                 <div class="row">
                     <div class="col d-flex justify-content-center align-items-center p-2">
-                        <button type="submit" class="btn btn_general">Crear usuario</button>
+                        <button type="submit" class="btn btn_general" name="crear">Crear usuario</button>
                     </div>
                 </div>
             </form>

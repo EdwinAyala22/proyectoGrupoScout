@@ -31,6 +31,14 @@ if(isset($_GET['edit'])){
         $f_nac = $mostrar['fecha_nacimiento'];
         $tel = $mostrar['telefono'];
         $dire = $mostrar['direccion'];
+        $ePS = $mostrar['eps'];
+        $rH = $mostrar['rh'];
+        $gender = $mostrar['genero'];
+        $back_group = $mostrar['grupo_anterior'];
+        $ciu = $mostrar['ciudad'];
+        $email = $mostrar['correo'];
+        $pass = $mostrar['contrasena'];
+
 
     }
     else{
@@ -76,7 +84,7 @@ require '../templates/header.php';
                     <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid">
                 </div>
             </div>
-            <h2 class="titulo fw-bold text-center py-3">Crear nuevo usuario</h2>
+            <h2 class="titulo fw-bold text-center py-3">Editar usuario</h2>
             <!-- formlario registro -->
             <form action="/proyectoGrupoScout/views/admin/listUsers.php?edit=<?php echo $doc?>" method="POST" class="p-3 form_registro justify-content-center align-items-center">
                 <div class="row row-cols-md-3 row-cols-sm-1">
@@ -114,7 +122,7 @@ require '../templates/header.php';
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="direccion" placeholder="Dirección" title="Dirección" required value="<?php echo $dire ?>">
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="eps" placeholder="Nombre EPS" title="Nombre EPS" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="eps" placeholder="Nombre EPS" title="Nombre EPS" required value="<?php echo $ePS ?>">
                     </div>
                 </div>
 
@@ -140,19 +148,19 @@ require '../templates/header.php';
                         </select>
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="grupo_anterior" placeholder="¿Grupo anterior?" title="¿Grupo anterior?" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="grupo_anterior" placeholder="¿Grupo anterior?" title="¿Grupo anterior?" required value="<?php echo $back_group ?>">
                     </div>
                 </div>
 
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="ciudad" placeholder="Ciudad/municipio" title="Ciudad/municipio" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="ciudad" placeholder="Ciudad/municipio" title="Ciudad/municipio" required value="<?php echo $ciu ?>">
                     </div>
                     <div class="">
-                        <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required>
+                        <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required value="<?php echo $email ?>">
                     </div>
                     <div class="">
-                        <input type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" required>
+                        <input type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" required value="<?php echo $pass ?>">
                     </div>
                 </div>
                 <div class="row row-cols-md-2 row-cols-sm-1">
