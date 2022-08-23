@@ -31,13 +31,13 @@ window.onscroll = function(){
 
 //Funcion select
 
-function seleccionarTipo(){
-    let tipoElemento = document.getElementById("tipoElemento");
+// function seleccionarTipo(){
+//     let tipoElemento = document.getElementById("tipoElemento");
 
-    let tipo = tipoElemento.value;
+//     let tipo = tipoElemento.value;
 
-    console.log(tipo);
+//     console.log(tipo);
     
-}
+// }
 
 //
