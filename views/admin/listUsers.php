@@ -73,7 +73,7 @@ require '../templates/header.php';
                     <td><?php echo $mostrar['correo'] ?></td>
                     <td><?php echo $mostrar['rol'] ?></td>
                     <td class="text-center">
-                        <a class="m-1 btn btnDetalles" href="">Detalles</a>
+                        <a class="m-1 btn btnDetalles" href="/proyectoGrupoScout/views/admin/detalleUsuario.php?det=<?php echo $mostrar['documento'] ?>">Detalles</a>
                         <a class="m-1 btn btnEditar" href="/proyectoGrupoScout/views/admin/editarUsuario.php?edit=<?php echo $mostrar['documento'] ?>">Editar</a>
                         <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['documento'] ?>">Eliminar</button>
                     </td>

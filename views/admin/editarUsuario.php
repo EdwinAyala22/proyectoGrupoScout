@@ -19,7 +19,7 @@ include_once '../../queries/conexion.php';
 
 if(isset($_GET['edit'])){
     $documento = $_GET['edit'];
-    $query = "SELECT * FROM usuarios WHERE documento = $documento";
+    $query = "SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.documento = $documento";
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) == 1){
         $mostrar = mysqli_fetch_array($result);
@@ -38,7 +38,8 @@ if(isset($_GET['edit'])){
         $ciu = $mostrar['ciudad'];
         $email = $mostrar['correo'];
         $pass = $mostrar['contrasena'];
-
+        $idRol= $mostrar['id_rol'];
+        $idRama= $mostrar['id_rama'];
 
     }
     else{
@@ -63,7 +64,7 @@ if(isset($_GET['edit'])){
 
 ?>
 
-<title>Usuarios</title>
+<title>Editar usuario</title>
 
 <?php
 
@@ -95,16 +96,38 @@ require '../templates/header.php';
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido1" placeholder="Primer apellido" title="Primer apellido" required value="<?php echo $ape1 ?>">
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido2" placeholder="Segundo apellido" title="Objetivo" required value="<?php echo $ape2 ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido2" placeholder="Segundo apellido" title="Segundo apellido" required value="<?php echo $ape2 ?>">
                     </div>
                 </div>
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
                         <select class="form-select mb-3 fw-bold input_login" name="tipodoc" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione el tipo de documento">
-                            <option disabled selected value>Tipo de Documento</option>
-                            <option value="TI">Tarjeta de Identidad</option>
-                            <option value="CC">Cédula de Ciudadania</option>
-                            <option value="CE">Cédula de Extranjería</option>
+                            <option disabled value>Tipo de Documento</option>
+                            <?php
+                            switch($tipoD){
+                                case 'TI':
+                            ?>	
+                                <option selected value="TI">Tarjeta de Identidad</option>
+                                <option value="CC">Cédula de Ciudadania</option>
+                                <option value="CE">Cédula de Extranjería</option>
+                            <?php
+                                break;
+                                case 'CC':
+                            ?>
+                                <option value="TI">Tarjeta de Identidad</option>
+                                <option selected value="CC">Cédula de Ciudadania</option>
+                                <option value="CE">Cédula de Extranjería</option>
+                            <?php
+                                break;
+                                case 'CE':
+                            ?>
+                                <option value="TI">Tarjeta de Identidad</option>
+                                <option  value="CC">Cédula de Ciudadania</option>
+                                <option selected value="CE">Cédula de Extranjería</option>
+                            <?php
+                                break;
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="">
@@ -130,21 +153,127 @@ require '../templates/header.php';
                     <div class="">
                         <select class="form-select mb-3 fw-bold input_login" name="rh" title="Seleccione el tipo de sangre" required>
                             <option disabled selected value>RH</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
+                            <?php
+                            switch($rH){
+                                case 'A+':
+                            ?>	
+                                <option selected value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            <?php
+                                break;
+                                case 'A-':
+                            ?>
+                                <option value="A+">A+</option>
+                                <option selected value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            <?php
+                                break;
+                                case 'B+':
+                            ?>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option selected value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            <?php
+                                break;
+                                case 'B-':
+                            ?>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option selected value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            <?php
+                                break;
+                                case 'AB+':
+                            ?>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option selected value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            <?php
+                                break;
+                                case 'AB-':
+                            ?>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option selected value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            <?php
+                                break;
+                                case 'O+':
+                            ?>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option selected value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            <?php
+                                break;
+                                case 'O-':
+                            ?>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option selected value="O-">O-</option>
+                            <?php
+                                break;
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="">
                         <select class="form-select mb-3 fw-bold input_login" name="genero" title="Género" required>
                             <option disabled selected value>Género</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Femenino</option>
+                            <?php
+                            switch($gender){
+                                case 'M':
+                            ?>	
+                                <option selected value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                            <?php
+                                break;
+                                case 'F':
+                            ?>
+                                <option value="M">Masculino</option>
+                                <option selected value="F">Femenino</option>
+                            <?php
+                                break;
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="">
@@ -183,9 +312,34 @@ require '../templates/header.php';
                     <div class="">
                         <select class="form-select mb-3 fw-bold input_login" name="id_rol" required title="Seleccione el rol">
                             <option disabled selected value>Seleccione el rol</option>
-                            <option value="1">Admin</option>
+                            <?php
+                            switch($idRol){
+                                case 1:
+                            ?>	
+                                <option selected value="1">Admin</option>
+                                <option value="2">Scout</option>
+                                <option value="3">Visitante</option>
+                            <?php
+                                break;
+                                case 2:
+                            ?>
+                                <option value="1">Admin</option>
+                                <option selected value="2">Scout</option>
+                                <option value="3">Visitante</option>
+                            <?php
+                                break;
+                                case 3:
+                            ?>
+                                <option value="1">Admin</option>
+                                <option value="2">Scout</option>
+                                <option selected value="3">Visitante</option>
+                            <?php
+                                break;
+                            }
+                            ?>
+                            <!-- <option value="1">Admin</option>
                             <option value="2">Scout</option>
-                            <option value="3">Visitante</option>
+                            <option value="3">Visitante</option> -->
                         </select>
                     </div>
                 </div>
