@@ -29,6 +29,7 @@ $btnRegistro = "Registrarse";
     <link rel="shortcut icon" href="/proyectoGrupoScout/assets/img/logo-scout-co.svg" type="image/x-icon">
     <!-- <script src="https://kit.fontawesome.com/aa2bae0729.js" crossorigin="anonymous"></script> -->
     <script src="https://kit.fontawesome.com/b333d707bf.js" crossorigin="anonymous"></script>
+    <script lang="javascript" src="/proyectoGrupoScout/assets/js/jquery-3.6.0.min.js"></script>
     <title>Inicio</title>
 </head>
 

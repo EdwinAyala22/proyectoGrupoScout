@@ -11,33 +11,12 @@ if (!isset($_SESSION['rol'])) {
 }
 
 ?>
-<title>Plan de progresión</title>
+<title>Crear Evento</title>
 <?php
 
 require '../templates/header.php';
-include_once '../../queries/conexion.php';
 
-
-
-    $query = "SELECT * FROM ramas";
-    $result = mysqli_query($conn,$query);
 ?>
-
-<script lang="javascript">
-    $(document).ready(function(){
-        $("#rama_progresion").change(function () {
-            $("#rama_progresion option:selected").each(function ()
-            {
-                id_rama = $ (this).val();
-                $.post("/proyectoGrupoScout/queries/getTipoProgresiones.php",{ id_rama: id_rama
-                }, function(data){
-                    $("#progresion-seleccionada").html(data);
-                });
-            });
-        });
-    });
-
-</script>
 <a href="/proyectoGrupoScout/views/admin/menuAdmin.php" class="btn links_nav m-2">Volver</a>
 <div class="container w-75 mt-5 mb-5 container_general">
         <div class="row align-items-stretch">
@@ -76,47 +55,32 @@ include_once '../../queries/conexion.php';
                         </div>
                     </div>
 
-                    <div class="row row-cols-md-3 row-cols-sm-1">
-                        <div class="">
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="t_plan" placeholder="Tipo de plan"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Tipo de plan" required>
-                        </div>
-                        <div class="">
-                            <!--COMBO BOX RAMA -->
-                            <select id="rama_progresion" class="form-select mb-3 fw-bold input_login" name="rama_progresion" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la rama">
-                            <option disabled selected value>Seleccionar rama</option>
-                                <?php
-                                    while ($mostrar = mysqli_fetch_array($result)) { ?>
-
-                                        <option value="<?php echo $mostrar['id_rama']; ?>"><?php echo $mostrar['nom_rama'];?></option>
-                                    
-                                        
-                                    <?php    
-                                    }
-                                ?>
-                            <!-- <option disabled selected value>Ramas</option>
-                            <option >Lobatos</option>
-                            <option >Scouts</option>        
-                            <option >Caminantes</option>
-                            <option >Rovers</option>                            
-                            <option >Dirigentes</option>
-                            <option >Consejeros</option>
-                            <option >Padres de familia</option>
-                            <option >Miembros fundadores</option> -->
+                    <div class="row row-cols-md-2 row-cols-sm-1">
+                    <div class="">
+                            <select id="tipoElemento" class="form-select mb-3 fw-bold input_login" name="tipo" required data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Seleccione el tipo">
+                                <option disabled selected value>Tipo</option>
+                                <option value="1">Manada</option>
+                                <option value="2">Tropa</option>
+                                <option value="3">Comunidad</option>
+                                <option value="4">Clan</option>
+                                <option value="5">Dirigente</option>
+                                <option value="6">Consejo</option>
+                                <option value="12">Orden del león blanco</option>
+                                <option value="13">Estimulo nacional</option>
+                                <option value="14">Estimulo regional</option>
+                                <option value="15">Estimulo distrital</option>
+                                <option value="16">Especialidad</option>
+                                <option value="17">Investidura</option>
+                                <option value="18">Pañoleta</option>
+                                <option value="19">Gracias de grupo</option>
+                                <option value="20">Otros reconocimientos</option>
                             </select>
-                           
                         </div>
-
-                        <div class="">
-                            <!-- COMBOBOX PROGRESIÓN-->
-                            <select id="progresion-seleccionada" class="form-select mb-3 fw-bold input_login" name="progresion-seleccionada" required data-bs-toggle="tooltip" data-bs-placement="top" title="Progresión">
-                                
-                                
-                            
-                            </select>
-                           
-                        </div>
-
+                        <!-- <div class="">
+                            <input type="date" class="form-control mb-3 fw-bold input_login" name="f_entrega" placeholder="Fecha de entrega"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Fecha de entrega" required>
+                        </div> -->
                     </div>
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
@@ -145,3 +109,11 @@ include_once '../../queries/conexion.php';
             </div>
         </div>
     </div>
+
+<a href="/proyectoGrupoScout/views/admin/menuAdmin.php">Volver</a>
+
+<?php
+
+require '../templates/footer.php';
+
+?>
