@@ -54,12 +54,13 @@ require '../templates/header.php';
                         <div class="">
                             <label class="form-label fw-bold titulo">Responsable: </label>
                             <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $row['responsable'] ?>" readonly title="Responsable de la actividad">
-                            <div class="">
-                                <label class="form-label fw-bold titulo">Objetivo Evento: </label>
-                                <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $row['objetivo_act'] ?>" readonly title="Objetivo">
-                            </div>
-
                         </div>
+                        <div class="">
+                            <label class="form-label fw-bold titulo">Objetivo Evento: </label>
+                            <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $row['objetivo_act'] ?>" readonly title="Objetivo">
+                        </div>
+
+                        
                     </div>
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
@@ -68,7 +69,7 @@ require '../templates/header.php';
                         </div>
                         <div class="">
                             <label class="form-label fw-bold titulo">Rama: </label>
-                            <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $row['rama'] ?>" readonly title="Rama">
+                            <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $row['id_rama'] ?>" readonly title="Rama">
                         </div>
 
                     </div>

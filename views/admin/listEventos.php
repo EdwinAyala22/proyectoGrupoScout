@@ -17,6 +17,20 @@ include_once '../../queries/conexion.php';
 
 $evento = "SELECT * FROM f_actividades";
 $result = mysqli_query($conn, $evento);
+
+
+if(isset($_GET['delete'])){
+  $id_act= $_GET['delete'];
+  $query = "DELETE FROM f_actividades WHERE id_act = '$id_act'";
+  $result = mysqli_query($conn,$query);
+  if($result){
+      header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+  }
+  else{
+      echo "Error";
+  }
+}
+
 ?>
 
 <title>Eventos</title>
@@ -58,11 +72,11 @@ require '../templates/header.php';
           <td><?php echo $mostrar['fechaFin'] ?>
           <td class="text-center">
             <a class="m-1 btn btnDetalles" href="./detalleEvento.php?id=<?php echo $mostrar['id_act'] ?>"> Detalles</a>
-            <a class="m-1 btn btnEditar" href="./editarEvento.php?id=<?php echo $mostrar['id_act'] ?>"> Editar</a>
+            <a class="m-1 btn btnEditar" href="./editarEvento.php?idAct=<?php echo $mostrar['id_act'] ?>"> Editar</a>
             <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['id_act'] ?>">Eliminar</button>
           </td>
         </tr>
-        <!-- Modal -->º
+        <!-- Modal -->
         <div class="modal fade" id="mEliminar<?php echo $mostrar['id_act'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -76,7 +90,7 @@ require '../templates/header.php';
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btnCerrar" data-bs-dismiss="modal">Cerrar</button>
-                <a href="" class="btn links_nav">Eliminar</a>
+                <a href="/proyectoGrupoScout/views/admin/listEventos.php?delete=<?php echo $mostrar['id_act'] ?>" class="btn links_nav">Eliminar</a>
               </div>
             </div>
           </div>

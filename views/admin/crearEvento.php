@@ -19,7 +19,7 @@ if (isset($_POST['crear'])) {
     $responsable = $_POST['responsable'];
     $objetivo_act = $_POST['objetivo_act'];
     $area = $_POST['area'];
-    $rama = $_POST['rama'];
+    $rama = $_POST['id_rama'];
     $fechaInicio = $_POST['fechaInicio'];
     $fechaFin = $_POST['fechaFin'];
     $lugar = $_POST['lugar'];
@@ -31,7 +31,7 @@ if (isset($_POST['crear'])) {
     $f_elab_por = $_POST['f_elab_por'];
     $costo = $_POST['costo'];
 
-    $sql = "INSERT INTO f_actividades (responsable, objetivo_act, area, rama, fechaInicio, fechaFin, lugar, nombre_act, descri_act, materiales, fact_riesgo, evaluacion_act, f_elab_por, costo)  values ('$responsable','$objetivo_act','$area','$rama','$fechaInicio','$fechaFin','$lugar','$nombre_act','$descri_act','$materiales','$fact_riesgo','$evaluacion_act','$f_elab_por','$costo')";
+    $sql = "INSERT INTO f_actividades (responsable, objetivo_act, area, id_rama, fechaInicio, fechaFin, lugar, nombre_act, descri_act, materiales, fact_riesgo, evaluacion_act, f_elab_por, costo)  values ('$responsable','$objetivo_act','$area','$rama','$fechaInicio','$fechaFin','$lugar','$nombre_act','$descri_act','$materiales','$fact_riesgo','$evaluacion_act','$f_elab_por','$costo')";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
@@ -77,13 +77,19 @@ require '../templates/header.php';
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="area" placeholder="Área" title="Área" required>
                     </div>
                     <div class="">
-                        <select class="form-select mb-3 fw-bold input_login" name="rama" required title="Seleccione la rama">
+                        <select class="form-select mb-3 fw-bold input_login" name="id_rama" required title="Seleccione la rama">
                             <option disabled selected value>Seleccione la rama</option>
-                            <option value="Lobatos">Lobatos</option>
-                            <option value="Scuts">Scouts</option>
-                            <option value="Caminantes">Caminantes</option>
-                            <option value="Rovers">Rovers</option>
-                            <option value="Dirigentes">Dirigentes</option>
+                            <option value="1">Lobatos</option>
+                            <option value="2">Scouts</option>
+                            <option value="3">Caminantes</option>
+                            <option value="4">Rovers</option>
+                            <option value="5">Dirigentes</option>
+                            <option value="6">Consejeros</option>
+                            <option value="7">Padres de familia</option>
+                            <option value="8">Miembros fundadores</option>
+                            <option value="9">Inactivos</option>
+                            <option value="10">Otro</option>
+                            <option value="11">No aplica</option>
                         </select>
                     </div>
 
