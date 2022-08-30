@@ -76,11 +76,11 @@ include_once '../../queries/conexion.php';
                         </div>
                     </div>
 
-                    <div class="row row-cols-md-3 row-cols-sm-1">
-                        <div class="">
+                    <div class="row row-cols-md-2 row-cols-sm-1">
+                        <!-- <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="t_plan" placeholder="Tipo de plan"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Tipo de plan" required>
-                        </div>
+                        </div> -->
                         <div class="">
                             <!--COMBO BOX RAMA -->
                             <select id="rama_progresion" class="form-select mb-3 fw-bold input_login" name="rama_progresion" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la rama">
@@ -107,13 +107,13 @@ include_once '../../queries/conexion.php';
                            
                         </div>
 
-                        <div class="">
+                        <div class="" id="progresion-seleccionada">
                             <!-- COMBOBOX PROGRESIÓN-->
-                            <select id="progresion-seleccionada" class="form-select mb-3 fw-bold input_login" name="progresion-seleccionada" required data-bs-toggle="tooltip" data-bs-placement="top" title="Progresión">
+                            <!-- <select id="progresion-seleccionada" class="form-select mb-3 fw-bold input_login" name="progresion-seleccionada" required data-bs-toggle="tooltip" data-bs-placement="top" title="Progresión">
                                 
                                 
                             
-                            </select>
+                            </select> -->
                            
                         </div>
 

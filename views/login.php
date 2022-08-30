@@ -48,7 +48,10 @@ if(isset($_POST['documento']) && isset($_POST['contrasena'])){
             default:
         }
     }else{
-        echo 'No existe';
+        echo '<script type="text/javascript">
+        alert("Usuario o contraseña inválido");
+        window.location.href="/proyectoGrupoScout/views/login.php";
+        </script>';
     }
 
 }
