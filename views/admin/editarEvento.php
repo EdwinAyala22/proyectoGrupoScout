@@ -48,8 +48,8 @@ if (isset($_POST['editarEv'])) {
     $objetivo_act = $_POST['objetivo_act'];
     $area = $_POST['area'];
     $rama = $_POST['id_rama'];
-    $fechaInicio = $_POST['fechaInicio'];
-    $fechaFin = $_POST['fechaFin'];
+    $fechaIniciio = $_POST['fechaInicioo'];
+    $fechaFiin = $_POST['fechaFiin'];
     $lugar = $_POST['lugar'];
     $nombre_act = $_POST['nombre_act'];
     $descri_act = $_POST['descri_act'];
@@ -59,7 +59,7 @@ if (isset($_POST['editarEv'])) {
     $f_elab_por = $_POST['f_elab_por'];
     $costo = $_POST['costo'];
 
-    $consulta = "UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', id_rama = '$rama', fechaInicio = '$fechaInicio', fechaFin = '$fechaFin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
+    $consulta = "UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', id_rama = '$rama', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
     if (mysqli_query($conn, $consulta)) {
         header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
     } else {
@@ -90,18 +90,18 @@ require '../templates/header.php';
                     <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid">
                 </div>
             </div>
-            <h2 class="titulo fw-bold text-center py-3">Editar usuario</h2>
+            <h2 class="titulo fw-bold text-center py-3">Editar evento</h2>
 
             <form action="/proyectoGrupoScout/views/admin/editarEvento.php?id=<?php echo $id_de_act ?>" method="POST">
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label class="form-label fw-bold titulo">Responsable: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $resp ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="responsable" type="text" value="<?php echo $resp ?>">
                     </div>
                     <div class="">
                         <label class="form-label fw-bold titulo">Objetivo Evento: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $obj ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="objetivo_act" type="text" value="<?php echo $obj ?>">
                     </div>
 
 
@@ -109,7 +109,7 @@ require '../templates/header.php';
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label class="form-label fw-bold titulo">Area: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $ar ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="area" type="text" value="<?php echo $ar ?>">
                     </div>
                     <div class="">
                         <label class="form-label fw-bold titulo" >Rama: </label>
@@ -291,58 +291,60 @@ require '../templates/header.php';
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label class="form-label fw-bold titulo">Fecha y Hora-Inicio: </label>
-                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $feInicio ?>">
+                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" name="fechaInicioo" type="text" value="<?php echo $feInicio ?>">
+                        
                     </div>
                     <div class="">
                         <label class="form-label fw-bold titulo">Fecha y Hora-Fin: </label>
-                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $feFin ?>">
+                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" name="fechaFiin" type="text" value="<?php echo $feFin ?>">
+                        
                     </div>
                 </div>
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label class="form-label fw-bold titulo">Lugar: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $lug ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="lugar" type="text" value="<?php echo $lug ?>">
                     </div>
                     <div class="">
                         <label class="form-label fw-bold titulo">Nombre Evento: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $nom_act ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" type="text" value="<?php echo $nom_act ?>">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="">
                         <label class="form-label fw-bold titulo">Descripcion Evento: </label>
-                        <input class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $des_act ?>"></input>
+                        <input class="form-control mb-3 fw-bold input_login" name="descri_act" type="text" value="<?php echo $des_act ?>"></input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="">
                         <label class="form-label fw-bold titulo">Materiales: </label>
-                        <input class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $mat ?>"></input>
+                        <input class="form-control mb-3 fw-bold input_login" name="materiales" type="text" value="<?php echo $mat ?>"></input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="">
                         <label class="form-label fw-bold titulo">Factor de Riesgo: </label>
-                        <input class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $f_riesgo ?>"></input>
+                        <input class="form-control mb-3 fw-bold input_login" name="fact_riesgo" type="text" value="<?php echo $f_riesgo ?>"></input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="">
                         <label class="form-label fw-bold titulo">Evaluacion Evento: </label>
-                        <input class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $eva_act ?>"></input>
+                        <input class="form-control mb-3 fw-bold input_login" name="evaluacion_act" type="text" value="<?php echo $eva_act ?>"></input>
                     </div>
                 </div>
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label class="form-label fw-bold titulo">Evento Elaborado Por: </label>
-                        <input class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $f_e_por ?>">
+                        <input class="form-control mb-3 fw-bold input_login" name="f_elab_por" type="text" value="<?php echo $f_e_por ?>">
                     </div>
                     <div class="">
                         <label class="form-label fw-bold titulo">Costo Evento: </label>
-                        <input class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $cos ?>">
+                        <input class="form-control mb-3 fw-bold input_login" name="costo" type="text" value="<?php echo $cos ?>">
                     </div>
                 </div>
 

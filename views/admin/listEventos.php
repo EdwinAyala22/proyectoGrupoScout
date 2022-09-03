@@ -15,7 +15,7 @@ if (!isset($_SESSION['rol'])) {
 <?php
 include_once '../../queries/conexion.php';
 
-$evento = "SELECT * FROM f_actividades";
+$evento = "SELECT * FROM f_actividades A, ramas R WHERE A.id_rama = R.id_rama";
 $result = mysqli_query($conn, $evento);
 
 
