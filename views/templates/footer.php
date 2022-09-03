@@ -4,9 +4,9 @@
         <div class="grupo-1">
             <div class="box">
                 <figure>
-                    <a href="">
+                    <!-- <a href=""> -->
                         <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="">
-                    </a>
+                    <!-- </a> -->
                 </figure>
             </div>
             <div class="box">

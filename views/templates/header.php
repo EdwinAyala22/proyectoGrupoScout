@@ -71,9 +71,12 @@ $btnRegistro = "Registrarse";
                         <a class="nav-link text-center" href="/proyectoGrupoScout/#qs">¿Quiénes somos?</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-center" href="#">Actividades</a>
+                        <a class="nav-link text-center" href="/proyectoGrupoScout/views/actividades.php">Actividades</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="#">Miembros scouts</a>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Miembros scouts
@@ -89,7 +92,7 @@ $btnRegistro = "Registrarse";
                             </li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link text-center" href="/proyectoGrupoScout/views/contacto.php">Contáctenos</a>
                     </li>
