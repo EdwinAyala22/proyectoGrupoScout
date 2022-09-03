@@ -20,7 +20,7 @@ require '../templates/header.php';
 
 ?>
 
-<h1>BIENVENIDO</h1>
+<h1 class="titulo fw-bold text-center">BIENVENIDO</h1>
 
 
 <!-- cards -->
@@ -79,7 +79,6 @@ require '../templates/header.php';
     </div>
 </div>
 
-<a href="/proyectoGrupoScout/views/admin/crearEvento.php"></a>
 <form method="POST" action="../login.php?logout=1">
     <button class="btn btn_general" type="submit">Cerrar sesión</button>
 </form>
