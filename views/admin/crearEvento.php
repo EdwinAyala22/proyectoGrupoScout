@@ -95,11 +95,13 @@ require '../templates/header.php';
 
                 </div>
                 <div class="row row-cols-md-2 row-cols-sm-1">
-                    <div class="">
-                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" name="fechaInicio" placeholder="Fecha Inicio" data-bs-toggle="tooltip" title="Fecha y hora de inicio" required>
+                    <div class="form-floating">
+                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" id="floatingInput" name="fechaInicio" placeholder="Fecha Inicio" data-bs-toggle="tooltip" title="Fecha y hora de inicio" required>
+                        <label class="ms-2 fw-bold titulo" for="floatingInput">Fecha inicio</label>
                     </div>
-                    <div class="">
-                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" name="fechaFin" placeholder="Fecha Final" data-bs-toggle="tooltip" title="Fecha y hora final" required>
+                    <div class="form-floating">
+                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" id="floatingInput" name="fechaFin" placeholder="Fecha Final" data-bs-toggle="tooltip" title="Fecha y hora final" required>
+                        <label class="ms-2 fw-bold titulo" for="floatingInput">Fecha fin</label>
                     </div>
                 </div>
 

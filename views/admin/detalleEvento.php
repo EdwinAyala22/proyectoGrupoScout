@@ -17,7 +17,7 @@ if (!isset($_SESSION['rol'])) {
 include_once '../../queries/conexion.php';
 
 $id = $_GET["id"];
-$evento = "SELECT * FROM f_actividades WHERE id_act = '$id'";
+$evento = "SELECT * FROM f_actividades A, ramas R WHERE A.id_act = $id AND A.id_rama = R.id_rama";
 $result = mysqli_query($conn, $evento);
 ?>
 
@@ -69,7 +69,7 @@ require '../templates/header.php';
                         </div>
                         <div class="">
                             <label class="form-label fw-bold titulo">Rama: </label>
-                            <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $row['id_rama'] ?>" readonly title="Rama">
+                            <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $row['nom_rama'] ?>" readonly title="Rama">
                         </div>
 
                     </div>
