@@ -6,23 +6,24 @@ session_start();
 
 include_once '../queries/database.php';
 
-// $doc = $_POST['documento'];
-// $cont =  $_POST['contrasena'];
+
 
 if(isset($_GET['logout'])){
     session_unset();
     
     session_destroy();
-    header("Location: ./login.php");
+    header("Location: /proyectoGrupoScout/views/login.php");
 }
 
 if(isset($_SESSION['rol'])){
+    $doc = $_POST['documento'];
+    $cont =  $_POST['contrasena'];
     switch($_SESSION['rol']){
         case 1:
-            header("Location: ./admin/menuAdmin.php");
+            header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php?a=$doc");
             break;
         case 2:
-            header("Location: ./scouts/menuScout.php");
+            header("Location: /proyectoGrupoScout/views/scouts/menuScout.php?s=$doc");
             break;
         default:
     }
@@ -42,10 +43,11 @@ if(isset($_POST['documento']) && isset($_POST['contrasena'])){
         $_SESSION['rol'] = $rol;
         switch($_SESSION['rol']){
             case 1:
-                header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php");
+                header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php?a=$documento");
+
                 break;
             case 2:
-                header("Location: /proyectoGrupoScout/views/scouts/menuScout.php");
+                header("Location: /proyectoGrupoScout/views/scouts/menuScout.php?s=$documento");
                 break;
             default:
         }

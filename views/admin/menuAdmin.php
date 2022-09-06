@@ -29,7 +29,7 @@ require '../templates/header.php';
         <a href="/proyectoGrupoScout/views/admin/listEventos.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <img src="../../assets/img/eventosMenu.png" class="" alt="Eventos">
+                    <img src="/proyectoGrupoScout/assets/img/eventosMenu.png" class="" alt="Eventos">
                 </div>
                 <div class="card-footer fw-bold">Eventos</div>
             </div>
@@ -37,7 +37,7 @@ require '../templates/header.php';
         <a href="/proyectoGrupoScout/views/admin/listUsers.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <img src="../../assets/img/userScout.png" class="card-img-top mCardImg" alt="Usuarios">
+                    <img src="/proyectoGrupoScout/assets/img/userScout.png" class="card-img-top mCardImg" alt="Usuarios">
                 </div>
                 <div class="card-footer fw-bold">Usuarios</div>
             </div>
@@ -79,7 +79,7 @@ require '../templates/header.php';
     </div>
 </div>
 
-<form method="POST" action="../login.php?logout=1">
+<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
     <button class="btn btn_general" type="submit">Cerrar sesión</button>
 </form>
 
