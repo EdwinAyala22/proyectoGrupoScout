@@ -423,6 +423,18 @@ input[type="number"] {
   background-color: #635d6e;
 }
 
+.btnInscritos{
+  border-radius: 20px;
+  border: 1.2px solid #594976;
+  background-color: white;
+  color: #594976;
+}
+
+.btnInscritos:hover{
+  color: white;
+  background-color: #594976;
+}
+
 .btnCerrar{
   border-radius: 20px;
   color: white;
