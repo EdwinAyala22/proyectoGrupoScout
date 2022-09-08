@@ -3,10 +3,10 @@
 
 session_start();
 
-if(!isset($_SESSION['rol'])){
+if (!isset($_SESSION['rol'])) {
     header("Location: ../login.php");
-}else{
-    if($_SESSION['rol'] != 2 ){
+} else {
+    if ($_SESSION['rol'] != 2) {
         header("Location: ../login.php");
     }
 }
@@ -18,6 +18,19 @@ if(!isset($_SESSION['rol'])){
 
 require '../templates/header.php';
 
+$s_id = $_GET['s'];
+// if (isset($_GET['s'])) {
+    
+    // $query = "DELETE FROM f_actividades WHERE id_act = '$id_act'";
+    // $result = mysqli_query($conn, $query);
+    // if ($result) {
+    //     header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+    // } else {
+    //     echo "Error";
+    // }
+// }
+
+
 ?>
 
 <h1>BIENVENIDO SCOUT</h1>
@@ -25,10 +38,10 @@ require '../templates/header.php';
 <!-- cards -->
 <div class="container flex-wrap d-grid justify-content-center align-items-center ">
     <div class="container d-flex flex-wrap justify-content-center">
-        <a href="/proyectoGrupoScout/views/scouts/perfilScout.php" class="text-decoration-none btnAdmin">
+        <a href="/proyectoGrupoScout/views/scouts/perfilScout.php?sid=<?php echo $s_id ?>" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <img src="../../assets/img/userScout.png" class="card-img-top mCardImg" alt="Eventos">
+                    <img src="/proyectoGrupoScout/assets/img/userScout.png" class="card-img-top mCardImg" alt="Eventos">
                 </div>
                 <div class="card-footer fw-bold">Perfil</div>
             </div>
@@ -36,7 +49,7 @@ require '../templates/header.php';
         <a href="/proyectoGrupoScout/views/scouts/" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <img src="../../assets/img/evento" class="card-img-top mCardImg" alt="Usuarios">
+                    <img src="" class="card-img-top mCardImg" alt="Usuarios">
                 </div>
                 <div class="card-footer fw-bold">Mis progresiones</div>
             </div>
