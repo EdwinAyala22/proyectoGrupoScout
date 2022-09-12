@@ -3,10 +3,10 @@
 session_start();
 
 if (!isset($_SESSION['rol'])) {
-    header("Location: ../login.php");
+    header("Location: /proyectoGrupoScout/views/login.php");
 } else {
     if ($_SESSION['rol'] != 1) {
-        header("Location: ../login.php");
+        header("Location: /proyectoGrupoScout/views/login.php");
     }
 }
 

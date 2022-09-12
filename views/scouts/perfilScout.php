@@ -1,12 +1,55 @@
+<?php
+
+
+session_start();
+
+if (!isset($_SESSION['rol'])) {
+    header("Location: ../login.php");
+} else {
+    if ($_SESSION['rol'] != 2) {
+        header("Location: ../login.php");
+    }
+}
+?>
+
 <title>Perfil</title>
 
 <?php
 
 require '../templates/header.php';
 
+include_once '../../queries/conexion.php';
+
+$sid = $_GET['sid'];
+
+    $query = "SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.documento = $sid";
+    $result = mysqli_query($conn, $query);
+    if (mysqli_num_rows($result) == 1) {
+        $mostrar = mysqli_fetch_array($result);
+        $name = $mostrar['nombres'];
+        $ape1 = $mostrar['apellido1'];
+        $ape2 = $mostrar['apellido2'];
+        $tipoD = $mostrar['tipodoc'];
+        $doc = $mostrar['documento'];
+        $f_nac = $mostrar['fecha_nacimiento'];
+        $tel = $mostrar['telefono'];
+        $dire = $mostrar['direccion'];
+        $ePS = $mostrar['eps'];
+        $rH = $mostrar['rh'];
+        $gender = $mostrar['genero'];
+        $back_group = $mostrar['grupo_anterior'];
+        $ciu = $mostrar['ciudad'];
+        $email = $mostrar['correo'];
+        $pass = $mostrar['contrasena'];
+        $rama = $mostrar['nom_rama'];
+        $rol = $mostrar['rol'];
+    } else {
+        echo "Error";
+    }
+
 ?>
 
-<a href="/proyectoGrupoScout/views/scouts/menuScout.php" class="btn links_nav m-2">Volver</a>
+<a href="/proyectoGrupoScout/views/scouts/menuScout.php?s=<?php echo $sid ?>" class="btn links_nav m-2">Volver</a>
 <div class="container bg-light p-5 containerCrud mb-3">
     <div class="row">
         <h1 class="titulo fw-bold text-center mb-4">Perfil Scout</h1>
@@ -16,7 +59,7 @@ require '../templates/header.php';
         <div class="row align-items-stretch">
             <div class="col">
                 <!-- formlario registro -->
-                <form action="/proyectoGrupoScout/views/admin/listUsers.php?edit=<?php echo $doc ?>" method="POST" class="form_registro justify-content-center align-items-center">
+                <form action="/proyectoGrupoScout/views/scouts/editarPerfil.php?edit=<?php echo $sid ?>" method="POST" class="form_registro justify-content-center align-items-center">
                     <div class="row row-cols-md-3 row-cols-sm-1">
                         <div class="">
                             <label for="nombres" class="form-label fw-bold titulo">Nombres: </label>
