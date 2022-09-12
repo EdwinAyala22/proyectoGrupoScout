@@ -29,7 +29,7 @@ require '../templates/header.php';
         <a href="/proyectoGrupoScout/views/admin/listEventos.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <img src="/proyectoGrupoScout/assets/img/eventosMenu.png" class="" alt="Eventos">
+                    <img src="/proyectoGrupoScout/assets/img/eventosMenu.png" class="card-img-top mCardImg" alt="Eventos">
                 </div>
                 <div class="card-footer fw-bold">Eventos</div>
             </div>
@@ -37,7 +37,7 @@ require '../templates/header.php';
         <a href="/proyectoGrupoScout/views/admin/listUsers.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <img src="/proyectoGrupoScout/assets/img/userScout.png" class="card-img-top mCardImg" alt="Usuarios">
+                    <img src="/proyectoGrupoScout/assets/img/Usuarios.png" class="card-img-top mCardImg" alt="Usuarios">
                 </div>
                 <div class="card-footer fw-bold">Usuarios</div>
             </div>
@@ -45,7 +45,7 @@ require '../templates/header.php';
         <a href="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
-                    <img src="" class="card-img-top" alt="Progresión Scout">
+                    <img src="/proyectoGrupoScout/assets/img/Progresion.png" class="card-img-top mCardImg" alt="Progresión Scout">
                 </div>
                 <div class="card-footer fw-bold">Progresión Scout</div>
             </div>
@@ -55,7 +55,7 @@ require '../templates/header.php';
         <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
-                    <img src="" class="card-img-top" alt="Reportes">
+                    <img src="/proyectoGrupoScout/assets/img/Reportes.png" class="card-img-top mCardImg" alt="Reportes">
                 </div>
                 <div class="card-footer fw-bold">Reportes</div>
             </div>
@@ -63,15 +63,15 @@ require '../templates/header.php';
         <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
-                    <img src="" class="card-img-top" alt="Contactos">
+                    <img src="/proyectoGrupoScout/assets/img/Perfil.png" class="card-img-top mCardImg" alt="Contactos">
                 </div>
-                <div class="card-footer fw-bold">Contactos</div>
+                <div class="card-footer fw-bold">Perfil</div>
             </div>
         </a>
         <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
-                    <img src="" class="card-img-top" alt="Contactos">
+                    <img src="/proyectoGrupoScout/assets/img/Contacto.png" class="card-img-top mCardImg" alt="Contactos">
                 </div>
                 <div class="card-footer fw-bold">Contactos</div>
             </div>

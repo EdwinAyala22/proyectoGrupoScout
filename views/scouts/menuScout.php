@@ -41,7 +41,7 @@ $s_id = $_GET['s'];
         <a href="/proyectoGrupoScout/views/scouts/perfilScout.php?sid=<?php echo $s_id ?>" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <img src="/proyectoGrupoScout/assets/img/userScout.png" class="card-img-top mCardImg" alt="Eventos">
+                    <img src="/proyectoGrupoScout/assets/img/Perfil.png" class="card-img-top mCardImg" alt="Eventos">
                 </div>
                 <div class="card-footer fw-bold">Perfil</div>
             </div>
@@ -49,7 +49,7 @@ $s_id = $_GET['s'];
         <a href="/proyectoGrupoScout/views/scouts/" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <img src="" class="card-img-top mCardImg" alt="Usuarios">
+                    <img src="/proyectoGrupoScout/assets/img/Progresion.png" class="card-img-top mCardImg" alt="Usuarios">
                 </div>
                 <div class="card-footer fw-bold">Mis progresiones</div>
             </div>
@@ -57,7 +57,7 @@ $s_id = $_GET['s'];
         <a href="/proyectoGrupoScout/views/scouts/" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
-                    <img src="" class="card-img-top" alt="Progresión Scout">
+                    <img src="" class="card-img-top mCardImg" alt="Progresión Scout">
                 </div>
                 <div class="card-footer fw-bold">Información educativa</div>
             </div>
