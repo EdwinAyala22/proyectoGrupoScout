@@ -17,19 +17,42 @@ include_once '../../queries/conexion.php';
 
 $evento = "SELECT * FROM f_actividades A, ramas R WHERE A.id_rama = R.id_rama";
 $result = mysqli_query($conn, $evento);
+$nr = mysqli_num_rows($result);
 
-
-if(isset($_GET['delete'])){
-  $id_act= $_GET['delete'];
-  $query = "DELETE FROM f_actividades WHERE id_act = '$id_act'";
-  $result = mysqli_query($conn,$query);
-  if($result){
+if (isset($_GET['delete'])) {
+  $idAct = $_GET['delete'];
+  $query = "DELETE FROM inscritos WHERE id_act = '$idAct'";
+  $result = mysqli_query($conn, $query);
+  if ($result) {
+    $query2 = "DELETE FROM f_actividades WHERE id_act = '$idAct'";
+    $result2 = mysqli_query($conn, $query2);
+    if ($result2) {
       header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
-  }
-  else{
+    } else {
       echo "Error";
-  }
+    }
+  } 
+  // else {
+  //   $query2 = "DELETE FROM f_actividades WHERE id_act = '$idAct'";
+  //   $result2 = mysqli_query($conn, $query2);
+  //   if ($result2) {
+  //     header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+  //   } else {
+  //     echo "Error";
+  //   }
+  // }
 }
+
+// if (isset($_GET['delete'])) {
+//   $id_act = $_GET['delete'];
+//   $query2 = "DELETE FROM f_actividades WHERE id_act = '$id_act'";
+//   $result2 = mysqli_query($conn, $query2);
+//   if ($result2) {
+//     header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+//   } else {
+//     echo "Error";
+//   }
+// }
 
 ?>
 
@@ -49,7 +72,6 @@ require '../templates/header.php';
   <table class="table table-borderless table-bordered" style="border-radius: 5px;">
     <thead class="cabeceraTablas text-center">
       <tr>
-        <th scope="col">id</th>
         <th scope="col">Nombre</th>
         <th scope="col">Lugar</th>
         <th scope="col">Costo</th>
@@ -60,11 +82,13 @@ require '../templates/header.php';
     </thead>
     <tbody class="text-center">
       <?php
+      if ($nr !=0 ){
 
-      while ($mostrar = mysqli_fetch_array($result)) {
-      ?>
+        while ($mostrar = mysqli_fetch_array($result)) {
+
+          ?>
+
         <tr>
-          <td><?php echo $mostrar['id_act'] ?>
           <td><?php echo $mostrar['nombre_act'] ?>
           <td><?php echo $mostrar['lugar'] ?>
           <td>$<?php echo $mostrar['costo'] ?>
@@ -96,8 +120,13 @@ require '../templates/header.php';
             </div>
           </div>
         </div>
-      <?php
-      }
+        <?php
+      } 
+    } else {
+      echo "<tr>";
+      echo "<td colspan='6'>No hay eventos</td>";
+      echo "</tr>";
+    }
       ?>
     </tbody>
   </table>
