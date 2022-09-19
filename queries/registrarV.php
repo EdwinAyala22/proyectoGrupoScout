@@ -31,7 +31,7 @@ $rows = mysqli_num_rows($result);
 if($rows){
     echo'<script type="text/javascript">
     alert("Error, el documento ya existe");
-    window.location.href="http://localhost:8080/proyectoGrupoScout/views/register.php";
+    window.location.href="/proyectoGrupoScout/views/register.php";
     </script>';
 }else{
     $query = "INSERT INTO visitantes (nombres, apellido1, apellido2, tipodoc, documento, telefono, correo, contrasena) VALUES ('$nombres', '$apellido1', '$apellido2', '$tipodoc', '$documento', '$telefono', '$correo', '$contrasena')";
@@ -39,12 +39,12 @@ if($rows){
     if (mysqli_query($conn, $query)) {
         echo'<script type="text/javascript">
         alert("Registro realizado con éxito");
-        window.location.href="http://localhost:8080/proyectoGrupoScout/views/login.php";
+        window.location.href="/proyectoGrupoScout/views/login.php";
         </script>';
     } else {
         echo'<script type="text/javascript">
         alert("Error");
-        window.location.href="http://localhost:8080/proyectoGrupoScout/views/register.php";
+        window.location.href="/proyectoGrupoScout/views/register.php";
         </script>';
     }
 }

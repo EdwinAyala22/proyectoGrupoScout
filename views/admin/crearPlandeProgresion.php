@@ -21,6 +21,40 @@ include_once '../../queries/conexion.php';
 
     $query = "SELECT * FROM ramas";
     $result = mysqli_query($conn,$query);
+
+    if (isset($_POST['crearP'])) {
+        $fechaEntrega = $_POST['fechaEntrega'];
+        $doc = $_POST['documento'];
+        $id_adelanto = $_POST['id_t_adelanto'];
+        $lugarEntrega = $_POST['lugarEntrega'];
+        $dirigente = $_POST['dirigente'];
+        $costo = $_POST['costo'];
+        
+        $sql = "SELECT * FROM usuarios WHERE documento = '$doc'";
+        $rs = mysqli_query($conn, $sql);
+        $rows = mysqli_num_rows($rs);
+        if($rows != 1){
+            echo'<script type="text/javascript">
+            alert("Error, el usuario no existe");
+            window.location.href="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php";
+            </script>';
+        }else{
+            $consulta = "INSERT INTO segui_plan_adelanto (fechaEntrega, documento, id_t_adelanto, lugarEntrega, dirigente, costo) VALUES ('$fechaEntrega', '$doc', '$id_adelanto', '$lugarEntrega', '$dirigente', '$costo')";
+            if (mysqli_query($conn, $consulta)) {
+                echo'<script type="text/javascript">
+                alert("Registro realizado con éxito");
+                window.location.href="/proyectoGrupoScout/views/admin/progresiones.php";
+                </script>';
+            } else {
+                echo'<script type="text/javascript">
+                alert("Error");
+                window.location.href="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php";
+                </script>';
+            }
+        }
+    }
+
+
 ?>
 
 <script lang="javascript">
@@ -52,7 +86,7 @@ include_once '../../queries/conexion.php';
                 </div>
                 <h2 class="titulo fw-bold text-center py-3">Formulario seguimiento a planes de progresión y ceremonias</h2>
                 <!-- formlario registro -->
-                <form action="./validaciones/vCrearEvento.php" method="POST" class="p-3 form_registro justify-content-center align-items-center">
+                <form action="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php" method="POST" class="p-3 form_registro justify-content-center align-items-center">
                 <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres"
@@ -71,16 +105,12 @@ include_once '../../queries/conexion.php';
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required>
                         </div>
                         <div class="">
-                            <input type="date" class="form-control mb-3 fw-bold input_login" name="f_entrega" placeholder="Fecha de entrega"
+                            <input type="date" class="form-control mb-3 fw-bold input_login" name="fechaEntrega" placeholder="Fecha de entrega"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Fecha de entrega" required>
                         </div>
                     </div>
 
                     <div class="row row-cols-md-2 row-cols-sm-1">
-                        <!-- <div class="">
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="t_plan" placeholder="Tipo de plan"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Tipo de plan" required>
-                        </div> -->
                         <div class="">
                             <!--COMBO BOX RAMA -->
                             <select id="rama_progresion" class="form-select mb-3 fw-bold input_login" name="rama_progresion" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la rama">
@@ -94,15 +124,6 @@ include_once '../../queries/conexion.php';
                                     <?php    
                                     }
                                 ?>
-                            <!-- <option disabled selected value>Ramas</option>
-                            <option >Lobatos</option>
-                            <option >Scouts</option>        
-                            <option >Caminantes</option>
-                            <option >Rovers</option>                            
-                            <option >Dirigentes</option>
-                            <option >Consejeros</option>
-                            <option >Padres de familia</option>
-                            <option >Miembros fundadores</option> -->
                             </select>
                            
                         </div>
@@ -120,11 +141,11 @@ include_once '../../queries/conexion.php';
                     </div>
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="lugar_entrega" placeholder="Lugar de entrega"
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="lugarEntrega" placeholder="Lugar de entrega"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Lugar de entrega" required>
                         </div>
                         <div class="">
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="d_cargo" placeholder="Dirigente a cargo"
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="dirigente" placeholder="Dirigente a cargo"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Dirigente a cargo" required>
                         </div>
                     </div>
@@ -138,7 +159,7 @@ include_once '../../queries/conexion.php';
 
                     <div class="row">
                         <div class="col d-flex justify-content-center align-items-center p-2">
-                            <button type="submit" class="btn btn_general">Crear seguimiento</button>
+                            <button type="submit" name="crearP" class="btn btn_general">Crear seguimiento</button>
                         </div>
                     </div>
                 </form>
