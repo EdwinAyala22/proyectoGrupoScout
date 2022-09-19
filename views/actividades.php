@@ -23,7 +23,7 @@ include_once '../queries/conexion.php'
             <div class="card mb-3 mt-3 w-75 tarjeta_act">
                 <div class="row g-0">
                     <div class="col-md-5 p-2 m-auto">
-                        <img src="./img/logo-scout-co.svg" class="img-fluid d-flex m-auto" alt="..." width="200">
+                        <img src="/proyectoGrupoScout/assets/img/logo-scout-co.svg" class="img-fluid d-flex m-auto" alt="..." width="200">
                     </div>
                     <div class="col-md-7 p-2 m-auto">
                         <div class="card-body">

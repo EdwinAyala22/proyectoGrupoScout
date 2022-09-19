@@ -129,6 +129,8 @@ $n = count($productos) - 1;
     </div>
 </section>
 
+
+
 <div id="button-up">
     <i class="fas fa-chevron-up"></i>
 </div>

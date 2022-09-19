@@ -28,6 +28,7 @@ $btnRegistro = "Registrarse";
     <!-- <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'> -->
     <link rel="shortcut icon" href="/proyectoGrupoScout/assets/img/logo-scout-co.svg" type="image/x-icon">
     <!-- <script src="https://kit.fontawesome.com/aa2bae0729.js" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/b333d707bf.js" crossorigin="anonymous"></script>
     <script lang="javascript" src="/proyectoGrupoScout/assets/js/jquery-3.6.0.min.js"></script>
     <title>Inicio</title>
@@ -75,6 +76,9 @@ $btnRegistro = "Registrarse";
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-center" href="#">Miembros scouts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="/proyectoGrupoScout/views/graficas/graficas.php">Estadisticas</a>
                     </li>
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown" role="button"
