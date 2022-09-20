@@ -46,7 +46,7 @@ $s_id = $_GET['s'];
                 <div class="card-footer fw-bold">Perfil</div>
             </div>
         </a>
-        <a href="/proyectoGrupoScout/views/scouts/" class="text-decoration-none btnAdmin">
+        <a href="/proyectoGrupoScout/views/scouts/scoutProgresiones.php?sc=<?php echo $s_id ?>" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
                     <img src="/proyectoGrupoScout/assets/img/Progresion.png" class="card-img-top mCardImg" alt="Usuarios">
