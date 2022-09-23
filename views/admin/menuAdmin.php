@@ -52,7 +52,7 @@ require '../templates/header.php';
         </a>
     </div>
     <div class="container d-flex flex-wrap justify-content-center">
-        <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
+        <a href="/proyectoGrupoScout/views/graficas/graficas.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
                     <img src="/proyectoGrupoScout/assets/img/Reportes.png" class="card-img-top mCardImg" alt="Reportes">

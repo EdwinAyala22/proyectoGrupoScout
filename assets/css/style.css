@@ -165,6 +165,10 @@ input[type="number"] {
   color: #1e0941;
 }
 
+.tituloRojo{
+  color: #ed1b25;
+}
+
 .tarjeta_act {
   box-shadow: 0px 0px 10px #1e0941;
   border-radius: 8px;

@@ -93,8 +93,9 @@ require '../templates/header.php';
                     <div class="">
                         <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" title="Número de documento" required>
                     </div>
-                    <div class="">
-                        <input type="date" class="form-control mb-3 fw-bold input_login" name="fecha_nacimiento" placeholder="Fecha de nacimiento" title="Fecha de nacimiento" required>
+                    <div class="form-floating">
+                        <input type="date" class="form-control mb-3 fw-bold input_login" id="floatingInput" name="fecha_nacimiento" title="Fecha de nacimiento" required>
+                        <label class="ms-2 fw-bold titulo" for="floatingInput"> <small>Fecha de nacimiento</small></label>
                     </div>
                 </div>
                 <div class="row row-cols-md-3 row-cols-sm-1">

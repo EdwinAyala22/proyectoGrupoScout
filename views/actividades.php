@@ -9,13 +9,14 @@ include_once '../queries/conexion.php'
 <div class="container d-flex justify-content-center mt-2 flex-wrap">
 
     <div class="row">
-            <h1 class="titulo fw-bold">Actividades Scout</h1>
+            <h1 class="titulo fw-bold mt-4">Actividades Scout</h1>
     </div>
 
     <?php
     $sql = "SELECT * FROM f_actividades";
     $result = mysqli_query($conn, $sql);
-    if ($result) {
+    $nr = mysqli_num_rows($result);
+    if ($nr != 0) {
 
         while ($row = mysqli_fetch_array($result)) {
             // $idAct = $row['id_act'];
@@ -111,8 +112,14 @@ include_once '../queries/conexion.php'
     <?php
         }
     }else{
-        echo "</br>";
-        echo "<div class='row'><h4>No hay actividades</h4></div>";
+        echo "<div class='container d-flex justify-content-center align-items-center'>
+                <div class='card text-dark bg-light mb-5 card_productos mt-5' style='max-width: 18rem;'>
+                    <div class='card-body'>
+                        <h5 class='card-title fw-bold tituloRojo'><i class='bi bi-exclamation-triangle-fill me-2'></i>Notificación</h5>
+                        <p class='card-text titulo'>No hay actividades disponibles en este momento.</p>
+                    </div>
+                </div>
+              </div>";
     }
 
     ?>
