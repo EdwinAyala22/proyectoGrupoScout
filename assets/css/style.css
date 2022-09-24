@@ -63,9 +63,9 @@
     font-size: smaller;
   }
 
-  .mCardImg{
-    width: 100px;
-  }
+  /* .mCardImg{
+    width: 80px;
+  } */
 }
 
 @media screen and (max-width: 912px) {

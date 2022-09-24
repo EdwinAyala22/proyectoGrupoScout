@@ -17,8 +17,14 @@ if (!isset($_SESSION['rol'])) {
 <?php
 
 require '../templates/header.php';
+include_once '../../queries/conexion.php';
 
 $s_id = $_GET['s'];
+
+$sql = "SELECT * FROM usuarios WHERE documento = $s_id";
+$result = mysqli_query($conn, $sql);
+$a_usu = mysqli_fetch_array($result);
+
 // if (isset($_GET['s'])) {
     
     // $query = "DELETE FROM f_actividades WHERE id_act = '$id_act'";
@@ -33,7 +39,7 @@ $s_id = $_GET['s'];
 
 ?>
 
-<h1>BIENVENIDO SCOUT</h1>
+<h1 class="titulo fw-bold text-center mt-4 mb-1 text-uppercase">BIENVENIDO SCOUT <?php echo $a_usu['nombres'] ?></h1>
 
 <!-- cards -->
 <div class="container flex-wrap d-grid justify-content-center align-items-center ">
@@ -56,8 +62,8 @@ $s_id = $_GET['s'];
         </a>
         <a href="/proyectoGrupoScout/views/scouts/" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
-                <div class="card-body">
-                    <img src="" class="card-img-top mCardImg" alt="Progresión Scout">
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <img src="/proyectoGrupoScout/assets/img/educativa.png" class="card-img-top mCardImg" alt="Progresión Scout">
                 </div>
                 <div class="card-footer fw-bold">Información educativa</div>
             </div>

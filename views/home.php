@@ -92,7 +92,7 @@ $n = count($productos) - 1;
         </div> -->
         <div class="row row-cols-lg-2 row-cols-sm-1">
             <div class="col-lg-7">
-            <h1 class="text-center fw-bold p-3 titulo" id="QS">¿QUIÉNES SOMOS?</h1>
+                <h1 class="text-center fw-bold p-3 titulo" id="QS">¿QUIÉNES SOMOS?</h1>
                 <p class="p-2">Un grupo de adultos deseando proporcionar a la ciudad un grupo Scout nuevo, dinámico y como otra alternativa a los grupos ya existentes,
                     decidieron en una tarde formar el grupo Scout León Blanco, cuyo nombre se escogió gracias a una condecoración que recibiría el fundador
                     del escultismo Lord Baden Powell al visitar el país de Checoslovaquia (Hoy república Checa) en 1923 y que para él fue de un inmenso valor
@@ -115,15 +115,15 @@ $n = count($productos) - 1;
         <div class="row row-cols-lg-2 row-cols-sm-1">
             <div>
                 <h2 class="text-center fw-bold titulo mt-2">MISION</h2>
-                <p class="p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia alias, tempore cumque eligendi ducimus harum vitae iste asperiores
-                    cupiditate eos fugit doloremque. Officiis nulla iure natus nesciunt excepturi et, laborum molestiae dolorem quos hic? Neque, quod
-                    architecto est non optio eos laboriosam, odio assumenda tenetur aperiam minus aliquam in placeat?</p>
+                <p class="p-2 text-center">Contribuir a la educación de los jóvenes, mediante un sistema de valores basado en la Promesa y la Ley Scout, 
+                    para ayudar a construir un mundo mejor donde las personas se sientan realizadas como individuos y jueguen un papel constructivo 
+                    en la sociedad.</p>
             </div>
             <div>
                 <h2 class="text-center fw-bold titulo mt-2">VISION</h2>
-                <p class="p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam minus voluptas ab perspiciatis alias repellat quisquam modi.
-                    Sequi vel rem atque quos expedita nulla temporibus itaque molestiae autem laborum, soluta repudiandae, natus dolores? Illum
-                    atque obcaecati repudiandae cumque labore enim et quaerat, debitis autem cupiditate alias numquam delectus ducimus odio.</p>
+                <p class="p-2 text-center">Para el 2025, la Asociación Scouts de Colombia será uno de los movimientos juveniles líderes en nuestro país, 
+                    permitiendo a 50.000 jóvenes convertirse en ciudadanos activos y gestores de paz, creando un cambio positivo en sus comunidades 
+                    basado en los valores compartidos.</p>
             </div>
         </div>
     </div>

@@ -1,3 +1,4 @@
+<title>Gráficas</title>
 <?php
 
 require '../templates/header.php';
@@ -40,11 +41,13 @@ if (isset($_POST['generar'])) {
 
 ?>
 
+<a href="/proyectoGrupoScout/views/admin/menuAdmin.php" class="btn links_nav m-2">Volver</a>
+
 <div class="container-fluid mt-4 mb-4 d-flex flex-wrap justify-content-center">
     <!-- <div style="width: 400px;" class="mx-3">
-        <canvas id="myChart"></canvas>
+        <canvas id="myChart" class="m-3"></canvas>
     </div> -->
-    <div style="width: 450px;">
+    <div style="width: 450px;" class="shadow bg-light p-5 rounded">
         
         <form action="/proyectoGrupoScout/views/graficas/graficas.php" method="POST">
             <div class="row d-flex justify-content-center">

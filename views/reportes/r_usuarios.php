@@ -11,6 +11,8 @@ class PDF extends FPDF {
     // Cabecera de página
     function Header() {
         
+        $this->Image('../../assets/img/LOGO_GS.png',5,0,33);
+        $this->SetTitle('Reporte de usuarios', true);
         // Arial bold 15
         $this->SetFont('Arial','B',12);
         // Movernos a la derecha
@@ -18,7 +20,7 @@ class PDF extends FPDF {
         // Título
         $this->Cell(70,10,'Reporte de Scouts ',0,0,'C');
         // Salto de línea
-        $this->Ln(20);
+        $this->Ln(35);
 
         $this->Cell(40,10,'Nombres',1,0,'C',0);
         $this->Cell(40,10,'Apellidos',1,0,'C',0);
@@ -60,7 +62,7 @@ while ($row=$result->fetch_assoc()) {
 	// $pdf->Cell(15,10,$row['telefono'],1,1,'C',0);
 
 } 
-
+    // $pdf->Image('/proyectoGrupoScout/assets/img/LOGO_GS.png',10,10,-300);
 
 	$pdf->Output();
 

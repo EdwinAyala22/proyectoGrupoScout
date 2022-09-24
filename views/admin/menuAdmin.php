@@ -18,9 +18,12 @@ if (!isset($_SESSION['rol'])) {
 
 require '../templates/header.php';
 
+$a_id = $_GET['a'];
+
+
 ?>
 
-<h1 class="titulo fw-bold text-center">BIENVENIDO</h1>
+<h1 class="titulo fw-bold text-center mt-4 mb-1">BIENVENIDO</h1>
 
 
 <!-- cards -->
@@ -60,7 +63,7 @@ require '../templates/header.php';
                 <div class="card-footer fw-bold">Reportes</div>
             </div>
         </a>
-        <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
+        <a href="" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
                     <img src="/proyectoGrupoScout/assets/img/Perfil.png" class="card-img-top mCardImg" alt="Contactos">
@@ -68,7 +71,7 @@ require '../templates/header.php';
                 <div class="card-footer fw-bold">Perfil</div>
             </div>
         </a>
-        <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
+        <a href="" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
                     <img src="/proyectoGrupoScout/assets/img/Contacto.png" class="card-img-top mCardImg" alt="Contactos">
