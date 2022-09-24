@@ -47,7 +47,8 @@ require '../templates/header.php';
 <div class="container bg-light p-3 containerCrud mb-3">
     <h1 class="titulo fw-bold text-center m-3">Lista de usuarios</h1>
     <a class="mb-3 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearUsuario.php/#newUser">Crear nuevo</a>
-    <table class="table table-borderless table-bordered" style="border-radius: 5px;">
+    <a target="_blank" class="mb-3 btn btnDetalles" href="/proyectoGrupoScout/views/reportes/r_usuarios.php">Reporte PDF</a>
+    <table class="table table-borderless table-bordered">
         <thead class="cabeceraTablas text-center">
             <tr>
                 <th scope="col">Nombres</th>
