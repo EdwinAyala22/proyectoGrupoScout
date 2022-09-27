@@ -20,10 +20,12 @@ require '../templates/header.php';
 include_once '../../queries/conexion.php';
 
 $s_id = $_GET['s'];
+// if (isset($_GET['s'])) {
+//     $sql = "SELECT * FROM usuarios WHERE documento = $s_id";
+//     $result = mysqli_query($conn, $sql);
+//     $a_usu = mysqli_fetch_array($result);
+// }
 
-$sql = "SELECT * FROM usuarios WHERE documento = $s_id";
-$result = mysqli_query($conn, $sql);
-$a_usu = mysqli_fetch_array($result);
 
 // if (isset($_GET['s'])) {
     
@@ -39,7 +41,7 @@ $a_usu = mysqli_fetch_array($result);
 
 ?>
 
-<h1 class="titulo fw-bold text-center mt-4 mb-1 text-uppercase">BIENVENIDO SCOUT <?php echo $a_usu['nombres'] ?></h1>
+<h1 class="titulo fw-bold text-center mt-4 mb-1 text-uppercase">BIENVENIDO SCOUT</h1>
 
 <!-- cards -->
 <div class="container flex-wrap d-grid justify-content-center align-items-center ">

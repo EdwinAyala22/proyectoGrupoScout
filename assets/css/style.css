@@ -454,3 +454,23 @@ input[type="number"] {
 .mCardImg{
   width: 130px;
 }
+
+.scroll_acts{
+  min-height: 70vh;
+  height: 70vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.scroll_acts::-webkit-scrollbar{
+  -webkit-appearance: none;
+}
+
+.scroll_acts::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+.scroll_acts::-webkit-scrollbar-thumb{
+  background-color: #1e0941;
+  border-radius: 8px;
+}

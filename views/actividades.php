@@ -6,12 +6,12 @@ include_once '../queries/conexion.php'
 
 ?>
 
-<div class="container d-flex justify-content-center mt-2 flex-wrap">
+<div class="container mt-2 mb-4">
 
-    <div class="row">
+    <div class="row text-center">
             <h1 class="titulo fw-bold mt-4">Actividades Scout</h1>
     </div>
-
+    <div class="d-flex justify-content-center flex-wrap scroll_acts">
     <?php
     $sql = "SELECT * FROM f_actividades";
     $result = mysqli_query($conn, $sql);
@@ -123,6 +123,7 @@ include_once '../queries/conexion.php'
     }
 
     ?>
+    </div>
 </div>
 
 

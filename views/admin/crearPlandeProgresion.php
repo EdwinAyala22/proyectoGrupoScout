@@ -72,7 +72,7 @@ include_once '../../queries/conexion.php';
     });
 
 </script>
-<a href="/proyectoGrupoScout/views/admin/menuAdmin.php" class="btn links_nav m-2">Volver</a>
+<a href="/proyectoGrupoScout/views/admin/progresiones.php" class="btn links_nav m-2">Volver</a>
 <div class="container w-75 mt-5 mb-5 container_general">
         <div class="row align-items-stretch">
             <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">

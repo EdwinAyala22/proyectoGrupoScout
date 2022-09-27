@@ -18,7 +18,7 @@ if (!isset($_SESSION['rol'])) {
 
 require '../templates/header.php';
 
-$a_id = $_GET['a'];
+// $a_id = $_GET['a'];
 
 
 ?>
