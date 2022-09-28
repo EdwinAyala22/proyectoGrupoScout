@@ -3,6 +3,17 @@
 $btnInicio = "block";
 $btnRegistro = "Registrarse";
 
+$iniciarBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Iniciar Sesión</a>';
+$registrarBtn = '<a href="/proyectoGrupoScout/views/register.php" class="btn links_nav">Registro<?php echo $btnRegistro ?></a>';
+
+$menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
+$logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1" class="mb-0">
+            <button class="btn links_nav me-2" type="submit">Cerrar sesión</button>
+            </form>';
+
+
+$btn1 = "";
+$btn2 = "";
 // function botonIniciar ($name){
 //     $btnIniciar = $name;
 //     return $btnIniciar;
@@ -12,6 +23,16 @@ $btnRegistro = "Registrarse";
 //     $btnRegistro = $name;
 //     return $btnRegistro;
 // }
+// session_start();
+
+if (!isset($_SESSION['rol'])) {
+    $btn1 = $iniciarBtn;
+    $btn2 = $registrarBtn;
+} else {
+    $btn1 = $menuBtn;
+    $btn2 = $logoutBtn;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +54,21 @@ $btnRegistro = "Registrarse";
     <script src="https://kit.fontawesome.com/b333d707bf.js" crossorigin="anonymous"></script>
     <script lang="javascript" src="/proyectoGrupoScout/assets/js/jquery-3.6.0.min.js"></script>
     <title>Inicio</title>
+
+    <!-- <script lang="javascript">
+    $(document).ready(function(){
+        $("#rama_progresion").change(function () {
+            $("#rama_progresion option:selected").each(function ()
+            {
+                id_rama = $ (this).val();
+                $.post("/proyectoGrupoScout/queries/getTipoProgresiones.php",{ id_rama: id_rama
+                }, function(data){
+                    $("#progresion-seleccionada").html(data);
+                });
+            });
+        });
+    });
+    </script> -->
 </head>
 
 <body>
@@ -45,8 +81,8 @@ $btnRegistro = "Registrarse";
                 <a href="" class="text-light nav-link m-auto productos_nav"> <i class="fas fa-shopping-cart me-1"></i> Productos Scout</a>
             </div>
             <div class="col-md-12 text-md-center d-flex justify-content-lg-end align-items-lg-center justify-content-md-center align-items-md-center pt-2 botones_nav mb-2">
-                <a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Iniciar Sesión</a>
-                <a href="/proyectoGrupoScout/views/register.php" class="btn links_nav"><?php echo $btnRegistro ?></a>
+                <?php echo $btn1 ?>
+                <?php echo $btn2 ?>
             </div>
         </div>
     </div>

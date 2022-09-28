@@ -82,9 +82,9 @@ require '../templates/header.php';
     </div>
 </div>
 
-<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
+<!-- <form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
     <button class="btn btn_general" type="submit">Cerrar sesión</button>
-</form>
+</form> -->
 
 <?php
 

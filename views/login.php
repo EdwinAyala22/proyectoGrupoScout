@@ -8,17 +8,17 @@ include_once '../queries/database.php';
 
 
 
-if(isset($_GET['logout'])){
+if (isset($_GET['logout'])) {
     session_unset();
-    
+
     session_destroy();
     header("Location: /proyectoGrupoScout/views/login.php");
 }
 
-if(isset($_SESSION['rol'])){
+if (isset($_SESSION['rol'])) {
     $doc = $_POST['documento'];
     $cont =  $_POST['contrasena'];
-    switch($_SESSION['rol']){
+    switch ($_SESSION['rol']) {
         case 1:
             header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php?a=$doc");
             break;
@@ -29,7 +29,7 @@ if(isset($_SESSION['rol'])){
     }
 }
 
-if(isset($_POST['documento']) && isset($_POST['contrasena'])){
+if (isset($_POST['documento']) && isset($_POST['contrasena'])) {
     $documento = $_POST['documento'];
     $contrasena =  $_POST['contrasena'];
 
@@ -37,27 +37,35 @@ if(isset($_POST['documento']) && isset($_POST['contrasena'])){
     $query = $db->connect()->prepare('SELECT * FROM usuarios WHERE documento =:documento AND contrasena =:contrasena');
     $query->execute(['documento' => $documento, 'contrasena' => $contrasena]);
     $row = $query->fetch(PDO::FETCH_NUM);
-    if($row == true){
+    if ($row == true) {
         //entro
         $rol = $row[16];
         $_SESSION['rol'] = $rol;
-        switch($_SESSION['rol']){
+        switch ($_SESSION['rol']) {
             case 1:
+                
+                $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
+                $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
+                <button class="btn btn_general" type="submit">Cerrar sesión</button>
+                </form>';
                 header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php?a=$documento");
-
+                
                 break;
             case 2:
+                $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
+                $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
+                <button class="btn btn_general" type="submit">Cerrar sesión</button>
+                </form>';
                 header("Location: /proyectoGrupoScout/views/scouts/menuScout.php?s=$documento");
                 break;
             default:
         }
-    }else{
+    } else {
         echo '<script type="text/javascript">
         alert("Usuario o contraseña inválido");
         window.location.href="/proyectoGrupoScout/views/login.php";
         </script>';
     }
-
 }
 
 ?>
