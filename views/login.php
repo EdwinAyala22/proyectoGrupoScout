@@ -6,7 +6,8 @@ session_start();
 
 include_once '../queries/database.php';
 
-
+$class = "visually-hidden";
+$error = "";
 
 if (isset($_GET['logout'])) {
     session_unset();
@@ -61,10 +62,8 @@ if (isset($_POST['documento']) && isset($_POST['contrasena'])) {
             default:
         }
     } else {
-        echo '<script type="text/javascript">
-        alert("Usuario o contraseña inválido");
-        window.location.href="/proyectoGrupoScout/views/login.php";
-        </script>';
+        $class = "alert alert-danger alert-dismissible fade show text-center";
+        $error = "Usuario o contraseña incorrecta.";
     }
 }
 
@@ -100,6 +99,10 @@ require '../views/templates/header.php';
                     <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" required maxlength="20" minlength="8">
                     <!-- <input type="hidden" value="modalUsu" name="idModal"> -->
                 </div>
+                <div class="<?php echo $class ?>" role="alert">
+                    <?php echo $error ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <div class="mb-4 text-center">
                     <p class="titulo fst-italic">¿Olvidaste la contraseña? <a href="/proyectoGrupoScout/views/rcontra.php" class="titulo fw-bold link_login">Click aquí</a></p>
                 </div>
@@ -116,29 +119,6 @@ require '../views/templates/header.php';
 </div>
 
 
-
-<!-- <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict'
-
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
-
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-</script> -->
 
 <?php
 require '../views/templates/footer.php';
