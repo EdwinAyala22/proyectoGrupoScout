@@ -99,9 +99,9 @@ $s_id = $_GET['s'];
     </div> -->
 </div>
 
-<form method="POST" action="../login.php?logout=1">
+<!-- <form method="POST" action="../login.php?logout=1">
     <button class="btn btn_general" type="submit">Cerrar sesión</button>
-</form>
+</form> -->
 
 <?php
 

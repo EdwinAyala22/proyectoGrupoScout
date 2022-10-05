@@ -78,7 +78,7 @@ if (!isset($_SESSION['rol'])) {
                 <a href="" class="text-white text-decoration-none titulo_nav"><img src="/proyectoGrupoScout/assets/img/LOGOOO-SINTXT.png" alt="" width="100" class="img-fluid nav_logo">Grupo Scout 662 León Blanco</a>
             </div>
             <div class="text-center d-flex m-auto pt-2">
-                <a href="" class="text-light nav-link m-auto productos_nav"> <i class="fas fa-shopping-cart me-1"></i> Productos Scout</a>
+                <a href="/proyectoGrupoScout/views/productos.php" class="text-light nav-link m-auto productos_nav"> <i class="fas fa-shopping-cart me-1"></i> Productos Scout</a>
             </div>
             <div class="col-md-12 text-md-center d-flex justify-content-lg-end align-items-lg-center justify-content-md-center align-items-md-center pt-2 botones_nav mb-2">
                 <?php echo $btn1 ?>
