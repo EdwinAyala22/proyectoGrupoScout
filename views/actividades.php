@@ -22,6 +22,8 @@ include_once '../queries/conexion.php'
     <div class="row text-center">
             <h1 class="titulo fw-bold mt-4">Actividades Scout</h1>
     </div>
+    
+
     <div class="d-flex justify-content-center flex-wrap scroll_acts">
     <?php
     $sql = "SELECT * FROM f_actividades";
@@ -32,10 +34,11 @@ include_once '../queries/conexion.php'
         while ($row = mysqli_fetch_array($result)) {
             // $idAct = $row['id_act'];
     ?>
-            <div class="card mb-3 mt-3 w-75 tarjeta_act">
+            <div class="card mb-3 mt-3 w-75 tarjeta_act" key="<?php echo $row['id_act'] ?>">
                 <div class="row g-0">
                     <div class="col-md-5 p-2 m-auto">
-                        <img src="/proyectoGrupoScout/assets/img/logo-scout-co.svg" class="img-fluid d-flex m-auto" alt="..." width="200">
+                        <img src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']);?>" class="img-fluid d-flex m-auto rounded" alt="..." width="200">
+                        
                     </div>
                     <div class="col-md-7 p-2 m-auto">
                         <div class="card-body">

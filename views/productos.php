@@ -30,7 +30,7 @@ $nombreP = array(
 $n = count($productos) - 1;
 ?>
 
-<title>Contáctenos</title>
+<title>Productos</title>
 <?php
 session_start();
 
@@ -61,7 +61,9 @@ if (!isset($_SESSION['rol'])) {
             <div class="card-body">
                 <h5 class="card-title fw-bold" style="color: #1e0941;"><?php echo $nombreP[$i] ?></h5>
                 <p class="card-text">Precio: <strong>$$$</strong> </p>
-                <button type="submit" class="btn btn_general"> <strong>Más info...</strong></button>
+                <div class="d-flex justify-content-center">
+                    <a href="https://api.whatsapp.com/send/?phone=%2B573209338469&text=Buenas,%20me%20interesa%20comprar%20este%20producto:%20<?php echo $nombreP[$i] ?>" target="_blank" class="btn btn_general d-flex justify-content-center align-items-center"> <strong>¡Comprar!</strong></a>
+                </div>
             </div>
         </div>
     <?php } ?>

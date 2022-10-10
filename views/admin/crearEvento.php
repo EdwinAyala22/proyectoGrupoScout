@@ -15,6 +15,9 @@ if (!isset($_SESSION['rol'])) {
 
 include_once '../../queries/conexion.php';
 
+$class = "visually-hidden";
+$error = "";
+
 if (isset($_POST['crear'])) {
     $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
     $responsable = $_POST['responsable'];
@@ -54,26 +57,27 @@ require '../templates/header.php';
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
             <!-- <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto"> -->
-            <output id="list"></output>
+            <output id="list" class="d-flex justify-content-center"></output>
         </div>
         <div class="col p-3">
             <div class="row text-center d-block d-sm-block d-md-block d-lg-none">
                 <div class="">
                     <!-- <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid"> -->
-                    <output id="list2"></output>                
+                    <output id="list2"></output>
                 </div>
             </div>
             <h2 class="titulo fw-bold text-center py-3">Crear Evento</h2>
             <!-- formlario registro -->
             <form action="./crearEvento.php" method="POST" class="p-3 form_registro justify-content-center align-items-center" enctype="multipart/form-data">
-                
+
                 <div class="row">
                     <div class="">
                         <label for="formFile" class="text-start titulo"> <b>Seleccione la imagen del evento:</b></label>
-                        <input class="form-control mb-3 input_login fw-bold" type="file" id="formFile" style="height: 38px;" name="imagen" required>
+                        <input class="form-control mb-3 input_login fw-bold" type="file" accept="image/*" id="formFile" style="height: 38px;" name="imagen" required>
+                            
                     </div>
                 </div>
-                
+
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="responsable" autofocus placeholder="Responsable de la actividad" title="Responsable de la actividad" required>
@@ -175,10 +179,10 @@ require '../templates/header.php';
                 continue;
             }
             var reader = new FileReader();
-            reader.onload = (function (theFile) {
-                return function (e) {
+            reader.onload = (function(theFile) {
+                return function(e) {
                     // Insertamos la imagen
-                    document.getElementById("list").innerHTML = ['<img class="img-fluid" src="',e.target.result, '" width="" title="', escape(theFile.name), '"/>'].join('');
+                    document.getElementById("list").innerHTML = ['<img class="img-fluid" src="', e.target.result, '" width="" title="', escape(theFile.name), '"/>'].join('');
                 };
             })(f);
             reader.readAsDataURL(f);
@@ -195,16 +199,52 @@ require '../templates/header.php';
                 continue;
             }
             var reader = new FileReader();
-            reader.onload = (function (theFile) {
-                return function (e) {
+            reader.onload = (function(theFile) {
+                return function(e) {
                     // Insertamos la imagen
-                    document.getElementById("list2").innerHTML = ['<img class="" src="',e.target.result, '" width="180px" title="', escape(theFile.name), '"/>'].join('');
+                    document.getElementById("list2").innerHTML = ['<img class="" src="', e.target.result, '" width="180px" title="', escape(theFile.name), '"/>'].join('');
                 };
             })(f);
             reader.readAsDataURL(f);
         }
     }
     document.getElementById('formFile').addEventListener('change', archivo2, false);
+
+    $(document).on('change', 'input[type="file"]', function() {
+        // this.files[0].size recupera el tamaño del archivo
+        // alert(this.files[0].size);
+
+        var fileName = this.files[0].name;
+        var fileSize = this.files[0].size;
+
+
+        if (fileSize > 16000000) {
+            alert('El archivo no debe superar los 16MB');
+            // $class = "alert alert-danger alert-dismissible fade show text-center";
+            // $error = "El archivo no debe superar los 16MB";
+            this.value = '';
+            this.files[0].name = '';
+        } else {
+            // recuperamos la extensión del archivo
+            var ext = fileName.split('.').pop();
+
+            // Convertimos en minúscula porque 
+            // la extensión del archivo puede estar en mayúscula
+            ext = ext.toLowerCase();
+
+            // console.log(ext);
+            switch (ext) {
+                case 'jpg':
+                case 'jpeg':
+                case 'png':
+                    break;
+                default:
+                    alert('El archivo no tiene la extensión adecuada');
+                    this.value = ''; // reset del valor
+                    this.files[0].name = '';
+            }
+        }
+    });
 </script>
 
 <?php

@@ -93,3 +93,9 @@ $nr = mysqli_num_rows($result);
     </tbody>
   </table>
 </div>
+
+<?php
+
+require '../templates/footer.php';
+
+?>
