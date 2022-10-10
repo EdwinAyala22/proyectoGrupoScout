@@ -27,7 +27,7 @@ require '../templates/header.php';
 
 
 <!-- cards -->
-<div class="container flex-wrap d-grid justify-content-center align-items-center ">
+<div class="container flex-wrap d-grid justify-content-center align-items-center mb-3">
     <div class="container d-flex flex-wrap justify-content-center">
         <a href="/proyectoGrupoScout/views/admin/listEventos.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">

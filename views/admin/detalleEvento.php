@@ -19,6 +19,7 @@ include_once '../../queries/conexion.php';
 $id = $_GET["id"];
 $evento = "SELECT * FROM f_actividades A, ramas R WHERE A.id_act = $id AND A.id_rama = R.id_rama";
 $result = mysqli_query($conn, $evento);
+$row = mysqli_fetch_array($result);
 ?>
 
 <title>Detalle Evento</title>
@@ -35,20 +36,19 @@ require '../templates/header.php';
 
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
-            <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
+            <!-- <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto"> -->
+            <img src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']);?>" width="350" class="d-flex m-auto">
         </div>
         <div class="col p-3">
             <div class="row text-center d-block d-sm-block d-md-block d-lg-none">
                 <div class="">
-                    <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid">
+                    <!-- <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid"> -->
+                    <img src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']);?>" width="180" class="img-fluid">
                 </div>
             </div>
             <h2 class="titulo fw-bold text-center py-3">Detalle Evento</h2>
             <!-- formlario registro -->
-            <?php
-            $result = mysqli_query($conn, $evento);
-            while ($row = mysqli_fetch_array($result)) {
-            ?>
+            <!-- comienzo while -->
                 <form class="p-3 form_registro justify-content-center align-items-center">
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
@@ -131,9 +131,7 @@ require '../templates/header.php';
                         </div>
                     </div>
                 </form>
-            <?php
-            }
-            ?>
+            <!-- fin while -->
         </div>
     </div>
 

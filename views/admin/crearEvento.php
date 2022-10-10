@@ -16,6 +16,7 @@ if (!isset($_SESSION['rol'])) {
 include_once '../../queries/conexion.php';
 
 if (isset($_POST['crear'])) {
+    $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
     $responsable = $_POST['responsable'];
     $objetivo_act = $_POST['objetivo_act'];
     $area = $_POST['area'];
@@ -31,7 +32,7 @@ if (isset($_POST['crear'])) {
     $f_elab_por = $_POST['f_elab_por'];
     $costo = $_POST['costo'];
 
-    $sql = "INSERT INTO f_actividades (responsable, objetivo_act, area, id_rama, fechaInicio, fechaFin, lugar, nombre_act, descri_act, materiales, fact_riesgo, evaluacion_act, f_elab_por, costo)  values ('$responsable','$objetivo_act','$area','$rama','$fechaInicio','$fechaFin','$lugar','$nombre_act','$descri_act','$materiales','$fact_riesgo','$evaluacion_act','$f_elab_por','$costo')";
+    $sql = "INSERT INTO f_actividades (imagen, responsable, objetivo_act, area, id_rama, fechaInicio, fechaFin, lugar, nombre_act, descri_act, materiales, fact_riesgo, evaluacion_act, f_elab_por, costo)  values ('$imagen','$responsable','$objetivo_act','$area','$rama','$fechaInicio','$fechaFin','$lugar','$nombre_act','$descri_act','$materiales','$fact_riesgo','$evaluacion_act','$f_elab_por','$costo')";
     $result = mysqli_query($conn, $sql);
     if ($result) {
         header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
@@ -52,17 +53,27 @@ require '../templates/header.php';
 <div class="container w-75 mt-5 mb-5 container_general">
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
-            <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
+            <!-- <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto"> -->
+            <output id="list"></output>
         </div>
         <div class="col p-3">
             <div class="row text-center d-block d-sm-block d-md-block d-lg-none">
                 <div class="">
-                    <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid">
+                    <!-- <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid"> -->
+                    <output id="list2"></output>                
                 </div>
             </div>
             <h2 class="titulo fw-bold text-center py-3">Crear Evento</h2>
             <!-- formlario registro -->
-            <form action="./crearEvento.php" method="POST" class="p-3 form_registro justify-content-center align-items-center">
+            <form action="./crearEvento.php" method="POST" class="p-3 form_registro justify-content-center align-items-center" enctype="multipart/form-data">
+                
+                <div class="row">
+                    <div class="">
+                        <label for="formFile" class="text-start titulo"> <b>Seleccione la imagen del evento:</b></label>
+                        <input class="form-control mb-3 input_login fw-bold" type="file" id="formFile" style="height: 38px;" name="imagen" required>
+                    </div>
+                </div>
+                
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="responsable" autofocus placeholder="Responsable de la actividad" title="Responsable de la actividad" required>
@@ -153,6 +164,48 @@ require '../templates/header.php';
         </div>
     </div>
 </div>
+
+<script>
+    function archivo(evt) {
+        var files = evt.target.files; // FileList object
+        // Obtenemos la imagen del campo "file".
+        for (var i = 0, f; f = files[i]; i++) {
+            //Solo admitimos imágenes.
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    // Insertamos la imagen
+                    document.getElementById("list").innerHTML = ['<img class="img-fluid" src="',e.target.result, '" width="" title="', escape(theFile.name), '"/>'].join('');
+                };
+            })(f);
+            reader.readAsDataURL(f);
+        }
+    }
+    document.getElementById('formFile').addEventListener('change', archivo, false);
+
+    function archivo2(evt) {
+        var files = evt.target.files; // FileList object
+        // Obtenemos la imagen del campo "file".
+        for (var i = 0, f; f = files[i]; i++) {
+            //Solo admitimos imágenes.
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    // Insertamos la imagen
+                    document.getElementById("list2").innerHTML = ['<img class="" src="',e.target.result, '" width="180px" title="', escape(theFile.name), '"/>'].join('');
+                };
+            })(f);
+            reader.readAsDataURL(f);
+        }
+    }
+    document.getElementById('formFile').addEventListener('change', archivo2, false);
+</script>
 
 <?php
 
