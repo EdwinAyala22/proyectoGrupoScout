@@ -12,10 +12,10 @@ $productos = array(
     )
 );
 
-foreach($productos as $pro => $p){
-    print_r($p->nombre."</br>");
-    echo $p->nombre."</br>";
-}
+// foreach($productos as $pro => $p){
+//     print_r($p->nombre."</br>");
+//     echo $p->nombre."</br>";
+// }
 
 
 ?>

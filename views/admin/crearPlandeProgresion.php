@@ -104,9 +104,10 @@ include_once '../../queries/conexion.php';
                             <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required>
                         </div>
-                        <div class="">
+                        <div class="form-floating">
                             <input type="date" class="form-control mb-3 fw-bold input_login" name="fechaEntrega" placeholder="Fecha de entrega"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Fecha de entrega" required>
+                                <label class="ms-2 fw-bold titulo" for="floatingInput">Fecha de entrega </label>
                         </div>
                     </div>
 
@@ -166,3 +167,9 @@ include_once '../../queries/conexion.php';
             </div>
         </div>
     </div>
+
+    <?php
+
+require '../templates/footer.php';
+
+?>

@@ -127,13 +127,13 @@ $n = count($productos) - 1;
         </div>
         <div class="row row-cols-lg-2 row-cols-sm-1">
             <div>
-                <h2 class="text-center fw-bold titulo mt-2">MISION</h2>
+                <h2 class="text-center fw-bold titulo mt-2">MISIÓN</h2>
                 <p class="p-2 text-center">Contribuir a la educación de los jóvenes, mediante un sistema de valores basado en la Promesa y la Ley Scout, 
                     para ayudar a construir un mundo mejor donde las personas se sientan realizadas como individuos y jueguen un papel constructivo 
                     en la sociedad.</p>
             </div>
             <div>
-                <h2 class="text-center fw-bold titulo mt-2">VISION</h2>
+                <h2 class="text-center fw-bold titulo mt-2">VISIÓN</h2>
                 <p class="p-2 text-center">Para el 2025, la Asociación Scouts de Colombia será uno de los movimientos juveniles líderes en nuestro país, 
                     permitiendo a 50.000 jóvenes convertirse en ciudadanos activos y gestores de paz, creando un cambio positivo en sus comunidades 
                     basado en los valores compartidos.</p>

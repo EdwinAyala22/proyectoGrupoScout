@@ -92,11 +92,11 @@ require '../views/templates/header.php';
 
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-user"></i>
-                    <input type="number" class="form-control text-center fw-bold input_login" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required autofocus maxlength="10" minlength="7">
+                    <input type="number" class="form-control text-center fw-bold input_login" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento"  autofocus maxlength="10" minlength="7"required>
                 </div>
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-lock"></i>
-                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" required maxlength="20" minlength="8">
+                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña"  maxlength="20" minlength="8" required>
                     <!-- <input type="hidden" value="modalUsu" name="idModal"> -->
                 </div>
                 <div class="<?php echo $class ?>" role="alert">
