@@ -34,7 +34,7 @@ if($rows){
     window.location.href="/proyectoGrupoScout/views/register.php";
     </script>';
 }else{
-    $query = "INSERT INTO visitantes (nombres, apellido1, apellido2, tipodoc, documento, telefono, correo, contrasena) VALUES ('$nombres', '$apellido1', '$apellido2', '$tipodoc', '$documento', '$telefono', '$correo', '$contrasena')";
+    $query = "INSERT INTO visitantes (nombres, apellido1, apellido2, tipodoc, documento, celular, correo, contrasena) VALUES ('$nombres', '$apellido1', '$apellido2', '$tipodoc', '$documento', '$telefono', '$correo', '$contrasena')";
 
     if (mysqli_query($conn, $query)) {
         echo'<script type="text/javascript">
