@@ -1,10 +1,17 @@
-<title>Gráficas</title>
 <?php
 
+session_start();
 require '../templates/header.php';
 include_once '../../queries/conexion.php';
 
 
+if (!isset($_SESSION['rol'])) {
+    header("Location: /proyectoGrupoScout/views/login.php");
+} else {
+    if ($_SESSION['rol'] != 1) {
+        header("Location: /proyectoGrupoScout/views/login.php");
+    }
+}
 
 
 
@@ -40,6 +47,8 @@ if (isset($_POST['generar'])) {
 }
 
 ?>
+<title>Gráficas</title>
+
 
 <a href="/proyectoGrupoScout/views/admin/menuAdmin.php" class="btn links_nav m-2">Volver</a>
 

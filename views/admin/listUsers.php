@@ -19,7 +19,7 @@ $query = "SELECT * FROM ramas";
 $result_ramas = mysqli_query($conn, $query);
 
 
-$consulta = 'SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol';
+$consulta = 'SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.id_rol = 2';
 $result = mysqli_query($conn, $consulta);
 
 
@@ -81,7 +81,7 @@ require '../templates/header.php';
                     <th scope="col">T.D</th>
                     <th scope="col">Documento</th>
                     <th scope="col">Correo</th>
-                    <th scope="col">Rol</th>
+                    <th scope="col">Rama</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -97,7 +97,7 @@ require '../templates/header.php';
                         <td><?php echo $mostrar['tipodoc'] ?></td>
                         <td><?php echo $mostrar['documento'] ?></td>
                         <td><?php echo $mostrar['correo'] ?></td>
-                        <td><?php echo $mostrar['rol'] ?></td>
+                        <td><?php echo $mostrar['nom_rama'] ?></td>
                         <td class="text-center">
                             <a class="m-1 btn btnDetalles" href="/proyectoGrupoScout/views/admin/detalleUsuario.php?det=<?php echo $mostrar['documento'] ?>">Detalles</a>
                             <a class="m-1 btn btnEditar" href="/proyectoGrupoScout/views/admin/editarUsuario.php?edit=<?php echo $mostrar['documento'] ?>">Editar</a>

@@ -9,10 +9,15 @@
   /* list-style: none; */
 }
 
+.text_home{
+  text-align: justify !important;
+}
+
 /* navbar */
 .nav_scout {
   background-color: #1e0941;
   top: 0%;
+  box-shadow: -1px 4px 20px 0px #1e0941;
 }
 
 .nav_logo {

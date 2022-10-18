@@ -40,27 +40,27 @@ $n = count($productos) - 1;
 
 
 ?>
-<div class="container-xxl">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+<div class="container mt-4">
+    <div id="carouselExampleIndicators" class="carousel slide rounded" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button> -->
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/img/slider-uno.jpg" class="d-block w-100" alt="...">
+                <img src="assets/img/image1.jpeg" class="d-block w-100 rounded" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="assets/img/slider-dos.jpg" class="d-block w-100" alt="...">
+                <img src="assets/img/image3.jpeg" class="d-block w-100 rounded" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="assets/img/slider-tres.jpg" class="d-block w-100" alt="...">
+                <img src="assets/img/image4.jpeg" class="d-block w-100 rounded" alt="...">
             </div>
-            <div class="carousel-item">
-                <img src="assets/img/slider-cuatro.jpg" class="d-block w-100" alt="...">
-            </div>
+            <!-- <div class="carousel-item">
+                <img src="assets/img/slider-cuatro.jpg" class="d-block w-100 rounded" alt="...">
+            </div> -->
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -79,7 +79,7 @@ $n = count($productos) - 1;
     <?php
     for ($i = 0; $i <= 2; $i++) {
     ?>
-        <div class="card card_productos text-center m-4" style="width: 18rem;">
+        <div class="card card_productos text-center m-4" style="width: 14rem;">
             <img src="<?php echo $productos[$i] ?>" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title fw-bold" style="color: #1e0941;"><?php echo $nombreP[$i] ?></h5>
@@ -106,7 +106,7 @@ $n = count($productos) - 1;
         <div class="row row-cols-lg-2 row-cols-sm-1">
             <div class="col-lg-7">
                 <h1 class="text-center fw-bold p-3 titulo" id="QS">¿QUIÉNES SOMOS?</h1>
-                <p class="p-2">Un grupo de adultos deseando proporcionar a la ciudad un grupo Scout nuevo, dinámico y como otra alternativa a los grupos ya existentes,
+                <p class="p-2 text_home">Un grupo de adultos deseando proporcionar a la ciudad un grupo Scout nuevo, dinámico y como otra alternativa a los grupos ya existentes,
                     decidieron en una tarde formar el grupo Scout León Blanco, cuyo nombre se escogió gracias a una condecoración que recibiría el fundador
                     del escultismo Lord Baden Powell al visitar el país de Checoslovaquia (Hoy república Checa) en 1923 y que para él fue de un inmenso valor
                     emocional y de un gran aprecio. Así nacía el grupo Scout León Blanco, siendo la Dirigente Ángela María Cortez la primer jefe de grupo, la
