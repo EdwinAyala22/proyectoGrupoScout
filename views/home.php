@@ -77,7 +77,7 @@ $n = count($productos) - 1;
 <div class="container container_productos d-flex flex-wrap justify-content-center align-items-center mt-3 mb-3">
 
     <?php
-    for ($i = 0; $i <= 2; $i++) {
+    for ($i = 0; $i <= 3; $i++) {
     ?>
         <div class="card card_productos text-center m-4" style="width: 14rem;">
             <img src="<?php echo $productos[$i] ?>" class="card-img-top" alt="...">

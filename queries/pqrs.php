@@ -16,7 +16,7 @@ $detalles = $_POST["detalles"];
         if (mysqli_query($conn, $query)) {
             echo '<script type="text/javascript">
             alert("Ha sido enviado con éxito");
-            window.location.href="/proyectoGrupoScout/views/home.php";
+            window.location.href="/proyectoGrupoScout/";
             </script>';
         } else {
             echo '<script type="text/javascript">

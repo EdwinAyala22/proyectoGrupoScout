@@ -47,16 +47,16 @@ if (!isset($_SESSION['rol'])) {
 ?>
 
 
-<div class="mt-3">
+<div class="mt-4">
     <h1 class="fw-bold text-center titulo text-wrap">PRODUCTOS</h1>
 </div>
 
-<div class="container d-flex justify-content-center align-items-center flex-wrap">
+<div class="container d-flex justify-content-center align-items-center flex-wrap mt-2 mb-4">
 
     <?php
     for ($i = 0; $i <= $n; $i++) {
     ?>
-        <div class="card card_productos text-center m-4" style="width: 18rem;">
+        <div class="card card_productos text-center mt-4 mb-5 ms-4 me-4" style="width: 14rem;">
             <img src="<?php echo $productos[$i] ?>" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title fw-bold" style="color: #1e0941;"><?php echo $nombreP[$i] ?></h5>

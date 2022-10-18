@@ -112,7 +112,7 @@ if (!isset($_SESSION['rol'])) {
                         <a class="nav-link text-center" href="/proyectoGrupoScout/views/actividades.php">Actividades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-center" href="#">Miembros scouts</a>
+                        <a class="nav-link text-center" href="/proyectoGrupoScout/views/miembros.php">Miembros scouts</a>
                     </li>
 
                     <!-- <li class="nav-item dropdown">
