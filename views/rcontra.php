@@ -71,12 +71,12 @@ if (isset($_POST['recuperar'])) {
                     <input type="number" class="form-control text-center fw-bold input_login" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required autofocus>
                 </div>
                 <div class="mb-4 iconos_login">
-                    <i class="login__icon fas fa-lock"></i>
-                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" required>
-                </div>
-                <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-envelope"></i>
                     <input type="email" class="form-control text-center fw-bold input_login" name="correo" placeholder="Correo" data-bs-toggle="tooltip" data-bs-placement="top" title="Correo" required>
+                </div>
+                <div class="mb-4 iconos_login">
+                    <i class="login__icon fas fa-lock"></i>
+                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Nueva contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" required>
                 </div>
                 <div class="<?php echo $class ?>" role="alert">
                     <?php echo $error ?>
