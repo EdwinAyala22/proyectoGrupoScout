@@ -27,13 +27,13 @@ if (!isset($_SESSION['rol'])) {
                 </div>
                 <h2 class="titulo fw-bold text-center py-3 mt-5">Contáctenos</h2>
                 <!-- formlario registro -->
-                <form action="./validaciones/vCrearEvento.php" method="POST"
+                <form action="../queries/pqrs.php" method="POST"
                 class="p-3 form_registro justify-content-center align-items-center">
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus
                                 placeholder="Nombres" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombre"
-                                required>
+                                required minlength="3" maxlength="100">
                         </div>
                         <div class="">
                             <input type="email" class="form-control mb-3 fw-bold input_login" name="correo"
@@ -46,15 +46,15 @@ if (!isset($_SESSION['rol'])) {
                         <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="asunto"
                                 placeholder="Asunto" data-bs-toggle="tooltip" data-bs-placement="top" title="Asunto"
-                                required>
+                                required minlength="6" maxlength="50">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="">
-                            <textarea class="form-control mb-3 fw-bold input_login" name="detalle"
+                            <textarea class="form-control mb-3 fw-bold input_login" name="detalles"
                                 placeholder="Detalle..." title="Detalle..."
-                                required></textarea>
+                                required minlength="10" maxlength="800"></textarea>
                         </div>
                     </div>
 
