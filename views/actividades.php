@@ -28,17 +28,18 @@ include_once '../queries/conexion.php'
     <?php
     $sql = "SELECT * FROM f_actividades";
     $result = mysqli_query($conn, $sql);
+    $counterAct = 0;
     $nr = mysqli_num_rows($result);
     if ($nr != 0) {
-
         while ($row = mysqli_fetch_array($result)) {
             // $idAct = $row['id_act'];
 
-            if ($fechaActual > ""){
+            // if ($fechaActual > ""){
 
-            } else {}
+            // } else {}
             if (strtotime($row['fechaFin']) > $fechaActual) {
 
+                
             
     ?>
             <div class="card mb-3 mt-3 w-75 tarjeta_act" key="<?php echo $row['id_act'] ?>">
@@ -131,8 +132,11 @@ include_once '../queries/conexion.php'
                 </div>
             </div>
     <?php
-       }else { } }
-    }else{
+       $counterAct = $counterAct + 1;
+    } }
+    }
+
+    if ($counterAct == 0){ 
         echo "<div class='container d-flex justify-content-center align-items-center'>
                 <div class='card text-dark bg-light mb-5 card_productos mt-5' style='max-width: 18rem;'>
                     <div class='card-body'>
@@ -142,7 +146,6 @@ include_once '../queries/conexion.php'
                 </div>
               </div>";
     }
-
     ?>
     </div>
 </div>
