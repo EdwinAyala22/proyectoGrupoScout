@@ -16,7 +16,10 @@ if (!isset($_SESSION['rol'])) {
 
 include_once '../../queries/conexion.php';
 
-if (isset($_GET['idAct'])) {
+$class = "visually-hidden";
+$error = "";
+
+// if (isset($_GET['idAct'])) {
     $id_act = $_GET['idAct'];
     $query = "SELECT * FROM f_actividades WHERE id_act = '$id_act'";
     $result = mysqli_query($conn, $query);
@@ -40,10 +43,10 @@ if (isset($_GET['idAct'])) {
     } else {
         echo "Error";
     }
-}
+// }
 
 if (isset($_POST['editarEv'])) {
-    $id = $_GET["id"];
+    $id = $_GET["idAct"];
     $responsable = $_POST['responsable'];
     $objetivo_act = $_POST['objetivo_act'];
     $area = $_POST['area'];
@@ -59,14 +62,19 @@ if (isset($_POST['editarEv'])) {
     $f_elab_por = $_POST['f_elab_por'];
     $costo = $_POST['costo'];
 
-    $consulta = "UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', id_rama = '$rama', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
-    if (mysqli_query($conn, $consulta)) {
-        header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+    if ($fechaFiin < $fechaIniciio){
+        $class = "alert alert-danger alert-dismissible fade show text-center";
+        $error = "La fecha final no puede ser antes de la fecha inicial.";
     } else {
-        echo "Error";
+        $consulta = "UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', id_rama = '$rama', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
+        if (mysqli_query($conn, $consulta)) {
+            header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+        } else {
+            echo "Error";
+        }
     }
 }
-
+$fechaActual = date("Y-m-d H:i");
 
 ?>
 
@@ -92,7 +100,7 @@ require '../templates/header.php';
             </div>
             <h2 class="titulo fw-bold text-center py-3">Editar evento</h2>
 
-            <form action="/proyectoGrupoScout/views/admin/editarEvento.php?id=<?php echo $id_de_act ?>" method="POST">
+            <form action="/proyectoGrupoScout/views/admin/editarEvento.php?idAct=<?php echo $id_de_act ?>" method="POST">
 
                 <!-- <div class="row">
                     <div class="">
@@ -299,16 +307,19 @@ require '../templates/header.php';
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label class="form-label fw-bold titulo">Fecha y Hora-Inicio: </label>
-                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" name="fechaInicioo" type="text" value="<?php echo $feInicio ?>" required>
+                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" name="fechaInicioo" type="text" value="<?php echo $feInicio ?>" min="<?php echo $fechaActual ?>" required>
 
                     </div>
                     <div class="">
                         <label class="form-label fw-bold titulo">Fecha y Hora-Fin: </label>
-                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" name="fechaFiin" type="text" value="<?php echo $feFin ?>" required>
+                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" name="fechaFiin" type="text" value="<?php echo $feFin ?>" min="<?php echo $fechaActual ?>" required>
 
                     </div>
                 </div>
-
+                <div class="<?php echo $class ?>" role="alert">
+                    <?php echo $error ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label class="form-label fw-bold titulo">Lugar: </label>

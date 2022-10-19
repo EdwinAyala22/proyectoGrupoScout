@@ -12,7 +12,7 @@ if (!isset($_SESSION['rol'])) {
 }
 
 
-
+$fechaActual = strtotime(date("Y-m-d H:i:s"));
 include_once '../queries/conexion.php'
 
 ?>
@@ -33,6 +33,13 @@ include_once '../queries/conexion.php'
 
         while ($row = mysqli_fetch_array($result)) {
             // $idAct = $row['id_act'];
+
+            if ($fechaActual > ""){
+
+            } else {}
+            if (strtotime($row['fechaFin']) > $fechaActual) {
+
+            
     ?>
             <div class="card mb-3 mt-3 w-75 tarjeta_act" key="<?php echo $row['id_act'] ?>">
                 <div class="row g-0">
@@ -124,7 +131,7 @@ include_once '../queries/conexion.php'
                 </div>
             </div>
     <?php
-        }
+       }else { } }
     }else{
         echo "<div class='container d-flex justify-content-center align-items-center'>
                 <div class='card text-dark bg-light mb-5 card_productos mt-5' style='max-width: 18rem;'>

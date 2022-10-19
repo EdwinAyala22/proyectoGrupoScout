@@ -35,15 +35,21 @@ if (isset($_POST['crear'])) {
     $f_elab_por = $_POST['f_elab_por'];
     $costo = $_POST['costo'];
 
-    $sql = "INSERT INTO f_actividades (imagen, responsable, objetivo_act, area, id_rama, fechaInicio, fechaFin, lugar, nombre_act, descri_act, materiales, fact_riesgo, evaluacion_act, f_elab_por, costo)  values ('$imagen','$responsable','$objetivo_act','$area','$rama','$fechaInicio','$fechaFin','$lugar','$nombre_act','$descri_act','$materiales','$fact_riesgo','$evaluacion_act','$f_elab_por','$costo')";
-    $result = mysqli_query($conn, $sql);
-    if ($result) {
-        header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+    if ($fechaFin < $fechaInicio){
+        $class = "alert alert-danger alert-dismissible fade show text-center";
+        $error = "La fecha final no puede ser antes de la fecha inicial.";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $sql = "INSERT INTO f_actividades (imagen, responsable, objetivo_act, area, id_rama, fechaInicio, fechaFin, lugar, nombre_act, descri_act, materiales, fact_riesgo, evaluacion_act, f_elab_por, costo)  values ('$imagen','$responsable','$objetivo_act','$area','$rama','$fechaInicio','$fechaFin','$lugar','$nombre_act','$descri_act','$materiales','$fact_riesgo','$evaluacion_act','$f_elab_por','$costo')";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     }
 }
 
+$fechaActual = date("Y-m-d H:i");
 ?>
 
 <title>Crear Evento</title>
@@ -111,13 +117,18 @@ require '../templates/header.php';
                 </div>
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="form-floating">
-                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" id="floatingInput" name="fechaInicio" placeholder="Fecha Inicio" data-bs-toggle="tooltip" title="Fecha y hora de inicio" required>
+                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" id="floatingInput" name="fechaInicio" placeholder="Fecha Inicio" data-bs-toggle="tooltip" title="Fecha y hora de inicio" min="<?php echo $fechaActual ?>" required>
                         <label class="ms-2 fw-bold titulo" for="floatingInput">Fecha inicio</label>
                     </div>
                     <div class="form-floating">
-                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" id="floatingInput" name="fechaFin" placeholder="Fecha Final" data-bs-toggle="tooltip" title="Fecha y hora final" required>
+                        <input type="datetime-local" class="form-control mb-3 fw-bold input_login" id="floatingInput" name="fechaFin" placeholder="Fecha Final" data-bs-toggle="tooltip" title="Fecha y hora final" min="<?php echo $fechaActual ?>" required>
                         <label class="ms-2 fw-bold titulo" for="floatingInput">Fecha fin</label>
                     </div>
+                </div>
+
+                <div class="<?php echo $class ?>" role="alert">
+                    <?php echo $error ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
