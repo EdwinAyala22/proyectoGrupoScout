@@ -76,7 +76,7 @@ if (isset($_POST['recuperar'])) {
                 </div>
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-lock"></i>
-                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Nueva contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" required>
+                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Nueva contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" required minlength="8">
                 </div>
                 <div class="<?php echo $class ?>" role="alert">
                     <?php echo $error ?>

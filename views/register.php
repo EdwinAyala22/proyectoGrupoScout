@@ -48,7 +48,7 @@ require '../views/templates/header.php';
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required minlength="7" maxlength="15">
                         </div>
                         <div class="">
                             <input type="number" class="form-control mb-3 fw-bold input_login" name="telefono" placeholder="Celular"
@@ -63,7 +63,7 @@ require '../views/templates/header.php';
                         </div>
                         <div class="">
                             <input type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" required minlength="8">
                         </div>
                     </div>
 
