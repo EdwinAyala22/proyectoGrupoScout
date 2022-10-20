@@ -20,7 +20,7 @@ require '../templates/header.php';
 
 include_once '../../queries/conexion.php';
 
-$sid = $_GET['sid'];
+$sid = $_SESSION['id_user'];
 
     $query = "SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.documento = $sid";
     $result = mysqli_query($conn, $query);

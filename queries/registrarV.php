@@ -11,7 +11,7 @@ $tipodoc = $_POST["tipodoc"];
 $documento = $_POST["documento"];
 $telefono = $_POST["telefono"];
 $correo = $_POST["correo"];
-$contrasena = $_POST["contrasena"];
+// $contrasena = $_POST["contrasena"];
 
 // $db = new Database();
 // $query = $db->connect()->prepare('INSERT INTO visitantes (nombres, apellido1, apellido2, tipodoc, documento, telefono, correo, contrasena) VALUES (:nombres, :apellido1, :apellido2, :tipodoc, :documento, :telefono, :correo, :contrasena)');
@@ -49,7 +49,7 @@ if ($filas) {
         </script>';
     } else {
 
-        $query = "INSERT INTO visitantes (nombres, apellido1, apellido2, tipodoc, documento, celular, correo, contrasena) VALUES ('$nombres', '$apellido1', '$apellido2', '$tipodoc', '$documento', '$telefono', '$correo', '$contrasena')";
+        $query = "INSERT INTO visitantes (nombres, apellido1, apellido2, tipodoc, documento, celular, correo) VALUES ('$nombres', '$apellido1', '$apellido2', '$tipodoc', '$documento', '$telefono', '$correo')";
 
         if (mysqli_query($conn, $query)) {
             echo '<script type="text/javascript">

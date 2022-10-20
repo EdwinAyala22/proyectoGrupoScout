@@ -29,6 +29,8 @@ window.onscroll = function(){
 
 }
 
+
+
 //Funcion select
 
 // function seleccionarTipo(){

@@ -20,6 +20,7 @@ require '../templates/header.php';
 
 // $a_id = $_GET['a'];
 
+echo $_SESSION['id_user'];
 
 ?>
 
@@ -66,9 +67,9 @@ require '../templates/header.php';
         <a href="" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
-                    <img src="/proyectoGrupoScout/assets/img/Perfil.png" class="card-img-top mCardImg" alt="Contactos">
+                    <img src="/proyectoGrupoScout/assets/img/ceremonias.png" class="card-img-top mCardImg" alt="Contactos">
                 </div>
-                <div class="card-footer fw-bold">Perfil</div>
+                <div class="card-footer fw-bold">Ceremonias</div>
             </div>
         </a>
         <a href="/proyectoGrupoScout/views/admin/listPqrs.php" class="text-decoration-none btnAdmin">

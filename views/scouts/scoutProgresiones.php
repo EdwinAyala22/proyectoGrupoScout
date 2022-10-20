@@ -19,7 +19,7 @@ require '../templates/header.php';
 
 include_once '../../queries/conexion.php';
 
-$sid = $_GET['sc'];
+$sid = $_SESSION['id_user'];
 
 $sql = "SELECT * FROM segui_plan_adelanto AS s INNER JOIN tipodeadelanto AS t ON s.id_t_adelanto = t.id_t_adelanto INNER JOIN ramas AS r ON t.id_rama = r.id_rama INNER JOIN usuarios AS u ON s.documento = u.documento WHERE s.documento = $sid;";
 $result = mysqli_query($conn, $sql);
@@ -55,11 +55,11 @@ $nr = mysqli_num_rows($result);
           <td><?php echo $mostrar['fechaEntrega'] ?>
           <td><?php echo $mostrar['nombreTipoAdelanto'] ?>
           <td><?php echo $mostrar['costo'] ?>
-          <td class="text-center">
-            <!-- <a class="m-1 btn btnDetalles" href="./detalleEvento.php?id="> Detalles</a>
+          <!-- <td class="text-center">
+            <a class="m-1 btn btnDetalles" href="./detalleEvento.php?id="> Detalles</a>
             <a class="m-1 btn btnEditar" href="./editarEvento.php?idAct="> Editar</a>
-            <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar">Eliminar</button> -->
-          </td>
+            <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar">Eliminar</button>
+          </td> -->
         </tr>
         <!-- Modal -->
         <?php
@@ -73,3 +73,8 @@ $nr = mysqli_num_rows($result);
     </tbody>
   </table>
 </div>
+<?php
+
+require '../templates/footer.php';
+
+?>

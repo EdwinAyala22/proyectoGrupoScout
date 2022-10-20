@@ -49,10 +49,10 @@ $n = count($productos) - 1;
             <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button> -->
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active">
+            <div class="carousel-item">
                 <img src="assets/img/image1.jpeg" class="d-block w-100 rounded" alt="...">
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item active">
                 <img src="assets/img/image3.jpeg" class="d-block w-100 rounded" alt="...">
             </div>
             <div class="carousel-item">
@@ -75,6 +75,10 @@ $n = count($productos) - 1;
 
 <!-- cards -->
 <div class="container container_productos d-flex flex-wrap justify-content-center align-items-center mt-3 mb-3">
+    <div class="row col-md-12 mt-3 mb-3">
+
+        <h1 class="titulo text-center">Estos son los productos <b>¡Más Comprados!</b></h1>
+    </div>
 
     <?php
     for ($i = 0; $i <= 3; $i++) {

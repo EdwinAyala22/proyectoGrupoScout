@@ -15,17 +15,15 @@ if (!isset($_SESSION['rol'])) {
 <?php
 
 include_once '../../queries/conexion.php';
-$query = "SELECT * FROM ramas";
-$result_ramas = mysqli_query($conn, $query);
 
 
-$consulta = 'SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.id_rol = 2';
+$consulta = 'SELECT * FROM visitantes';
 $result = mysqli_query($conn, $consulta);
-
+$nr = mysqli_num_rows($result);
 
 if (isset($_GET['delete'])) {
     $documento = $_GET['delete'];
-    $query = "DELETE FROM usuarios WHERE documento = '$documento'";
+    $query = "DELETE FROM visitantes WHERE documento = '$documento'";
     $result = mysqli_query($conn, $query);
     if ($result) {
         header("Location: /proyectoGrupoScout/views/admin/listUsers.php");
@@ -36,7 +34,7 @@ if (isset($_GET['delete'])) {
 
 
 ?>
-<title>Usuarios</title>
+<title>Personas interesadas</title>
 
 <?php
 
@@ -44,35 +42,13 @@ require '../templates/header.php';
 
 ?>
 
-<a href="/proyectoGrupoScout/views/admin/menuAdmin.php" class="btn links_nav m-2">Volver</a>
+
+<a href="/proyectoGrupoScout/views/admin/listUsers.php" class="btn links_nav m-2">Volver</a>
 
 <div class="container bg-light p-3 containerCrud mb-3">
-    <h1 class="titulo fw-bold text-center m-3">Lista de usuarios</h1>
+    <h1 class="titulo fw-bold text-center m-3">Lista de personas interesadas</h1>
     <div class="d-flex justify-content-start align-items-center gap-3">
 
-        <a class="mb-3 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearUsuario.php/#newUser">Crear nuevo</a>
-        <a target="_blank" class="mb-3 btn btnDetalles" href="/proyectoGrupoScout/views/reportes/r_usuarios.php">Reporte usuarios PDF</a>
-        <div class="">
-            <!--COMBO BOX RAMA -->
-        <form action="../reportes/r_usuarios_ramas.php" class="d-flex justify-content-start align-items-center gap-2" method="POST" target="_blank">
-            <select id="rama_progresion" class="form-select mb-3 fw-bold input_login" name="rama_progresion" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la rama">
-                <option disabled selected value>Seleccionar rama</option>
-                <?php
-                while ($mostrar = mysqli_fetch_array($result_ramas)) { ?>
-    
-                    <option value="<?php echo $mostrar['id_rama']; ?>"><?php echo $mostrar['nom_rama']; ?></option>
-    
-    
-                <?php
-                }
-                ?>
-            </select>
-    
-            <button type="submit" class="btn btnDetalles" >Generar</button>
-        </form>
-    
-        </div>
-        <a href="/proyectoGrupoScout/views/admin/interesados.php" class="btn btnDetalles mb-3" >Interesados</a>
     </div>
         <table class="table table-borderless table-bordered">
             <thead class="cabeceraTablas text-center">
@@ -82,14 +58,14 @@ require '../templates/header.php';
                     <th scope="col">T.D</th>
                     <th scope="col">Documento</th>
                     <th scope="col">Correo</th>
-                    <th scope="col">Rama</th>
+                    <!-- <th scope="col">Rama</th> -->
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody class="text-center">
 
                 <?php
-
+if ($nr !=0 ){
                 while ($mostrar = mysqli_fetch_array($result)) {
                 ?>
                     <tr>
@@ -98,10 +74,10 @@ require '../templates/header.php';
                         <td><?php echo $mostrar['tipodoc'] ?></td>
                         <td><?php echo $mostrar['documento'] ?></td>
                         <td><?php echo $mostrar['correo'] ?></td>
-                        <td><?php echo $mostrar['nom_rama'] ?></td>
+                        <!-- <td><?php echo $mostrar['nom_rama'] ?></td> -->
                         <td class="text-center">
-                            <a class="m-1 btn btnDetalles" href="/proyectoGrupoScout/views/admin/detalleUsuario.php?det=<?php echo $mostrar['documento'] ?>">Detalles</a>
-                            <a class="m-1 btn btnEditar" href="/proyectoGrupoScout/views/admin/editarUsuario.php?edit=<?php echo $mostrar['documento'] ?>">Editar</a>
+                            
+                            
                             <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['documento'] ?>">Eliminar</button>
                         </td>
                     </tr>
@@ -126,15 +102,19 @@ require '../templates/header.php';
                     </div>
                 <?php
                 }
+            } else {
+                echo "<tr>";
+                echo "<td colspan='6'>Por el momento, no hay personas interesadas en el Grupo</td>";
+                echo "</tr>";
+              }
                 ?>
             </tbody>
         </table>
     </div>
 
 
+<?php
 
-    <?php
+require '../templates/footer.php';
 
-    require '../templates/footer.php';
-
-    ?>
+?>

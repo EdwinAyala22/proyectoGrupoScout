@@ -57,8 +57,13 @@ $nr = mysqli_num_rows($result);
           <td><?php echo $mostrar['apellido1'].' '. $mostrar['apellido2']  ?>
           <td><?php echo $mostrar['fechaEntrega'] ?>
           <td><?php echo $mostrar['nombreTipoAdelanto'] ?>
-          <td class="text-center">
-            <a class="m-1 btn btnDetalles" href="./detalleEvento.php?id=<?php echo $mostrar['documento'] ?>"> Detalles</a>
+          <td class="d-flex justify-content-center align-items-center text-center">
+            <form action="./detalleProgresion.php" method="POST" class="m-0">
+              <input type="hidden" value="<?php echo $mostrar['documento'] ?>" name="documento">
+              <input type="hidden" value="<?php echo $mostrar['id_t_adelanto'] ?>" name="id_t_adelanto">
+              <button type="submit" class="btn btnDetalles m-1">Detalles</button>
+            </form>
+            
             <a class="m-1 btn btnEditar" href="./editarEvento.php?idAct=<?php echo $mostrar['documento'] ?>"> Editar</a>
             <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['documento'] ?>">Eliminar</button>
           </td>

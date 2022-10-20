@@ -21,10 +21,11 @@ if (isset($_SESSION['rol'])) {
     $cont =  $_POST['contrasena'];
     switch ($_SESSION['rol']) {
         case 1:
-            header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php?a=$doc");
+            header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php");
+
             break;
         case 2:
-            header("Location: /proyectoGrupoScout/views/scouts/menuScout.php?s=$doc");
+            header("Location: /proyectoGrupoScout/views/scouts/menuScout.php");
             break;
         default:
     }
@@ -49,15 +50,16 @@ if (isset($_POST['documento']) && isset($_POST['contrasena'])) {
                 $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
                 <button class="btn btn_general" type="submit">Cerrar sesión</button>
                 </form>';
-                header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php?a=$documento");
-                
+                header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php");
+                $_SESSION['id_user'] = $documento;
                 break;
             case 2:
                 $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
                 $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
                 <button class="btn btn_general" type="submit">Cerrar sesión</button>
                 </form>';
-                header("Location: /proyectoGrupoScout/views/scouts/menuScout.php?s=$documento");
+                header("Location: /proyectoGrupoScout/views/scouts/menuScout.php");
+                $_SESSION['id_user'] = $documento;
                 break;
             default:
         }
@@ -74,7 +76,7 @@ if (isset($_POST['documento']) && isset($_POST['contrasena'])) {
 require '../views/templates/header.php';
 ?>
 
-<div class="container w-75 mt-5 mb-5 container_general">
+<div class="container col-md-7 col-sm-8 mt-5 mb-5 container_general">
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
@@ -109,9 +111,9 @@ require '../views/templates/header.php';
                 <div class="mb-4 text-center">
                     <button type="submit" class="btn btn_general">INGRESAR</button>
                 </div>
-                <div class="mb-4 text-center">
+                <!-- <div class="mb-4 text-center">
                     <p class="titulo fst-italic">¿No tienes una cuenta? <a href="/proyectoGrupoScout/views/register.php" class="titulo fw-bold link_login">Registrarse</a></p>
-                </div>
+                </div> -->
             </form>
 
         </div>

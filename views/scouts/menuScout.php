@@ -19,24 +19,10 @@ if (!isset($_SESSION['rol'])) {
 require '../templates/header.php';
 include_once '../../queries/conexion.php';
 
-$s_id = $_GET['s'];
-// if (isset($_GET['s'])) {
-//     $sql = "SELECT * FROM usuarios WHERE documento = $s_id";
-//     $result = mysqli_query($conn, $sql);
-//     $a_usu = mysqli_fetch_array($result);
-// }
 
 
-// if (isset($_GET['s'])) {
-    
-    // $query = "DELETE FROM f_actividades WHERE id_act = '$id_act'";
-    // $result = mysqli_query($conn, $query);
-    // if ($result) {
-    //     header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
-    // } else {
-    //     echo "Error";
-    // }
-// }
+echo $_SESSION['id_user'];
+
 
 
 ?>
@@ -46,7 +32,7 @@ $s_id = $_GET['s'];
 <!-- cards -->
 <div class="container flex-wrap d-grid justify-content-center align-items-center ">
     <div class="container d-flex flex-wrap justify-content-center">
-        <a href="/proyectoGrupoScout/views/scouts/perfilScout.php?sid=<?php echo $s_id ?>" class="text-decoration-none btnAdmin">
+        <a href="/proyectoGrupoScout/views/scouts/perfilScout.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
                     <img src="/proyectoGrupoScout/assets/img/Perfil.png" class="card-img-top mCardImg" alt="Eventos">
@@ -54,7 +40,7 @@ $s_id = $_GET['s'];
                 <div class="card-footer fw-bold">Perfil</div>
             </div>
         </a>
-        <a href="" class="text-decoration-none btnAdmin">
+        <a href="/proyectoGrupoScout/views/scouts/scoutProgresiones.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
                     <img src="/proyectoGrupoScout/assets/img/Progresion.png" class="card-img-top mCardImg" alt="Usuarios">

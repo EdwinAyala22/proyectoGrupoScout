@@ -15,6 +15,10 @@ require '../views/templates/header.php';
                     </div>
                 </div>
                 <h2 class="titulo fw-bold text-center py-3">Registro</h2>
+                <div class="row">
+                    <p class="text-wrap text-center titulo fst-italic">¡Si te interesa hacer parte de esta grandiosa familia, regístrate y nosotros nos pondremos en contacto contigo!</p>
+                </div>
+                
                 <!-- formlario registro -->
                 <form action="../queries/registrarV.php" method="POST" class="p-3 justify-content-center align-items-center">
                     <div class="row row-cols-md-2 row-cols-sm-1">
@@ -56,15 +60,15 @@ require '../views/templates/header.php';
                         </div>
                     </div>
 
-                    <div class="row row-cols-md-2 row-cols-sm-1">
+                    <div class="row">
                         <div class="">
                             <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Correo" required>
                         </div>
-                        <div class="">
+                        <!-- <div class="">
                             <input type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" required minlength="8">
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="row d-flex justify-content-center align-content-center">
