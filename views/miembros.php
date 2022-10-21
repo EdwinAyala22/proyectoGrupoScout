@@ -56,7 +56,7 @@ if (!isset($_SESSION['rol'])) {
             <div class="flip-card-back p-3 d-flex justify-content-center align-items-center text-center flex-wrap card-body">
                 <div class="text-start">
                     <p class="titulo"><strong>Nombre: </strong><small>Eduardo Lopez</small></p>
-                    <p class="titulo"><strong>Cargo: </strong><small>un cargo</small></p>
+                    <p class="titulo"><strong>Cargo: </strong><small>Lider Scout</small></p>
                     <p class="titulo"><strong>Correo: </strong><small>eduardo@gmail.com</small></p>
                 </div>
             </div>

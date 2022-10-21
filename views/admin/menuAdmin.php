@@ -20,7 +20,7 @@ require '../templates/header.php';
 
 // $a_id = $_GET['a'];
 
-echo $_SESSION['id_user'];
+// echo $_SESSION['id_user'];
 
 ?>
 

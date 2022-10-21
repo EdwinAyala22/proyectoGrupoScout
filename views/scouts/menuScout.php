@@ -21,7 +21,7 @@ include_once '../../queries/conexion.php';
 
 
 
-echo $_SESSION['id_user'];
+// echo $_SESSION['id_user'];
 
 
 
@@ -30,7 +30,7 @@ echo $_SESSION['id_user'];
 <h1 class="titulo fw-bold text-center mt-4 mb-1 text-uppercase">BIENVENIDO SCOUT</h1>
 
 <!-- cards -->
-<div class="container flex-wrap d-grid justify-content-center align-items-center ">
+<div class="container flex-wrap d-grid justify-content-center align-items-center mb-5 mt-5">
     <div class="container d-flex flex-wrap justify-content-center">
         <a href="/proyectoGrupoScout/views/scouts/perfilScout.php" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
@@ -48,7 +48,15 @@ echo $_SESSION['id_user'];
                 <div class="card-footer fw-bold">Mis progresiones</div>
             </div>
         </a>
-        <a href="/proyectoGrupoScout/views/scouts/" class="text-decoration-none btnAdmin">
+        <a href="" class="text-decoration-none btnAdmin">
+            <div class="card cardAdmin text-center m-3">
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <img src="/proyectoGrupoScout/assets/img/ceremonias.png" class="card-img-top mCardImg" alt="Usuarios">
+                </div>
+                <div class="card-footer fw-bold">Mis ceremonias</div>
+            </div>
+        </a>
+        <a href="" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
                     <img src="/proyectoGrupoScout/assets/img/educativa.png" class="card-img-top mCardImg" alt="Progresión Scout">
@@ -56,6 +64,7 @@ echo $_SESSION['id_user'];
                 <div class="card-footer fw-bold">Información educativa</div>
             </div>
         </a>
+        
     </div>
     <!-- <div class="container d-flex flex-wrap justify-content-center">
         <a href="/proyectoGrupoScout/views/admin/crearEvento.php" class="text-decoration-none btnAdmin">
