@@ -20,29 +20,29 @@ $class = "visually-hidden";
 $error = "";
 
 // if (isset($_GET['idAct'])) {
-    $id_act = $_GET['idAct'];
-    $query = "SELECT * FROM f_actividades WHERE id_act = '$id_act'";
-    $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) == 1) {
-        $mostrar = mysqli_fetch_array($result);
-        $id_de_act = $mostrar['id_act'];
-        $resp = $mostrar['responsable'];
-        $obj = $mostrar['objetivo_act'];
-        $ar = $mostrar['area'];
-        // $ra = $mostrar['id_rama'];
-        $feInicio = $mostrar['fechaInicio'];
-        $feFin = $mostrar['fechaFin'];
-        $lug = $mostrar['lugar'];
-        $nom_act = $mostrar['nombre_act'];
-        $des_act = $mostrar['descri_act'];
-        $mat = $mostrar['materiales'];
-        $f_riesgo = $mostrar['fact_riesgo'];
-        $eva_act = $mostrar['evaluacion_act'];
-        $f_e_por = $mostrar['f_elab_por'];
-        $cos = $mostrar['costo'];
-    } else {
-        echo "Error";
-    }
+$id_act = $_GET['idAct'];
+$query = "SELECT * FROM f_actividades WHERE id_act = '$id_act'";
+$result = mysqli_query($conn, $query);
+if (mysqli_num_rows($result) == 1) {
+    $mostrar = mysqli_fetch_array($result);
+    $id_de_act = $mostrar['id_act'];
+    $resp = $mostrar['responsable'];
+    $obj = $mostrar['objetivo_act'];
+    $ar = $mostrar['area'];
+    // $ra = $mostrar['id_rama'];
+    $feInicio = $mostrar['fechaInicio'];
+    $feFin = $mostrar['fechaFin'];
+    $lug = $mostrar['lugar'];
+    $nom_act = $mostrar['nombre_act'];
+    $des_act = $mostrar['descri_act'];
+    $mat = $mostrar['materiales'];
+    $f_riesgo = $mostrar['fact_riesgo'];
+    $eva_act = $mostrar['evaluacion_act'];
+    $f_e_por = $mostrar['f_elab_por'];
+    $cos = $mostrar['costo'];
+} else {
+    echo "Error";
+}
 // }
 
 if (isset($_POST['editarEv'])) {
@@ -62,7 +62,7 @@ if (isset($_POST['editarEv'])) {
     $f_elab_por = $_POST['f_elab_por'];
     $costo = $_POST['costo'];
 
-    if ($fechaFiin < $fechaIniciio){
+    if ($fechaFiin < $fechaIniciio) {
         $class = "alert alert-danger alert-dismissible fade show text-center";
         $error = "La fecha final no puede ser antes de la fecha inicial.";
     } else {
@@ -75,10 +75,19 @@ if (isset($_POST['editarEv'])) {
     }
 }
 $tRamas = "SELECT * FROM ramas";
-$resultR = mysqli_query($conn,$tRamas);
+$resultR = mysqli_query($conn, $tRamas);
 
-$tRamas2 = "SELECT * FROM ramas R, ramas_actividades A where A.id_act = $id AND A.id_rama = R.id_rama";
-$result3 = mysqli_query($conn,$tRamas2);
+$tRamas2 = "SELECT * FROM ramas_actividades where $id_act = id_act ";
+$result3 = mysqli_query($conn, $tRamas2);
+$arrayRamas = array();
+while ($ramasAct = mysqli_fetch_array($result3)) {
+    echo $ramasAct['id_rama'];
+    $arrayRamas[] = $ramasAct['id_rama'];
+}
+foreach ($arrayRamas as $arRam) {
+    echo $arRam;
+}
+
 $fechaActual = date("Y-m-d H:i");
 
 ?>
@@ -137,10 +146,50 @@ require '../templates/header.php';
                 <div class="row mb-2">
                     <label class="text-start titulo form-label fw-bold">Ramas: </label>
                     <div class="d-flex flex-wrap">
-                    <?php while ($mostrarR = mysqli_fetch_array($resultR)) {
+                        <?php
+                        while ($mostrarR = mysqli_fetch_array($resultR)) {
+                            $checked = "";
+                            foreach ($arrayRamas as $arRa) {
+                                $cicloRams = 0;
+                                $cicloRams2 = 0;
+                                if ($mostrarR['id_rama'] == $arRa ) {
+                                    if ($cicloRams == 0){
+                                        $checked = "checked";
+                                        echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]"' . $checked . '>' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
+                                        $cicloRams = 1;
+                                    }
+                                // } else {
+                                    // if($cicloRams == 1 && $cicloRams2 == 0){
+                                        
+                                    // }else{
+                                    //     $checked = "";
+                                    //     echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]"' . $checked . '>' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
+                                    //     $cicloRams = 0;
+                                    // }
 
-                        echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]" >' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
-                        } ?>
+                                    // if ($cicloRams == 0) {
+                                    //     $checked = "";
+                                        // echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]"' . $checked . '>' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
+                                        
+
+                                    // }
+                                // }
+                                    } else {
+                                        if($mostrarR['id_rama'] != $arRa){
+                                            if($cicloRams == 0){
+                                                $checked = "";
+                                                echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]"' . $checked . '>' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
+                                                $cicloRams   = 1;
+                                            }
+                                        }
+
+                                    }
+
+                                }
+                            
+
+                        }
+                        ?>
                     </div>
                 </div>
 
@@ -167,7 +216,7 @@ require '../templates/header.php';
                     </div>
                     <div class="">
                         <label class="form-label fw-bold titulo">Nombre Evento: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" type="text" value="<?php echo $nom_act ?>" >
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" type="text" value="<?php echo $nom_act ?>">
                     </div>
                 </div>
 
