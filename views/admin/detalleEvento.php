@@ -17,9 +17,16 @@ if (!isset($_SESSION['rol'])) {
 include_once '../../queries/conexion.php';
 
 $id = $_GET["id"];
-$evento = "SELECT * FROM f_actividades A, ramas R WHERE A.id_act = $id AND A.id_rama = R.id_rama";
+$evento = "SELECT * FROM f_actividades WHERE id_act = $id";
 $result = mysqli_query($conn, $evento);
 $row = mysqli_fetch_array($result);
+
+
+
+
+$tRamas = "SELECT * FROM ramas R, ramas_actividades A where A.id_act = $id AND A.id_rama = R.id_rama";
+$result2 = mysqli_query($conn,$tRamas);
+
 ?>
 
 <title>Detalle Evento</title>
@@ -62,14 +69,26 @@ require '../templates/header.php';
 
                         
                     </div>
-                    <div class="row row-cols-md-2 row-cols-sm-1">
+                    <div class="row">
                         <div class="">
                             <label class="form-label fw-bold titulo">Area: </label>
                             <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $row['area'] ?>" readonly title="Área">
                         </div>
+                        
+                    </div>
+                    <div class="row">
                         <div class="">
-                            <label class="form-label fw-bold titulo">Rama: </label>
-                            <input type="text" class="form-control mb-3 fw-bold input_login" type="text" value="<?php echo $row['nom_rama'] ?>" readonly title="Rama">
+                            <label class="form-label fw-bold titulo">Ramas: </label> <br>
+
+                            <ul class="m-0 px-3">
+                            <?php 
+                            
+                            while ($mostrarR = mysqli_fetch_array($result2)) {
+                                echo  '<li class="">'. $mostrarR['nom_rama'] . "</li>";
+                            }
+                            echo "<br>";
+                            ?> 
+                            </ul>
                         </div>
 
                     </div>

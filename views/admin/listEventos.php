@@ -15,9 +15,12 @@ if (!isset($_SESSION['rol'])) {
 <?php
 include_once '../../queries/conexion.php';
 
-$evento = "SELECT * FROM f_actividades A, ramas R WHERE A.id_rama = R.id_rama";
+$evento = "SELECT * FROM f_actividades";
 $result = mysqli_query($conn, $evento);
 $nr = mysqli_num_rows($result);
+
+$ramas ="SELECT * FROM f_actividades A, ramas R, ramas_actividades AR WHERE A.id_act = AR.id_act AND AR.id_rama =  R.id_rama";
+$resultR = mysqli_query($conn,$ramas);
 
 if (isset($_GET['delete'])) {
   $idAct = $_GET['delete'];

@@ -1,4 +1,4 @@
-.0<?php
+<?php
 
 session_start();
 
@@ -29,7 +29,7 @@ $error = "";
         $resp = $mostrar['responsable'];
         $obj = $mostrar['objetivo_act'];
         $ar = $mostrar['area'];
-        $ra = $mostrar['id_rama'];
+        // $ra = $mostrar['id_rama'];
         $feInicio = $mostrar['fechaInicio'];
         $feFin = $mostrar['fechaFin'];
         $lug = $mostrar['lugar'];
@@ -50,7 +50,7 @@ if (isset($_POST['editarEv'])) {
     $responsable = $_POST['responsable'];
     $objetivo_act = $_POST['objetivo_act'];
     $area = $_POST['area'];
-    $rama = $_POST['id_rama'];
+    // $rama = $_POST['id_rama'];
     $fechaIniciio = $_POST['fechaInicioo'];
     $fechaFiin = $_POST['fechaFiin'];
     $lugar = $_POST['lugar'];
@@ -74,6 +74,11 @@ if (isset($_POST['editarEv'])) {
         }
     }
 }
+$tRamas = "SELECT * FROM ramas";
+$resultR = mysqli_query($conn,$tRamas);
+
+$tRamas2 = "SELECT * FROM ramas R, ramas_actividades A where A.id_act = $id AND A.id_rama = R.id_rama";
+$result3 = mysqli_query($conn,$tRamas2);
 $fechaActual = date("Y-m-d H:i");
 
 ?>
@@ -122,188 +127,23 @@ require '../templates/header.php';
 
 
                 </div>
-                <div class="row row-cols-md-2 row-cols-sm-1">
+                <div class="row">
                     <div class="">
                         <label class="form-label fw-bold titulo">Area: </label>
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="area" type="text" value="<?php echo $ar ?>" required>
                     </div>
-                    <div class="">
-                        <label class="form-label fw-bold titulo">Rama: </label>
-                        <select class="form-select mb-3 fw-bold input_login" name="id_rama" required title="Seleccione la rama">
-                            <option disabled value>Seleccione la rama</option>
-                            <?php
-                            switch ($ra) {
-                                case 1:
-                            ?>
-                                    <option selected value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 2:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option selected value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 3:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option selected value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 4:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option selected value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 5:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option selected value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 6:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option selected value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 7:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option selected value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 8:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option selected value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 9:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option selected value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 10:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option selected value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 11:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option selected value="11">No aplica</option>
-                            <?php
-                                    break;
-                            }
-                            ?>
-                        </select>
-                    </div>
-
                 </div>
+
+                <div class="row mb-2">
+                    <label class="text-start titulo form-label fw-bold">Ramas: </label>
+                    <div class="d-flex flex-wrap">
+                    <?php while ($mostrarR = mysqli_fetch_array($resultR)) {
+
+                        echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]" >' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
+                        } ?>
+                    </div>
+                </div>
+
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label class="form-label fw-bold titulo">Fecha y Hora-Inicio: </label>
