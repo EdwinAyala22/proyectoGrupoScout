@@ -82,8 +82,12 @@ $nr = mysqli_num_rows($result);
                 <input type="hidden" value="<?php echo $mostrar['id_t_adelanto'] ?>" name="id_t_adelanto">
                 <button type="submit" class="btn btnDetalles m-1">Detalles</button>
               </form>
-
-              <a class="m-1 btn btnEditar" href="./editarEvento.php?idAct=<?php echo $mostrar['documento'] ?>"> Editar</a>
+              <form action="./editarProgresion.php" method="POST" class="m-0">
+                <input type="hidden" value="<?php echo $mostrar['documento'] ?>" name="documento">
+                <input type="hidden" value="<?php echo $mostrar['id_t_adelanto'] ?>" name="id_t_adelanto">
+                <button type="submit" class="btn btnEditar m-1">Editar</button>
+              </form>
+              
               <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['documento'].''.$mostrar['id_t_adelanto'] ?>">Eliminar</button>
             </td>
           </tr>
