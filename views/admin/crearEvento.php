@@ -23,7 +23,7 @@ if (isset($_POST['crear'])) {
     $responsable = $_POST['responsable'];
     $objetivo_act = $_POST['objetivo_act'];
     $area = $_POST['area'];
-    $rama = $_POST['id_rama'];
+    $ramas = $_POST['ramasEvento'];
     $fechaInicio = $_POST['fechaInicio'];
     $fechaFin = $_POST['fechaFin'];
     $lugar = $_POST['lugar'];
@@ -34,20 +34,42 @@ if (isset($_POST['crear'])) {
     $evaluacion_act = $_POST['evaluacion_act'];
     $f_elab_por = $_POST['f_elab_por'];
     $costo = $_POST['costo'];
-
+    $idActi = 0;
     if ($fechaFin < $fechaInicio){
         $class = "alert alert-danger alert-dismissible fade show text-center";
         $error = "La fecha final no puede ser antes de la fecha inicial.";
     } else {
-        $sql = "INSERT INTO f_actividades (imagen, responsable, objetivo_act, area, id_rama, fechaInicio, fechaFin, lugar, nombre_act, descri_act, materiales, fact_riesgo, evaluacion_act, f_elab_por, costo)  values ('$imagen','$responsable','$objetivo_act','$area','$rama','$fechaInicio','$fechaFin','$lugar','$nombre_act','$descri_act','$materiales','$fact_riesgo','$evaluacion_act','$f_elab_por','$costo')";
+        $sql = "INSERT INTO f_actividades (imagen, responsable, objetivo_act, area, fechaInicio, fechaFin, lugar, nombre_act, descri_act, materiales, fact_riesgo, evaluacion_act, f_elab_por, costo)  values ('$imagen','$responsable','$objetivo_act','$area','$fechaInicio','$fechaFin','$lugar','$nombre_act','$descri_act','$materiales','$fact_riesgo','$evaluacion_act','$f_elab_por','$costo')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+            $sqlID = "SELECT * FROM f_actividades where responsable = '$responsable' AND objetivo_act = '$objetivo_act' AND area = '$area' AND lugar = '$lugar' AND nombre_act = '$nombre_act' AND descri_act = '$descri_act' AND materiales = '$materiales' AND fact_riesgo = '$fact_riesgo' AND evaluacion_act = '$evaluacion_act' AND f_elab_por = '$f_elab_por' AND costo = '$costo'";
+            $resultID = mysqli_query($conn, $sqlID);
+            $findID = mysqli_fetch_array($resultID);
+            $idActi = $findID['id_act'];
+        
+            
+            if ($idActi != 0){
+                foreach ($ramas as $ram){
+                    $sqlInsRama = "INSERT INTO ramas_actividades (id_act, id_rama) values ('$idActi' , '$ram')";
+                    $insRamas = mysqli_query($conn,$sqlInsRama);
+                }
+                if ($insRamas){
+                    echo'<script type="text/javascript">
+                alert("Registro realizado con éxito");
+                window.location.href="/proyectoGrupoScout/views/admin/listEventos.php";
+                </script>';
+                } else {
+                    echo "Error";
+                }
+            }
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
 }
+
+$tRamas = "SELECT * FROM ramas";
+$resultR = mysqli_query($conn,$tRamas);
 
 $fechaActual = date("Y-m-d H:i");
 ?>
@@ -93,25 +115,18 @@ require '../templates/header.php';
                     </div>
 
                 </div>
-                <div class="row row-cols-md-2 row-cols-sm-1">
+                <div class="row">
                     <div class="">
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="area" placeholder="Área" title="Área" required>
                     </div>
-                    <div class="">
-                        <select class="form-select mb-3 fw-bold input_login" name="id_rama" required title="Seleccione la rama">
-                            <option disabled selected value>Seleccione la rama</option>
-                            <option value="1">Lobatos</option>
-                            <option value="2">Scouts</option>
-                            <option value="3">Caminantes</option>
-                            <option value="4">Rovers</option>
-                            <option value="5">Dirigentes</option>
-                            <option value="6">Consejeros</option>
-                            <option value="7">Padres de familia</option>
-                            <option value="8">Miembros fundadores</option>
-                            <option value="9">Inactivos</option>
-                            <option value="10">Otro</option>
-                            <option value="11">No aplica</option>
-                        </select>
+                    <div class="row mb-2">
+                        <label for="" class="text-start titulo form-check-label"> <b>Seleccione las ramas que participarán:</b></label><br>
+                        <div class="d-flex flex-wrap">
+                            <?php while ($mostrarR = mysqli_fetch_array($resultR)) {
+
+                              echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]">' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
+                             } ?>
+                        </div>
                     </div>
 
                 </div>

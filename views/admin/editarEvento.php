@@ -20,29 +20,28 @@ $class = "visually-hidden";
 $error = "";
 
 // if (isset($_GET['idAct'])) {
-    $id_act = $_GET['idAct'];
-    $query = "SELECT * FROM f_actividades WHERE id_act = '$id_act'";
-    $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) == 1) {
-        $mostrar = mysqli_fetch_array($result);
-        $id_de_act = $mostrar['id_act'];
-        $resp = $mostrar['responsable'];
-        $obj = $mostrar['objetivo_act'];
-        $ar = $mostrar['area'];
-        $ra = $mostrar['id_rama'];
-        $feInicio = $mostrar['fechaInicio'];
-        $feFin = $mostrar['fechaFin'];
-        $lug = $mostrar['lugar'];
-        $nom_act = $mostrar['nombre_act'];
-        $des_act = $mostrar['descri_act'];
-        $mat = $mostrar['materiales'];
-        $f_riesgo = $mostrar['fact_riesgo'];
-        $eva_act = $mostrar['evaluacion_act'];
-        $f_e_por = $mostrar['f_elab_por'];
-        $cos = $mostrar['costo'];
-    } else {
-        echo "Error";
-    }
+$id_act = $_GET['idAct'];
+$query = "SELECT * FROM f_actividades WHERE id_act = '$id_act'";
+$result = mysqli_query($conn, $query);
+if (mysqli_num_rows($result) == 1) {
+    $mostrar = mysqli_fetch_array($result);
+    $id_de_act = $mostrar['id_act'];
+    $resp = $mostrar['responsable'];
+    $obj = $mostrar['objetivo_act'];
+    $ar = $mostrar['area'];
+    $feInicio = $mostrar['fechaInicio'];
+    $feFin = $mostrar['fechaFin'];
+    $lug = $mostrar['lugar'];
+    $nom_act = $mostrar['nombre_act'];
+    $des_act = $mostrar['descri_act'];
+    $mat = $mostrar['materiales'];
+    $f_riesgo = $mostrar['fact_riesgo'];
+    $eva_act = $mostrar['evaluacion_act'];
+    $f_e_por = $mostrar['f_elab_por'];
+    $cos = $mostrar['costo'];
+} else {
+    echo "Error";
+}
 // }
 
 if (isset($_POST['editarEv'])) {
@@ -50,7 +49,7 @@ if (isset($_POST['editarEv'])) {
     $responsable = $_POST['responsable'];
     $objetivo_act = $_POST['objetivo_act'];
     $area = $_POST['area'];
-    $rama = $_POST['id_rama'];
+    $ramas = $_POST['ramasEvento'];
     $fechaIniciio = $_POST['fechaInicioo'];
     $fechaFiin = $_POST['fechaFiin'];
     $lugar = $_POST['lugar'];
@@ -62,18 +61,45 @@ if (isset($_POST['editarEv'])) {
     $f_elab_por = $_POST['f_elab_por'];
     $costo = $_POST['costo'];
 
-    if ($fechaFiin < $fechaIniciio){
+    if ($fechaFiin < $fechaIniciio) {
         $class = "alert alert-danger alert-dismissible fade show text-center";
         $error = "La fecha final no puede ser antes de la fecha inicial.";
     } else {
-        $consulta = "UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', id_rama = '$rama', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
+        $consulta = "UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
         if (mysqli_query($conn, $consulta)) {
-            header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+            $elimRamas = "DELETE FROM ramas_actividades WHERE id_act = $id";
+            $resultElim = mysqli_query($conn, $elimRamas);
+            if ($resultElim){
+                foreach ($ramas as $ram){
+                    $sqlInsRama = "INSERT INTO ramas_actividades (id_act, id_rama) values ('$id' , '$ram')";
+                    $insRamas = mysqli_query($conn,$sqlInsRama);
+                }
+                if ($insRamas){
+                    echo'<script type="text/javascript">
+                alert("El evento se ha modificado con éxito.");
+                window.location.href="/proyectoGrupoScout/views/admin/listEventos.php";
+                </script>';
+                } else {
+                    echo "Error insertando las ramas.";
+                }
+            } else {
+                echo "Error eliminando las ramas.";
+            }
         } else {
-            echo "Error";
+            echo "Error al modificar los datos.";
         }
     }
 }
+$tRamas = "SELECT * FROM ramas";
+$resultR = mysqli_query($conn, $tRamas);
+
+$tRamas2 = "SELECT * FROM ramas_actividades where $id_act = id_act ";
+$result3 = mysqli_query($conn, $tRamas2);
+$arrayRamas = array();
+while ($ramasAct = mysqli_fetch_array($result3)) {
+    $arrayRamas[] = $ramasAct['id_rama'];
+}
+$contador = count($arrayRamas);
 $fechaActual = date("Y-m-d H:i");
 
 ?>
@@ -122,188 +148,35 @@ require '../templates/header.php';
 
 
                 </div>
-                <div class="row row-cols-md-2 row-cols-sm-1">
+                <div class="row">
                     <div class="">
                         <label class="form-label fw-bold titulo">Area: </label>
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="area" type="text" value="<?php echo $ar ?>" required>
                     </div>
-                    <div class="">
-                        <label class="form-label fw-bold titulo">Rama: </label>
-                        <select class="form-select mb-3 fw-bold input_login" name="id_rama" required title="Seleccione la rama">
-                            <option disabled value>Seleccione la rama</option>
-                            <?php
-                            switch ($ra) {
-                                case 1:
-                            ?>
-                                    <option selected value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 2:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option selected value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 3:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option selected value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 4:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option selected value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 5:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option selected value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 6:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option selected value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 7:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option selected value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 8:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option selected value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 9:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option selected value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 10:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option selected value="10">Otro</option>
-                                    <option value="11">No aplica</option>
-                                <?php
-                                    break;
-                                case 11:
-                                ?>
-                                    <option value="1">Lobatos</option>
-                                    <option value="2">Scouts</option>
-                                    <option value="3">Caminantes</option>
-                                    <option value="4">Rovers</option>
-                                    <option value="5">Dirigentes</option>
-                                    <option value="6">Consejeros</option>
-                                    <option value="7">Padres de familia</option>
-                                    <option value="8">Miembros fundadores</option>
-                                    <option value="9">Inactivos</option>
-                                    <option value="10">Otro</option>
-                                    <option selected value="11">No aplica</option>
-                            <?php
-                                    break;
-                            }
-                            ?>
-                        </select>
-                    </div>
-
                 </div>
+
+                <div class="row mb-2">
+                    <label class="text-start titulo form-label fw-bold">Ramas: </label>
+                    <div class="d-flex flex-wrap">
+                        <?php
+                        while ($mostrarR = mysqli_fetch_array($resultR)) {
+                            $checked = "";
+                                $pAr = 0;
+                                for ($i = 1; $pAr <= $contador -  1; $i++){
+                                    if($mostrarR['id_rama'] == $arrayRamas[$pAr]){
+                                        $checked = "checked";
+                                        $pAr = $contador + 1;
+                                    } else {
+                                        $pAr = $pAr + 1;
+                                    }
+                                }
+                                echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]"' . $checked .'>' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
+                        }
+                        
+                        ?>
+                    </div>
+                </div>
+
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label class="form-label fw-bold titulo">Fecha y Hora-Inicio: </label>
@@ -327,7 +200,7 @@ require '../templates/header.php';
                     </div>
                     <div class="">
                         <label class="form-label fw-bold titulo">Nombre Evento: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" type="text" value="<?php echo $nom_act ?>" >
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" type="text" value="<?php echo $nom_act ?>">
                     </div>
                 </div>
 

@@ -15,23 +15,34 @@ if (!isset($_SESSION['rol'])) {
 <?php
 include_once '../../queries/conexion.php';
 
-$evento = "SELECT * FROM f_actividades A, ramas R WHERE A.id_rama = R.id_rama";
+$evento = "SELECT * FROM f_actividades";
 $result = mysqli_query($conn, $evento);
 $nr = mysqli_num_rows($result);
+
+$ramas ="SELECT * FROM f_actividades A, ramas R, ramas_actividades AR WHERE A.id_act = AR.id_act AND AR.id_rama =  R.id_rama";
+$resultR = mysqli_query($conn,$ramas);
 
 if (isset($_GET['delete'])) {
   $idAct = $_GET['delete'];
   $query = "DELETE FROM inscritos WHERE id_act = '$idAct'";
   $result = mysqli_query($conn, $query);
   if ($result) {
-    $query2 = "DELETE FROM f_actividades WHERE id_act = '$idAct'";
-    $result2 = mysqli_query($conn, $query2);
-    if ($result2) {
-      header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+    $queryRamEl= "DELETE FROM ramas_actividades WHERE id_act = $idAct";
+    $resultRamEl = mysqli_query($conn, $queryRamEl);
+    if ($resultRamEl) {
+      $query2 = "DELETE FROM f_actividades WHERE id_act = '$idAct'";
+      $result2 = mysqli_query($conn, $query2);
+      if ($result2) {
+        header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+      } else {
+        echo "Error eliminando el evento seleccionado.";
+      }
     } else {
-      echo "Error";
+      echo "Error eliminando ramas del evento.";
     }
-  } 
+  } else {
+    echo "Error eliminando inscritos.";
+  }
   // else {
   //   $query2 = "DELETE FROM f_actividades WHERE id_act = '$idAct'";
   //   $result2 = mysqli_query($conn, $query2);
@@ -111,7 +122,7 @@ require '../templates/header.php';
               </div>
               <div class="modal-body">
                 ¿Desea eliminar este evento?
-                <p><?php echo $mostrar['nombre_act'] . ', ' . $mostrar['f_elab_por'] ?></p>
+                <p><?php echo $mostrar['nombre_act'] . ', elaborado por ' . $mostrar['f_elab_por'] ?></p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btnCerrar" data-bs-dismiss="modal">Cerrar</button>

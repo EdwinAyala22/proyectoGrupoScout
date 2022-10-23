@@ -26,10 +26,6 @@ include_once '../../queries/conexion.php';
   <div class="row">
     <h1 class="titulo fw-bold">Inscritos actividad</h1>
   </div>
-  <div class="d-flex justify-content-start align-items-center gap-3">
-
-        <a class="mb-3 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearUsuario.php/#newUser">Crear nuevo</a>
-  </div>
 
   <table class="table table-borderless table-bordered" style="border-radius: 5px;">
     <thead class="cabeceraTablas text-center">
