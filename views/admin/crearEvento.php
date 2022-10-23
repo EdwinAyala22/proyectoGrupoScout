@@ -45,7 +45,6 @@ if (isset($_POST['crear'])) {
             $sqlID = "SELECT * FROM f_actividades where responsable = '$responsable' AND objetivo_act = '$objetivo_act' AND area = '$area' AND lugar = '$lugar' AND nombre_act = '$nombre_act' AND descri_act = '$descri_act' AND materiales = '$materiales' AND fact_riesgo = '$fact_riesgo' AND evaluacion_act = '$evaluacion_act' AND f_elab_por = '$f_elab_por' AND costo = '$costo'";
             $resultID = mysqli_query($conn, $sqlID);
             $findID = mysqli_fetch_array($resultID);
-            
             $idActi = $findID['id_act'];
         
             

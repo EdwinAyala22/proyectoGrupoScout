@@ -10,10 +10,12 @@ if (!isset($_SESSION['rol'])) {
     $btn1 = $menuBtn;
     $btn2 = $logoutBtn;
 }
+include_once '../queries/conexion.php';
 
-
+$sql = "SELECT * FROM f_actividades";
+$result = mysqli_query($conn, $sql);
+$nr = mysqli_num_rows($result);
 $fechaActual = strtotime(date("Y-m-d H:i:s"));
-include_once '../queries/conexion.php'
 
 ?>
 
@@ -26,21 +28,15 @@ include_once '../queries/conexion.php'
 
     <div class="d-flex justify-content-center flex-wrap scroll_acts">
     <?php
-    $sql = "SELECT * FROM f_actividades";
-    $result = mysqli_query($conn, $sql);
+    
     $counterAct = 0;
-    $nr = mysqli_num_rows($result);
     if ($nr != 0) {
         while ($row = mysqli_fetch_array($result)) {
-            // $idAct = $row['id_act'];
-
-            // if ($fechaActual > ""){
-
-            // } else {}
+            $idAct = $row['id_act'];
             if (strtotime($row['fechaFin']) > $fechaActual) {
 
-                
-            
+                $sqlRams = "SELECT * FROM ramas_actividades AS RA, ramas AS R WHERE RA.id_act = $idAct AND RA.id_rama = r.id_rama";
+                $resultRams = mysqli_query($conn, $sqlRams);
     ?>
             <div class="card mb-3 mt-3 w-75 tarjeta_act" key="<?php echo $row['id_act'] ?>">
                 <div class="row g-0">
@@ -81,6 +77,15 @@ include_once '../queries/conexion.php'
                             <p><strong class="titulo">Lideres a cargo:</strong></p>
                             <ul>
                                 <li><?php echo $row['responsable'] ?></li>
+                            </ul>
+                            <p><strong class="titulo">Ramas: </strong></p>
+                            <ul>
+
+                            <?php 
+                            while ($mostrarR = mysqli_fetch_array($resultRams)) {
+                                echo  '<li class="">'. $mostrarR['nom_rama'] . "</li>";
+                            } ?>
+
                             </ul>
                         </div>
                         <div class="modal-footer">

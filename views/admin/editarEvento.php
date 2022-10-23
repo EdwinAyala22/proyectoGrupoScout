@@ -29,7 +29,6 @@ if (mysqli_num_rows($result) == 1) {
     $resp = $mostrar['responsable'];
     $obj = $mostrar['objetivo_act'];
     $ar = $mostrar['area'];
-    // $ra = $mostrar['id_rama'];
     $feInicio = $mostrar['fechaInicio'];
     $feFin = $mostrar['fechaFin'];
     $lug = $mostrar['lugar'];
@@ -50,7 +49,7 @@ if (isset($_POST['editarEv'])) {
     $responsable = $_POST['responsable'];
     $objetivo_act = $_POST['objetivo_act'];
     $area = $_POST['area'];
-    // $rama = $_POST['id_rama'];
+    $ramas = $_POST['ramasEvento'];
     $fechaIniciio = $_POST['fechaInicioo'];
     $fechaFiin = $_POST['fechaFiin'];
     $lugar = $_POST['lugar'];
@@ -66,11 +65,28 @@ if (isset($_POST['editarEv'])) {
         $class = "alert alert-danger alert-dismissible fade show text-center";
         $error = "La fecha final no puede ser antes de la fecha inicial.";
     } else {
-        $consulta = "UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', id_rama = '$rama', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
+        $consulta = "UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
         if (mysqli_query($conn, $consulta)) {
-            header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
+            $elimRamas = "DELETE FROM ramas_actividades WHERE id_act = $id";
+            $resultElim = mysqli_query($conn, $elimRamas);
+            if ($resultElim){
+                foreach ($ramas as $ram){
+                    $sqlInsRama = "INSERT INTO ramas_actividades (id_act, id_rama) values ('$id' , '$ram')";
+                    $insRamas = mysqli_query($conn,$sqlInsRama);
+                }
+                if ($insRamas){
+                    echo'<script type="text/javascript">
+                alert("El evento se ha modificado con éxito.");
+                window.location.href="/proyectoGrupoScout/views/admin/listEventos.php";
+                </script>';
+                } else {
+                    echo "Error insertando las ramas.";
+                }
+            } else {
+                echo "Error eliminando las ramas.";
+            }
         } else {
-            echo "Error";
+            echo "Error al modificar los datos.";
         }
     }
 }
@@ -81,13 +97,9 @@ $tRamas2 = "SELECT * FROM ramas_actividades where $id_act = id_act ";
 $result3 = mysqli_query($conn, $tRamas2);
 $arrayRamas = array();
 while ($ramasAct = mysqli_fetch_array($result3)) {
-    echo $ramasAct['id_rama'];
     $arrayRamas[] = $ramasAct['id_rama'];
 }
-foreach ($arrayRamas as $arRam) {
-    echo $arRam;
-}
-
+$contador = count($arrayRamas);
 $fechaActual = date("Y-m-d H:i");
 
 ?>
@@ -149,46 +161,18 @@ require '../templates/header.php';
                         <?php
                         while ($mostrarR = mysqli_fetch_array($resultR)) {
                             $checked = "";
-                            foreach ($arrayRamas as $arRa) {
-                                $cicloRams = 0;
-                                $cicloRams2 = 0;
-                                if ($mostrarR['id_rama'] == $arRa ) {
-                                    if ($cicloRams == 0){
+                                $pAr = 0;
+                                for ($i = 1; $pAr <= $contador -  1; $i++){
+                                    if($mostrarR['id_rama'] == $arrayRamas[$pAr]){
                                         $checked = "checked";
-                                        echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]"' . $checked . '>' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
-                                        $cicloRams = 1;
-                                    }
-                                // } else {
-                                    // if($cicloRams == 1 && $cicloRams2 == 0){
-                                        
-                                    // }else{
-                                    //     $checked = "";
-                                    //     echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]"' . $checked . '>' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
-                                    //     $cicloRams = 0;
-                                    // }
-
-                                    // if ($cicloRams == 0) {
-                                    //     $checked = "";
-                                        // echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]"' . $checked . '>' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
-                                        
-
-                                    // }
-                                // }
+                                        $pAr = $contador + 1;
                                     } else {
-                                        if($mostrarR['id_rama'] != $arRa){
-                                            if($cicloRams == 0){
-                                                $checked = "";
-                                                echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]"' . $checked . '>' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
-                                                $cicloRams   = 1;
-                                            }
-                                        }
-
+                                        $pAr = $pAr + 1;
                                     }
-
                                 }
-                            
-
+                                echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]"' . $checked .'>' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
                         }
+                        
                         ?>
                     </div>
                 </div>
