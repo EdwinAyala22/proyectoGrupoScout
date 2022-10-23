@@ -28,6 +28,7 @@ if (isset($_GET['delete'])) {
     $query = "DELETE FROM usuarios WHERE documento = '$documento'";
     $result = mysqli_query($conn, $query);
     if ($result) {
+        
         header("Location: /proyectoGrupoScout/views/admin/listUsers.php");
     } else {
         echo "Error";

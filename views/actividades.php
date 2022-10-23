@@ -66,18 +66,20 @@ $fechaActual = strtotime(date("Y-m-d H:i:s"));
 
 
             <div class="modal fade" id="act<?php echo $row['id_act'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title titulo" id="exampleModalLabel">Detalles...</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <p><strong class="titulo">Nombre actividad: </strong><?php echo $row['nombre_act'] ?></p>
                             <p><strong class="titulo">Materiales: </strong><?php echo $row['materiales'] ?></p>
                             <p><strong class="titulo">Lideres a cargo:</strong></p>
                             <ul>
                                 <li><?php echo $row['responsable'] ?></li>
                             </ul>
+
                             <p><strong class="titulo">Ramas: </strong></p>
                             <ul>
 
@@ -87,6 +89,7 @@ $fechaActual = strtotime(date("Y-m-d H:i:s"));
                             } ?>
 
                             </ul>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn_general p-1" data-bs-dismiss="modal">Cerrar</button>
@@ -97,10 +100,10 @@ $fechaActual = strtotime(date("Y-m-d H:i:s"));
 
 
             <div class="modal fade" id="ins<?php echo $row['id_act'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title titulo" id="exampleModalLabel">INSCRIPCIÓN</h5>
+                            <h5 class="modal-title titulo" id="exampleModalLabel">INSCRIPCIÓN: <?php echo $row['nombre_act'] ?></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
