@@ -25,20 +25,39 @@ if (isset($_POST['generar'])) {
     $_act_id = $_POST['id_act'];
     $cons_act = "SELECT * FROM f_actividades WHERE id_act = $_act_id";
     $res_act = mysqli_query($conn, $cons_act);
-    $array_rama = mysqli_fetch_array($res_act);
-    $idRama= $array_rama['id_rama'];
-    $name_act = $array_rama['nombre_act'];
+    $actividadSql = mysqli_fetch_array($res_act);
+
+    // $array_rama = mysqli_fetch_array($res_act);
+
+    //Ramas 
+    $ramas = "SELECT * FROM ramas_actividades WHERE id_act = $_act_id";
+    $sqlRamas = mysqli_query($conn, $ramas);
+    $arrayRamas = array();
+    while ($guardarRamas = mysqli_fetch_array($sqlRamas)){
+        $arrayRamas[] = $guardarRamas['id_rama'];
+    }
+    $cant_ramas = count($arrayRamas);
+    $name_act = $actividadSql['nombre_act'];
     // Scouts inscritos
-    $sql1 = "SELECT COUNT(*) LosInscritos FROM inscritos I, f_actividades F WHERE I.id_act = $_act_id AND F.id_rama = $idRama";
+    $sql1 = "SELECT COUNT(*) LosInscritos FROM inscritos WHERE id_act = $_act_id";
     $result = mysqli_query($conn, $sql1);
     $Inscritos = mysqli_fetch_array($result);
     $NInscritos = $Inscritos['LosInscritos'];
 
     //Scouts no inscritos
-    $sqlNo ="SELECT COUNT(*) NoAsistieron FROM usuarios WHERE id_rama = $idRama";
-    $resultNO = mysqli_query($conn, $sqlNo);
-    $NO_Inscritos = mysqli_fetch_array($resultNO);
-    $NOInscritos = $NO_Inscritos['NoAsistieron'];
+    $posRama = 0;
+    $NOInscritos = 0;
+    for ($i = 1; $i <= $cant_ramas ; $i ++){
+        $sqlNo ="SELECT COUNT(*) NoAsistieron FROM usuarios WHERE id_rama = $arrayRamas[$posRama]";
+        $resultNO = mysqli_query($conn, $sqlNo);
+        $NO_Inscritos = mysqli_fetch_array($resultNO);
+        if ($NO_Inscritos){
+            $NOInscritos = $NOInscritos + $NO_Inscritos['NoAsistieron'];
+        } else {
+            echo "Error consulta no asistieron.";
+        }
+        $posRama++;
+    }
 
     $Total = $NOInscritos - $NInscritos;
 
