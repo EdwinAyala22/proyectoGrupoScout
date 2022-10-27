@@ -16,7 +16,6 @@ $sql = "SELECT * FROM f_actividades";
 $result = mysqli_query($conn, $sql);
 $nr = mysqli_num_rows($result);
 $fechaActual = strtotime(date("Y-m-d H:i:s"));
-
 ?>
 
 <div class="container mt-2 mb-4">

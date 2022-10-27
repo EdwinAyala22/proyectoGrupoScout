@@ -54,7 +54,7 @@ if (!isset($_SESSION['rol'])) {
                         <div class="">
                             <textarea class="form-control mb-3 fw-bold input_login" name="detalles"
                                 placeholder="Detalle..." title="Detalle..."
-                                required minlength="10" maxlength="800" ></textarea>
+                                required minlength="30" maxlength="800" ></textarea>
                         </div>
                     </div>
 

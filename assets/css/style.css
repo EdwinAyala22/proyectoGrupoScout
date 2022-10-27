@@ -482,6 +482,17 @@ input[type="number"] {
   background-color: #594976;
 }
 
+.btnSolucionar{
+  border-radius: 20px;
+  border: 1.2px solid green;
+  color: green;
+  background-color: white;
+}
+
+.btnSolucionar:hover{
+  color: white;
+  background-color: green;
+}
 .btnCerrar{
   border-radius: 20px;
   color: white;

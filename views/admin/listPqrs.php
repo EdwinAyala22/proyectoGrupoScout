@@ -80,13 +80,20 @@ require '../templates/header.php';
             } else {
                 echo '<td> <i class="bi bi-check-square-fill" style="color:green;"></i>';
             }?>
-          <td class="text-center">
+          <td class="d-flex justify-content-center align-items-center text-center">
+            
             <button type="button" class="btn btnDetalles m-1" data-bs-toggle="modal" data-bs-target="#details<?php echo $mostrar['id_pqrs'] ?>">Detalles</button>
             <?php if ( $mostrar['estado'] == 0){ 
                 echo '<button type="button" class="m-1 btn btnEditar" data-bs-toggle="modal" data-bs-target="#mEstado' . $mostrar['id_pqrs'] . '">Cambiar estado</button>';
             } else {
                 echo '<button type="button" class="m-1 btn btnEditar" data-bs-toggle="modal" data-bs-target="#mEstado' . $mostrar['id_pqrs'] . '" disabled>Cambiar estado</button>';
             } ?>
+
+                  <form action="./solucionPqrs.php" method="POST" class="m-0">
+                    <input type="hidden" value="<?php echo $mostrar['nombres'] ?>" name="nombres">
+                    <input type="hidden" value="<?php echo $mostrar['correo'] ?>" name="correo">
+                    <button type="submit" class="btn btnSolucionar m-1" name="solucionar">Responder</button>
+                  </form>
           </td>
         </tr>
 
