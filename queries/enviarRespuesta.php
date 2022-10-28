@@ -37,7 +37,7 @@ try {
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('gruposcoutlb662@gmail.com', 'Grupo Scout 662 León Blanco');
+    $mail->setFrom('gruposcoutlb662@gmail.com', utf8_decode('Grupo Scout 662 León Blanco'));
     $mail->addAddress(''.$correo.'', ''.$nombres.'');     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
@@ -50,8 +50,8 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = ''.$asunto.'';
-    $mail->Body    = ''.$detallest.'';
+    $mail->Subject = ''.utf8_decode($asunto).'';
+    $mail->Body    = ''.$detalles.'';
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
@@ -65,7 +65,7 @@ try {
 
 <?php  
 
-header("Location: /proyectoGrupoScout/view/admin/listPqrs.php");
+header("Location: /proyectoGrupoScout/views/admin/listPqrs.php");
 
 
 ?>

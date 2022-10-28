@@ -26,6 +26,7 @@ $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) == 1) {
     $mostrar = mysqli_fetch_array($result);
     $id_de_act = $mostrar['id_act'];
+    $imgEv = $mostrar['imagen'];
     $resp = $mostrar['responsable'];
     $obj = $mostrar['objetivo_act'];
     $ar = $mostrar['area'];
@@ -46,6 +47,7 @@ if (mysqli_num_rows($result) == 1) {
 
 if (isset($_POST['editarEv'])) {
     $id = $_GET["idAct"];
+    $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
     $responsable = $_POST['responsable'];
     $objetivo_act = $_POST['objetivo_act'];
     $area = $_POST['area'];
@@ -65,7 +67,7 @@ if (isset($_POST['editarEv'])) {
         $class = "alert alert-danger alert-dismissible fade show text-center";
         $error = "La fecha final no puede ser antes de la fecha inicial.";
     } else {
-        $consulta = "UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
+        $consulta = "UPDATE f_actividades set imagen = '$imagen', responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
         if (mysqli_query($conn, $consulta)) {
             $elimRamas = "DELETE FROM ramas_actividades WHERE id_act = $id";
             $resultElim = mysqli_query($conn, $elimRamas);
@@ -116,25 +118,26 @@ require '../templates/header.php';
 <div class="container w-100 mt-1 mb-5 container_general">
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-4 col-lg-4 col-xl-5">
-            <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
+            <!-- <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto"> -->
+            <img src="data:image/jpg;base64,<?php echo base64_encode($imgEv);?>" width="350" class="d-flex m-auto">
         </div>
         <div class="col p-3">
             <div class="row text-center d-block d-sm-block d-md-block d-lg-none">
                 <div class="">
-                    <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid">
+                    <img src="data:image/jpg;base64,<?php echo base64_encode($imgEv);?>" width="180" class="img-fluid">
                 </div>
             </div>
             <h2 class="titulo fw-bold text-center py-3">Editar evento</h2>
 
-            <form action="/proyectoGrupoScout/views/admin/editarEvento.php?idAct=<?php echo $id_de_act ?>" method="POST">
+            <form action="/proyectoGrupoScout/views/admin/editarEvento.php?idAct=<?php echo $id_de_act ?>" method="POST" enctype="multipart/form-data">
 
-                <!-- <div class="row">
+                <div class="row">
                     <div class="">
-                        <label for="formFile" class="text-start titulo"> <b>Seleccione la imagen del evento:</b></label>
+                        <label for="formFile" class="text-start titulo"> <b>Seleccione la nueva imagen del evento:</b></label>
                         <input class="form-control mb-3 input_login fw-bold" type="file" accept="image/*" id="formFile" style="height: 38px;" name="imagen" required >
 
                     </div>
-                </div> -->
+                </div>
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
@@ -251,6 +254,44 @@ require '../templates/header.php';
         </div>
     </div>
 </div>
+
+<script>
+$(document).on('change', 'input[type="file"]', function() {
+        // this.files[0].size recupera el tamaño del archivo
+        // alert(this.files[0].size);
+
+        var fileName = this.files[0].name;
+        var fileSize = this.files[0].size;
+
+
+        if (fileSize > 16000000) {
+            alert('El archivo no debe superar los 16MB');
+            // $class = "alert alert-danger alert-dismissible fade show text-center";
+            // $error = "El archivo no debe superar los 16MB";
+            this.value = '';
+            this.files[0].name = '';
+        } else {
+            // recuperamos la extensión del archivo
+            var ext = fileName.split('.').pop();
+
+            // Convertimos en minúscula porque 
+            // la extensión del archivo puede estar en mayúscula
+            ext = ext.toLowerCase();
+
+            // console.log(ext);
+            switch (ext) {
+                case 'jpg':
+                case 'jpeg':
+                case 'png':
+                    break;
+                default:
+                    alert('El archivo no tiene la extensión adecuada');
+                    this.value = ''; // reset del valor
+                    this.files[0].name = '';
+            }
+        }
+    });
+</script>
 
 <?php
 
