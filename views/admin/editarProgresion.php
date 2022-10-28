@@ -13,19 +13,30 @@ if (!isset($_SESSION['rol'])) {
 include_once '../../queries/conexion.php';
 $documento = $_POST['documento'];
 $id_t_adelanto = $_POST['id_t_adelanto'];
+// $nombres = $_POST['nombres'];
+// $apellidos = $_POST['apellidos'];
 
-if (isset($_GET['idAct'])) {
-    $
-    $queryU = "UPDATE FROM  segui_plan_adelanto set  WHERE $documento = '$id_act'";
-    /*UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', fechaInicio = 
-    '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo',
-     evaluacion_act = '$evaluacion_act',
-     f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id"*/
-    $result = mysqli_query($conn, $query);
+if (isset($_POST['editarP'])) {
+    $fechaEntrega = $_POST['fechaEntrega'];
+    $idAdeAnterior = $_POST['idAdelantoAnterior'];
+    $lugar = $_POST['lugarEntrega'];
+    $dirigente = $_POST['dirigente'];
+    $costo = $_POST['costo'];
+    $queryU = "UPDATE segui_plan_adelanto set fechaEntrega = '$fechaEntrega', id_t_adelanto = '$id_t_adelanto', lugarEntrega = '$lugar', dirigente = '$dirigente', costo = '$costo'   WHERE documento = $documento AND id_t_adelanto = '$idAdeAnterior'";
+    $resultU = mysqli_query($conn, $queryU);
+     if ($resultU){
+        echo'<script type="text/javascript">
+                alert("La progresión se ha modificado con éxito.");
+                window.location.href="/proyectoGrupoScout/views/admin/progresiones.php";
+                </script>';
+     } else {
+        echo "Error al tratar de modificar la progresión.";
+     }
+}
+
  
-    } else {
 
-    }
+    
     
     
 
@@ -80,26 +91,26 @@ $result = mysqli_query($conn, $query);
             </div>
             <h2 class="titulo fw-bold text-center py-3">Editar planes de progresión</h2>
             <!-- formlario registro -->
-            <form action="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php" method="POST" class="p-3 form_registro justify-content-center align-items-center">
+            <form action="/proyectoGrupoScout/views/admin/editarProgresion.php" method="POST" class="p-3 form_registro justify-content-center align-items-center">
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                    <label for="costo" class="form-label fw-bold titulo">Nombres: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombre" value="<?php echo $mostrar['nombres'] ?>" required>
+                    <label class="form-label fw-bold titulo">Nombres: </label>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombre" value="<?php echo $mostrar['nombres'] ?>" readonly>
                     </div>
                     <div class="">
-                    <label for="costo" class="form-label fw-bold titulo">Apellido: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellidos" placeholder="Apellidos" data-bs-toggle="tooltip" data-bs-placement="top" title="Apellidos" value="<?php echo $mostrar['apellido1'] ?>" required>
+                    <label class="form-label fw-bold titulo">Apellido: </label>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellidos" placeholder="Apellidos" data-bs-toggle="tooltip" data-bs-placement="top" title="Apellidos" value="<?php echo $mostrar['apellido1'] ?>" readonly>
                     </div>
 
                 </div>
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                    <label for="costo" class="form-label fw-bold titulo">No. de documento: </label>
+                    <label class="form-label fw-bold titulo">No. de documento: </label>
                         <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" value="<?php echo $mostrar['documento'] ?>" readonly>
                     </div>
                     <div class="">
-                    <label for="costo" class="form-label fw-bold titulo">Fecha de entrega: </label>
+                    <label class="form-label fw-bold titulo">Fecha de entrega: </label>
                         <input type="date" class="form-control mb-3 fw-bold input_login" name="fechaEntrega" placeholder="Fecha de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Fecha de entrega" value="<?php echo $mostrar['fechaEntrega'] ?>" required>
                         
                     </div>
@@ -107,14 +118,15 @@ $result = mysqli_query($conn, $query);
                 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                    <label for="costo" class="form-label fw-bold titulo">Rama anterior:</label>
+                    <label class="form-label fw-bold titulo">Rama anterior:</label>
                     <?php echo $mostrarR['nom_rama'] ?></span>
                     </div>
 
                     
                     <div class="" >
-                    <label for="costo" class="form-label fw-bold titulo">Tipo de progresión anterior:</label>
+                    <label class="form-label fw-bold titulo">Progresión anterior:</label>
                     <?php echo $mostrar['nombreTipoAdelanto']  ?>
+                    <input type="hidden" class="form-control mb-3 fw-bold input_login" name="idAdelantoAnterior" placeholder="Fecha de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Fecha de entrega" value="<?php echo $mostrar['id_t_adelanto'] ?>"  required>
 
                     </div>
 
@@ -152,11 +164,11 @@ $result = mysqli_query($conn, $query);
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label for="lugarEntrega" class="form-label fw-bold titulo">Lugar de entrega: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="lugarEntrega" placeholder="Lugar de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Lugar de entrega" required value="<?php echo $mostrar['lugarEntrega'] ?>" readonly>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="lugarEntrega" placeholder="Lugar de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Lugar de entrega" required value="<?php echo $mostrar['lugarEntrega'] ?>" required>
                     </div>
                     <div class="">
                         <label for="dirigente" class="form-label fw-bold titulo">Dirigente a cargo: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="dirigente" placeholder="Dirigente a cargo" data-bs-toggle="tooltip" data-bs-placement="top" title="Dirigente a cargo" required value="<?php echo $mostrar['dirigente'] ?>" readonly>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="dirigente" placeholder="Dirigente a cargo" data-bs-toggle="tooltip" data-bs-placement="top" title="Dirigente a cargo" required value="<?php echo $mostrar['dirigente'] ?>" required>
                     </div>
                 </div>
 
@@ -168,7 +180,7 @@ $result = mysqli_query($conn, $query);
                 </div>
                 <div class="row">
                     <div class="col d-flex justify-content-center align-items-center p-2">
-                        <button type="submit" name="crearP" class="btn btn_general">Editar seguimiento</button>
+                        <button type="submit" name="editarP" class="btn btn_general">Editar seguimiento</button>
                     </div>
                 </div>
             </form>
