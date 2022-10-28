@@ -26,7 +26,7 @@ if (isset($_POST['solucionar'])) {
 
 
 ?>
-
+<a href="/proyectoGrupoScout/views/admin/listPqrs.php" class="btn links_nav m-2" id="newUser">Volver</a>
 
 <div class="container w-75 mt-5 mb-5 container_general">
     <div class="row align-items-stretch">
