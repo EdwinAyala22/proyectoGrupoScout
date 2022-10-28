@@ -84,9 +84,9 @@ require '../templates/header.php';
             
             <button type="button" class="btn btnDetalles m-1" data-bs-toggle="modal" data-bs-target="#details<?php echo $mostrar['id_pqrs'] ?>">Detalles</button>
             <?php if ( $mostrar['estado'] == 0){ 
-                echo '<button type="button" class="m-1 btn btnEditar" data-bs-toggle="modal" data-bs-target="#mEstado' . $mostrar['id_pqrs'] . '">Cambiar estado</button>';
+                echo '<button type="button" class="m-1 btn btnEditar" data-bs-toggle="modal" data-bs-target="#mEstado' . $mostrar['id_pqrs'] . '">Solucionar</button>';
             } else {
-                echo '<button type="button" class="m-1 btn btnEditar" data-bs-toggle="modal" data-bs-target="#mEstado' . $mostrar['id_pqrs'] . '" disabled>Cambiar estado</button>';
+                echo '<button type="button" class="m-1 btn btnEditar" data-bs-toggle="modal" data-bs-target="#mEstado' . $mostrar['id_pqrs'] . '" disabled>Solucionar</button>';
             } ?>
 
                   <form action="./solucionPqrs.php" method="POST" class="m-0">

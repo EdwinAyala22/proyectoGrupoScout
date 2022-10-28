@@ -32,7 +32,7 @@ try {
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'gruposcoutlb662@gmail.com';                     //SMTP username
-    $mail->Password   = 'awvlrjlvtptuzvdh';                               //SMTP password
+    $mail->Password   = 'gghugsxcxdvwedzo';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -63,9 +63,9 @@ try {
 ?>
 </div>
 
-<?php  
+<!-- <?php  
 
 header("Location: /proyectoGrupoScout/views/admin/listPqrs.php");
 
 
-?>
+?> -->
