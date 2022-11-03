@@ -90,11 +90,11 @@ include_once '../../queries/conexion.php';
                 <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Nombre" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Nombre" minlength="3" maxlength="40" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                         </div>
                         <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="apellidos" placeholder="Apellidos"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Apellidos" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Apellidos" minlength="3" maxlength="40" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                         </div>
 
                     </div>
@@ -102,7 +102,7 @@ include_once '../../queries/conexion.php';
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" minlength="7" maxlength="10" pattern="[0-9]" required>
                         </div>
                         <div class="form-floating">
                             <input type="date" class="form-control mb-3 fw-bold input_login" name="fechaEntrega" placeholder="Fecha de entrega"
@@ -114,7 +114,7 @@ include_once '../../queries/conexion.php';
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <!--COMBO BOX RAMA -->
-                            <select id="rama_progresion" class="form-select mb-3 fw-bold input_login" name="rama_progresion" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la rama">
+                            <select id="rama_progresion" class="form-select mb-3 fw-bold input_login" name="rama_progresion" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la rama" required>
                             <option disabled selected value>Seleccionar rama</option>
                                 <?php
                                     while ($mostrar = mysqli_fetch_array($result)) { ?>
@@ -143,18 +143,18 @@ include_once '../../queries/conexion.php';
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="lugarEntrega" placeholder="Lugar de entrega"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Lugar de entrega" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Lugar de entrega" minlength="3" maxlength="100" required>
                         </div>
                         <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="dirigente" placeholder="Dirigente a cargo"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Dirigente a cargo" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Dirigente a cargo" minlength="3" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                         </div>
                     </div>
 
                     <div class="row ">
                         <div class="">
                             <input type="Number" class="form-control mb-3 fw-bold input_login" name="costo" placeholder="Costo"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Costo" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Costo" maxlength="10" pattern="[0-9]" required>
                         </div>
                     </div>
 

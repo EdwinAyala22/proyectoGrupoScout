@@ -126,7 +126,7 @@ $result = mysqli_query($conn, $query);
                     <div class="" >
                     <label class="form-label fw-bold titulo">Progresión anterior:</label>
                     <?php echo $mostrar['nombreTipoAdelanto']  ?>
-                    <input type="hidden" class="form-control mb-3 fw-bold input_login" name="idAdelantoAnterior" placeholder="Fecha de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Fecha de entrega" value="<?php echo $mostrar['id_t_adelanto'] ?>"  required>
+                    <input type="hidden" class="form-control mb-3 fw-bold input_login" name="idAdelantoAnterior" placeholder="Fecha de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Fecha de entrega" value="<?php echo $mostrar['id_t_adelanto'] ?>">
 
                     </div>
 
@@ -134,7 +134,7 @@ $result = mysqli_query($conn, $query);
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <!--COMBO BOX RAMA -->
-                        <select id="rama_progresion" class="form-select mb-3 fw-bold input_login" name="rama_progresion" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la rama">
+                        <select id="rama_progresion" class="form-select mb-3 fw-bold input_login" name="rama_progresion" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la rama" required>
                             <option disabled selected value>Seleccionar nueva rama</option>
                             <?php
                             while ($mostrar2 = mysqli_fetch_array($result)) { ?>
@@ -164,18 +164,18 @@ $result = mysqli_query($conn, $query);
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label for="lugarEntrega" class="form-label fw-bold titulo">Lugar de entrega: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="lugarEntrega" placeholder="Lugar de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Lugar de entrega" required value="<?php echo $mostrar['lugarEntrega'] ?>" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="lugarEntrega" placeholder="Lugar de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Lugar de entrega" value="<?php echo $mostrar['lugarEntrega'] ?>" minlength="3" maxlength="100" required>
                     </div>
                     <div class="">
                         <label for="dirigente" class="form-label fw-bold titulo">Dirigente a cargo: </label>
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="dirigente" placeholder="Dirigente a cargo" data-bs-toggle="tooltip" data-bs-placement="top" title="Dirigente a cargo" required value="<?php echo $mostrar['dirigente'] ?>" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="dirigente" placeholder="Dirigente a cargo" data-bs-toggle="tooltip" data-bs-placement="top" title="Dirigente a cargo" value="<?php echo $mostrar['dirigente'] ?>" minlength="3" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
                 </div>
 
                 <div class="row ">
                     <div class="">
                     <label for="costo" class="form-label fw-bold titulo">Costo: </label>
-                        <input type="Number" class="form-control mb-3 fw-bold input_login" name="costo" placeholder="Costo" data-bs-toggle="tooltip" data-bs-placement="top" title="Costo" value="<?php echo $mostrar['costo'] ?>" required>
+                        <input type="Number" class="form-control mb-3 fw-bold input_login" name="costo" placeholder="Costo" data-bs-toggle="tooltip" data-bs-placement="top" title="Costo" value="<?php echo $mostrar['costo'] ?>" maxlength="10" pattern="[0-9]" required>
                     </div>
                 </div>
                 <div class="row">

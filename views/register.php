@@ -24,18 +24,18 @@ require '../views/templates/header.php';
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Nombre" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Nombre" minlength="3" maxlength="20" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                         </div>
                         <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido1" placeholder="Primer apellido"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Primer apellido" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Primer apellido" minlength="3" maxlength="20" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                         </div>
 
                     </div>
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido2" placeholder="Segundo apellido"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Segundo apellido" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Segundo apellido" minlength="3" maxlength="20" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                         </div>
                         <div class="">
                             <select class="form-select mb-3 fw-bold input_login" name="tipodoc" required data-bs-toggle="tooltip"
@@ -52,18 +52,18 @@ require '../views/templates/header.php';
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required minlength="7" maxlength="15">
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required minlength="7" maxlength="10" pattern="[0-9]" required>
                         </div>
                         <div class="">
                             <input type="number" class="form-control mb-3 fw-bold input_login" name="telefono" placeholder="Celular"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Celular" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Celular" minlength="7" maxlength="15" pattern="[0-9] required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="">
                             <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Correo" required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Correo" maxlength="50" required>
                         </div>
                         <!-- <div class="">
                             <input type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña"

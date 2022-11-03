@@ -68,7 +68,7 @@ if (isset($_POST['recuperar'])) {
 
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-user"></i>
-                    <input type="number" class="form-control text-center fw-bold input_login" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required autofocus>
+                    <input type="number" class="form-control text-center fw-bold input_login" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required maxlength="10" minlength="7" pattern="[0-9]" autofocus>
                 </div>
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-envelope"></i>
@@ -76,7 +76,7 @@ if (isset($_POST['recuperar'])) {
                 </div>
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-lock"></i>
-                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Nueva contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" required minlength="8">
+                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Nueva contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" required minlength="8" maxlength="20">
                 </div>
                 <div class="<?php echo $class ?>" role="alert">
                     <?php echo $error ?>

@@ -108,16 +108,16 @@ require '../templates/header.php';
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="responsable" autofocus placeholder="Responsable de la actividad" title="Responsable de la actividad" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="responsable" autofocus placeholder="Responsable de la actividad" title="Responsable de la actividad" minlength="10" maxlength="50" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="objetivo_act" placeholder="Objetivo" title="Objetivo" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="objetivo_act" placeholder="Objetivo" title="Objetivo" minlength="20" maxlength="200" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
 
                 </div>
                 <div class="row">
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="area" placeholder="Área" title="Área" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="area" placeholder="Área" title="Área" minlength="15" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
                     <div class="row mb-2">
                         <label for="" class="text-start titulo form-check-label"> <b>Seleccione las ramas que participarán:</b></label><br>
@@ -148,40 +148,40 @@ require '../templates/header.php';
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="lugar" placeholder="Lugar" title="Lugar" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="lugar" placeholder="Lugar" title="Lugar" minlength="20" maxlength="50" required>
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" placeholder="Nombre de la actividad" title="Nombrea actividad" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" placeholder="Nombre de la actividad" title="Nombrea actividad" minlength="10" maxlength="200" required>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="">
-                        <textarea class="form-control mb-3 fw-bold input_login" name="descri_act" placeholder="Descripción actividad..." title="Descripción actividad..." required></textarea>
+                        <textarea class="form-control mb-3 fw-bold input_login" name="descri_act" placeholder="Descripción actividad..." title="Descripción actividad..." minlength="30" maxlength="700" required></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="">
-                        <textarea class="form-control mb-3 fw-bold input_login" name="materiales" placeholder="Materiales..." title="Materiales..." required></textarea>
+                        <textarea class="form-control mb-3 fw-bold input_login" name="materiales" placeholder="Materiales..." title="Materiales..." maxlength="400" required></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="">
-                        <textarea class="form-control mb-3 fw-bold input_login" name="fact_riesgo" placeholder="Factores de riesgo" title="Factores de riesgo" required></textarea>
+                        <textarea class="form-control mb-3 fw-bold input_login" name="fact_riesgo" placeholder="Factores de riesgo" title="Factores de riesgo" maxlength="400" required></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="">
-                        <textarea class="form-control mb-3 fw-bold input_login" name="evaluacion_act" placeholder="Evaluación actividad" title="Evaluación actividad" required></textarea>
+                        <textarea class="form-control mb-3 fw-bold input_login" name="evaluacion_act" placeholder="Evaluación actividad" title="Evaluación actividad" minlength="14" maxlength="400" required></textarea>
                     </div>
                 </div>
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="f_elab_por" placeholder="Actividad elaborada por" title="Actividad elaborada por" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="f_elab_por" placeholder="Actividad elaborada por" title="Actividad elaborada por" minlength="6" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
                     <div class="">
-                        <input type="number" class="form-control mb-3 fw-bold input_login" name="costo" placeholder="Costo actividad" title="Costo actividad" required>
+                        <input type="number" class="form-control mb-3 fw-bold input_login" name="costo" placeholder="Costo actividad" title="Costo actividad" maxlength="10" pattern="[0-9]" required>
                     </div>
                 </div>
 

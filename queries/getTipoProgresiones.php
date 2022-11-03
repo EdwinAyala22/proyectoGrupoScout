@@ -8,7 +8,7 @@ $queryP = "SELECT * from tipodeadelanto WHERE id_rama = '$id_rama'";
 $resultP = mysqli_query($conn,$queryP);
 
 
-$select = '<select id="" class="form-select mb-3 fw-bold input_login" name="id_t_adelanto" required data-bs-toggle="tooltip" data-bs-placement="top" title="Progresión">';
+$select = '<select id="" class="form-select mb-3 fw-bold input_login" name="id_t_adelanto" required data-bs-toggle="tooltip" data-bs-placement="top" title="Progresión" required>';
 
 echo $select;
 

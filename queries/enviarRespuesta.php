@@ -56,6 +56,8 @@ try {
 
     $mail->send();
     echo 'Message has been sent';
+    // header("Location: /proyectoGrupoScout/views/admin/listPqrs.php");
+
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
@@ -63,9 +65,10 @@ try {
 ?>
 </div>
 
-<!-- <?php  
+<?php  
 
-header("Location: /proyectoGrupoScout/views/admin/listPqrs.php");
+// header("Location: /proyectoGrupoScout/views/admin/listPqrs.php");
+echo "<script>window.location.replace('/proyectoGrupoScout/views/admin/listPqrs.php');</script>"
 
 
-?> -->
+?>

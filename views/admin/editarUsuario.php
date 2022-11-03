@@ -103,18 +103,18 @@ require '../templates/header.php';
             <form action="/proyectoGrupoScout/views/admin/editarUsuario.php?id=<?php echo $doc?>" method="POST" class="p-3 form_registro justify-content-center align-items-center">
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres" title="Nombres" required value="<?php echo $name ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres" title="Nombres" required value="<?php echo $name ?>" minlength="3" maxlength="20" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+">
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido1" placeholder="Primer apellido" title="Primer apellido" required value="<?php echo $ape1 ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido1" placeholder="Primer apellido" title="Primer apellido" required value="<?php echo $ape1 ?>" minlength="3" maxlength="20" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+">
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido2" placeholder="Segundo apellido" title="Segundo apellido" required value="<?php echo $ape2 ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido2" placeholder="Segundo apellido" title="Segundo apellido" required value="<?php echo $ape2 ?>" minlength="3" maxlength="20" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+">
                     </div>
                 </div>
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
-                        <select class="form-select mb-3 fw-bold input_login" name="tipodoc" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione el tipo de documento">
+                        <select class="form-select mb-3 fw-bold input_login" name="tipodoc" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione el tipo de documento" required>
                             <option disabled value>Tipo de Documento</option>
                             <?php
                             switch($tipoD){
@@ -144,7 +144,7 @@ require '../templates/header.php';
                         </select>
                     </div>
                     <div class="">
-                        <input disabled type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" title="Número de documento" required value="<?php echo $doc ?>">
+                        <input disabled type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" title="Número de documento" required value="<?php echo $doc ?>" minlength="7" maxlength="10" pattern="[0-9]">
                     </div>
                     <div class="">
                         <input type="date" class="form-control mb-3 fw-bold input_login" name="fecha_nacimiento" placeholder="Fecha de nacimiento" title="Fecha de nacimiento" required value="<?php echo $f_nac ?>">
@@ -152,13 +152,13 @@ require '../templates/header.php';
                 </div>
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
-                        <input type="number" class="form-control mb-3 fw-bold input_login" name="telefono" placeholder="No. de celular" title="No. de celular" required value="<?php echo $tel ?>">
+                        <input type="number" class="form-control mb-3 fw-bold input_login" name="telefono" placeholder="No. de celular" title="No. de celular" required value="<?php echo $tel ?>" minlength="7" maxlength="15" pattern="[0-9]">
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="direccion" placeholder="Dirección" title="Dirección" required value="<?php echo $dire ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="direccion" placeholder="Dirección" title="Dirección" required value="<?php echo $dire ?>" minlength="4" maxlength="300">
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="eps" placeholder="Nombre EPS" title="Nombre EPS" required value="<?php echo $ePS ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="eps" placeholder="Nombre EPS" title="Nombre EPS" required value="<?php echo $ePS ?>" minlength="3" maxlength="200">
                     </div>
                 </div>
 
@@ -290,24 +290,24 @@ require '../templates/header.php';
                         </select>
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="grupo_anterior" placeholder="¿Grupo anterior?" title="¿Grupo anterior?" required value="<?php echo $back_group ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="grupo_anterior" placeholder="¿Grupo anterior?" title="¿Grupo anterior?" required value="<?php echo $back_group ?>" minlength="2" maxlength="150" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+">
                     </div>
                 </div>
 
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="ciudad" placeholder="Ciudad/municipio" title="Ciudad/municipio" required value="<?php echo $ciu ?>">
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="ciudad" placeholder="Ciudad/municipio" title="Ciudad/municipio" required value="<?php echo $ciu ?>" minlength="3" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+">
                     </div>
                     <div class="">
-                        <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required value="<?php echo $email ?>">
+                        <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required value="<?php echo $email ?>" maxlength="50">
                     </div>
                     <div class="">
-                        <input type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" required value="<?php echo $pass ?>">
+                        <input type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" required value="<?php echo $pass ?>" minlength="8" maxlength="20">
                     </div>
                 </div>
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                        <select class="form-select mb-3 fw-bold input_login" name="id_rama" required title="Seleccione la rama">
+                        <select class="form-select mb-3 fw-bold input_login" name="id_rama" required title="Seleccione la rama" required>
                             <option disabled value>Seleccione la rama</option>
                             <?php
                             switch($idRama){
@@ -481,7 +481,7 @@ require '../templates/header.php';
                         </select>
                     </div>
                     <div class="">
-                        <select class="form-select mb-3 fw-bold input_login" name="id_rol" required title="Seleccione el rol">
+                        <select class="form-select mb-3 fw-bold input_login" name="id_rol" required title="Seleccione el rol" required>
                             <option disabled value>Seleccione el rol</option>
                             <?php
                             switch($idRol){
@@ -489,21 +489,12 @@ require '../templates/header.php';
                             ?>	
                                 <option selected value="1">Admin</option>
                                 <option value="2">Scout</option>
-                                <option value="3">Visitante</option>
                             <?php
                                 break;
                                 case 2:
                             ?>
                                 <option value="1">Admin</option>
                                 <option selected value="2">Scout</option>
-                                <option value="3">Visitante</option>
-                            <?php
-                                break;
-                                case 3:
-                            ?>
-                                <option value="1">Admin</option>
-                                <option value="2">Scout</option>
-                                <option selected value="3">Visitante</option>
                             <?php
                                 break;
                             }

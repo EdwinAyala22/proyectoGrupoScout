@@ -72,18 +72,18 @@ require '../templates/header.php';
             <form action="/proyectoGrupoScout/views/admin/crearUsuario.php" method="POST" class="p-3 form_registro justify-content-center align-items-center">
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres" title="Nombres" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres" title="Nombres" minlength="3" maxlength="20" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido1" placeholder="Primer apellido" title="Primer apellido" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido1" placeholder="Primer apellido" title="Primer apellido" minlength="3" maxlength="20" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido2" placeholder="Segundo apellido" title="Objetivo" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="apellido2" placeholder="Segundo apellido" title="Segundo apellido" minlength="3" maxlength="20" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
                 </div>
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
-                        <select class="form-select mb-3 fw-bold input_login" name="tipodoc" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione el tipo de documento">
+                        <select class="form-select mb-3 fw-bold input_login" name="tipodoc" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione el tipo de documento" required>
                             <option disabled selected value>Tipo de Documento</option>
                             <option value="TI">Tarjeta de Identidad</option>
                             <option value="CC">Cédula de Ciudadania</option>
@@ -91,7 +91,7 @@ require '../templates/header.php';
                         </select>
                     </div>
                     <div class="">
-                        <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" title="Número de documento" required>
+                        <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" title="Número de documento" minlength="7" maxlength="10" pattern="[0-9]" required>
                     </div>
                     <div class="form-floating">
                         <input type="date" class="form-control mb-3 fw-bold input_login" id="floatingInput" name="fecha_nacimiento" title="Fecha de nacimiento" required>
@@ -100,13 +100,13 @@ require '../templates/header.php';
                 </div>
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
-                        <input type="number" class="form-control mb-3 fw-bold input_login" name="telefono" placeholder="No. de celular" title="No. de celular" required>
+                        <input type="number" class="form-control mb-3 fw-bold input_login" name="telefono" placeholder="No. de celular" title="No. de celular" minlength="7" maxlength="15" pattern="[0-9]" required>
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="direccion" placeholder="Dirección" title="Dirección" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="direccion" placeholder="Dirección" title="Dirección" minlength="4" maxlength="300" required>
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="eps" placeholder="Nombre EPS" title="Nombre EPS" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="eps" placeholder="Nombre EPS" title="Nombre EPS" minlength="3" maxlength="200" required>
                     </div>
                 </div>
 
@@ -132,24 +132,24 @@ require '../templates/header.php';
                         </select>
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="grupo_anterior" placeholder="¿Grupo anterior?" title="¿Grupo anterior?" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="grupo_anterior" placeholder="¿Grupo anterior?" title="¿Grupo anterior?" minlength="2" maxlength="150" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
                 </div>
 
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="ciudad" placeholder="Ciudad/municipio" title="Ciudad/municipio" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="ciudad" placeholder="Ciudad/municipio" title="Ciudad/municipio" minlength="3" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
                     <div class="">
-                        <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required>
+                        <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" maxlength="50" required>
                     </div>
                     <div class="">
-                        <input type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" required>
+                        <input type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" minlength="8" maxlength="20" required>
                     </div>
                 </div>
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                        <select class="form-select mb-3 fw-bold input_login" name="id_rama" required title="Seleccione la rama">
+                        <select class="form-select mb-3 fw-bold input_login" name="id_rama" required title="Seleccione la rama" required>
                             <option disabled selected value>Seleccione la rama</option>
                             <option value="1">Lobatos</option>
                             <option value="2">Scouts</option>
@@ -165,11 +165,10 @@ require '../templates/header.php';
                         </select>
                     </div>
                     <div class="">
-                        <select class="form-select mb-3 fw-bold input_login" name="id_rol" required title="Seleccione el rol">
+                        <select class="form-select mb-3 fw-bold input_login" name="id_rol" required title="Seleccione el rol" required>
                             <option disabled selected value>Seleccione el rol</option>
                             <option value="1">Admin</option>
                             <option value="2">Scout</option>
-                            <option value="3">Visitante</option>
                         </select>
                     </div>
                 </div>
