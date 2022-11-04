@@ -239,7 +239,7 @@ require '../templates/header.php';
                     </div>
                     <div class="">
                         <label class="form-label fw-bold titulo">Costo Evento: </label>
-                        <input class="form-control mb-3 fw-bold input_login" name="costo" type="text" value="<?php echo $cos ?>" maxlength="10" pattern="[0-9]" required>
+                        <input class="form-control mb-3 fw-bold input_login" name="costo" type="number" value="<?php echo $cos ?>" maxlength="10" pattern="[0-9]" required>
                     </div>
                 </div>
 

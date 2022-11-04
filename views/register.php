@@ -56,7 +56,7 @@ require '../views/templates/header.php';
                         </div>
                         <div class="">
                             <input type="number" class="form-control mb-3 fw-bold input_login" name="telefono" placeholder="Celular"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Celular" minlength="7" maxlength="15" pattern="[0-9] required>
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Celular" minlength="7" maxlength="15" pattern="[0-9]" required>
                         </div>
                     </div>
 
