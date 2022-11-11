@@ -1,7 +1,7 @@
+<title>Postulación</title>
 <?php
 require '../views/templates/header.php';
 ?>
-<title>Registro</title>
 
 <div class="container w-75 mt-5 mb-5 container_general">
         <div class="row align-items-stretch">
@@ -14,9 +14,9 @@ require '../views/templates/header.php';
                         <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid">
                     </div>
                 </div>
-                <h2 class="titulo fw-bold text-center py-3">Registro</h2>
+                <h1 class="titulo fw-bold text-center py-3">¡Quiero postularme!</h1>
                 <div class="row">
-                    <p class="text-wrap text-center titulo fst-italic">¡Si te interesa hacer parte de esta grandiosa familia, regístrate y nosotros nos pondremos en contacto contigo!</p>
+                    <p class="text-wrap text-center tituloRojo fst-italic fw-bold text-interesado">¡Si te interesa hacer parte de esta grandiosa familia, regístrate y nosotros nos pondremos en contacto contigo!</p>
                 </div>
                 
                 <!-- formlario registro -->
@@ -81,7 +81,7 @@ require '../views/templates/header.php';
                     </div>
                     <div class="row">
                         <div class="col d-flex justify-content-center align-items-center p-2">
-                            <button type="submit" class="btn btn_general">Registrarme</button>
+                            <button type="submit" class="btn btn_general">Postular</button>
                         </div>
                     </div>
                 </form>

@@ -11,7 +11,7 @@
             </div>
             <div class="box">
                 <h2>SOBRE NOSOTROS</h2>
-                <p>Un grupo de adultos deseando proporcionar a la ciudad un grupo Scout nuevo,
+                <p class="text_home">Un grupo de adultos deseando proporcionar a la ciudad un grupo Scout nuevo,
                     dinámico y como otra alternativa a los grupos ya existentes, decidieron en
                     una tarde formar el grupo Scout León Blanco.</p>
 

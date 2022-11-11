@@ -54,7 +54,7 @@ if ($filas) {
         if (mysqli_query($conn, $query)) {
             echo '<script type="text/javascript">
             alert("Registro realizado con éxito");
-            window.location.href="/proyectoGrupoScout/views/login.php";
+            window.location.href="/proyectoGrupoScout/";
             </script>';
         } else {
             echo '<script type="text/javascript">
