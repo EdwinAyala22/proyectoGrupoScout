@@ -13,7 +13,7 @@ if (isset($_GET['logout'])) {
     session_unset();
 
     session_destroy();
-    header("Location: /proyectoGrupoScout/views/login.php");
+    header("Location: /proyectoGrupoScout/views/login.php/#theLogin");
 }
 
 if (isset($_SESSION['rol'])) {
@@ -75,8 +75,9 @@ if (isset($_POST['documento']) && isset($_POST['contrasena'])) {
 <?php
 require '../views/templates/header.php';
 ?>
+<div id="theLogin"></div>
 
-<div class="container col-md-7 col-sm-8 mt-5 mb-5 container_general">
+<div class="container col-md-7 col-sm-8 mt-5 mb-5 container_general" >
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">

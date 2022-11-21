@@ -47,7 +47,7 @@ if (mysqli_num_rows($result) == 1) {
 
 if (isset($_POST['editarEv'])) {
     $id = $_GET["idAct"];
-    $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
+    // $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
     $responsable = $_POST['responsable'];
     $objetivo_act = $_POST['objetivo_act'];
     $area = $_POST['area'];
@@ -67,7 +67,7 @@ if (isset($_POST['editarEv'])) {
         $class = "alert alert-danger alert-dismissible fade show text-center";
         $error = "La fecha final no puede ser antes de la fecha inicial.";
     } else {
-        $consulta = "UPDATE f_actividades set imagen = '$imagen', responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
+        $consulta = "UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
         if (mysqli_query($conn, $consulta)) {
             $elimRamas = "DELETE FROM ramas_actividades WHERE id_act = $id";
             $resultElim = mysqli_query($conn, $elimRamas);
@@ -131,13 +131,13 @@ require '../templates/header.php';
 
             <form action="/proyectoGrupoScout/views/admin/editarEvento.php?idAct=<?php echo $id_de_act ?>" method="POST" enctype="multipart/form-data">
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="">
                         <label for="formFile" class="text-start titulo"> <b>Seleccione la nueva imagen del evento:</b></label>
                         <input class="form-control mb-3 input_login fw-bold" type="file" accept="image/*" id="formFile" style="height: 38px;" name="imagen">
 
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">

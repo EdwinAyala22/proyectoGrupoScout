@@ -42,7 +42,6 @@ $sid = $_SESSION['id_user'];
         $email = $mostrar['correo'];
         $pass = $mostrar['contrasena'];
         $rama = $mostrar['nom_rama'];
-        $rol = $mostrar['rol'];
     } else {
         echo "Error";
     }
@@ -128,19 +127,13 @@ $sid = $_SESSION['id_user'];
                             <input disabled id="correo" type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required value="<?php echo $email ?>">
                         </div>
                         <div class="">
-                            <label for="contrasena" class="form-label fw-bold titulo">Contrasena: </label>
-                            <input disabled id="contrasena" type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" required value="<?php echo $pass ?>">
-                        </div>
-                    </div>
-                    <div class="row row-cols-md-2 row-cols-sm-1">
-                        <div class="">
                             <label for="rama" class="form-label fw-bold titulo">Rama: </label>
                             <input disabled id="rama" type="text" class="form-control mb-1 fw-bold input_login" name="rama" placeholder="Rama" title="Rama" required value="<?php echo $rama ?>">
                         </div>
-                        <div class="">
-                            <label for="rol" class="form-label fw-bold titulo">Rol: </label>
-                            <input disabled id="rol" type="text" class="form-control mb-1 fw-bold input_login" name="rol" placeholder="Rol" title="Rol" required value="<?php echo $rol ?>">
-                        </div>
+                    </div>
+                    <div class="row row-cols-md-2 d-flex justify-content-center align-items-center">
+                        <a href="" class="btn btnInscritos">Actualizar datos</a>
+                        <a href="" class="btn btnEliminar" >Cambiar contraseña</a>
                     </div>
 
 
