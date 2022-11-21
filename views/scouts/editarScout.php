@@ -12,7 +12,7 @@ if (!isset($_SESSION['rol'])) {
 }
 ?>
 
-<title>Perfil</title>
+<title>Actualizar datos</title>
 
 <?php
 
@@ -49,7 +49,7 @@ $sid = $_SESSION['id_user'];
 
 ?>
 
-<a href="/proyectoGrupoScout/views/scouts/menuScout.php?s=<?php echo $sid ?>" class="btn links_nav m-2">Volver</a>
+<a href="/proyectoGrupoScout/views/scouts/perfilScout.php" class="btn links_nav m-2">Volver</a>
 <div class="container bg-light p-5 containerCrud mb-3">
     <div class="row">
         <h1 class="titulo fw-bold text-center mb-4">Actualizar datos básicos</h1>

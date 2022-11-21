@@ -48,8 +48,8 @@ $sid = $_SESSION['id_user'];
 
 ?>
 
-<a href="/proyectoGrupoScout/views/scouts/menuScout.php?s=<?php echo $sid ?>" class="btn links_nav m-2">Volver</a>
-<div class="container bg-light p-5 containerCrud mb-3">
+<a href="/proyectoGrupoScout/views/scouts/menuScout.php" class="btn links_nav m-2">Volver</a>
+<div class="container bg-light p-5 containerCrud mb-5">
     <div class="row">
         <h1 class="titulo fw-bold text-center mb-4">Perfil Scout</h1>
     </div>
@@ -132,8 +132,10 @@ $sid = $_SESSION['id_user'];
                         </div>
                     </div>
                     <div class="row row-cols-md-2 d-flex justify-content-center align-items-center">
-                        <a href="" class="btn btnInscritos">Actualizar datos</a>
-                        <a href="" class="btn btnEliminar" >Cambiar contraseña</a>
+                        <div class="d-flex justify-content-center">
+                            <a href="/proyectoGrupoScout/views/scouts/editarScout.php" class="btn btnInscritos m-1">Actualizar datos</a>
+                            <a href="" class="btn btnEliminar m-1" >Cambiar contraseña</a>
+                        </div>
                     </div>
 
 

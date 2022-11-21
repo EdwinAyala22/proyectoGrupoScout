@@ -27,7 +27,7 @@ $nr = mysqli_num_rows($result);
 
 ?>
 
-<a href="/proyectoGrupoScout/views/admin/menuAdmin.php?s=<?php echo $sid ?>" class="btn links_nav m-2">Volver</a>
+<a href="/proyectoGrupoScout/views/admin/menuAdmin.php" class="btn links_nav m-2">Volver</a>
 
 <div class="container bg-light p-3 containerCrud mb-5 mt-5">
   <h1 class="titulo fw-bold text-center m-3">Mis progresiones</h1>

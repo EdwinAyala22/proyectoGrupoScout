@@ -1,6 +1,5 @@
 <?php
 
-
 session_start();
 
 if (!isset($_SESSION['rol'])) {
@@ -18,11 +17,6 @@ if (!isset($_SESSION['rol'])) {
 
 require '../templates/header.php';
 include_once '../../queries/conexion.php';
-
-
-
-// echo $_SESSION['id_user'];
-
 
 
 ?>
@@ -48,14 +42,6 @@ include_once '../../queries/conexion.php';
                 <div class="card-footer fw-bold">Mis progresiones</div>
             </div>
         </a>
-        <!-- <a href="" class="text-decoration-none btnAdmin">
-            <div class="card cardAdmin text-center m-3">
-                <div class="card-body d-flex justify-content-center align-items-center">
-                    <img src="/proyectoGrupoScout/assets/img/ceremonias.png" class="card-img-top mCardImg" alt="Usuarios">
-                </div>
-                <div class="card-footer fw-bold">Mis ceremonias</div>
-            </div>
-        </a> -->
         <a data-bs-toggle="modal" data-bs-target="#informacionEducativa" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
@@ -107,9 +93,6 @@ include_once '../../queries/conexion.php';
         </div>
     </div>
 </div>
-<!-- <form method="POST" action="../login.php?logout=1">
-    <button class="btn btn_general" type="submit">Cerrar sesión</button>
-</form> -->
 
 <?php
 
