@@ -26,7 +26,7 @@ include_once '../../queries/conexion.php';
 <!-- cards -->
 <div class="container flex-wrap d-grid justify-content-center align-items-center mb-5 mt-5">
     <div class="container d-flex flex-wrap justify-content-center">
-        <a href="/proyectoGrupoScout/views/scouts/perfilScout.php" class="text-decoration-none btnAdmin">
+        <a href="/proyectoGrupoScout/views/scouts/perfilScout.php/#perfil" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body d-flex justify-content-center align-items-center">
                     <img src="/proyectoGrupoScout/assets/img/Perfil.png" class="card-img-top mCardImg" alt="Eventos">

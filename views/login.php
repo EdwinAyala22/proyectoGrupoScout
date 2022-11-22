@@ -36,32 +36,40 @@ if (isset($_POST['documento']) && isset($_POST['contrasena'])) {
     $contrasena =  $_POST['contrasena'];
 
     $db = new Database();
-    $query = $db->connect()->prepare('SELECT * FROM usuarios WHERE documento =:documento AND contrasena =:contrasena');
-    $query->execute(['documento' => $documento, 'contrasena' => $contrasena]);
+    $query = $db->connect()->prepare('SELECT * FROM usuarios WHERE documento =:documento');
+    $query->execute(['documento' => $documento]);
     $row = $query->fetch(PDO::FETCH_NUM);
+
     if ($row == true) {
         //entro
-        $rol = $row[16];
-        $_SESSION['rol'] = $rol;
-        switch ($_SESSION['rol']) {
-            case 1:
-                
-                $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
-                $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
+        $queryContrasena = $row[14];
+        if ($contrasena === $queryContrasena) {
+
+            $rol = $row[16];
+            $_SESSION['rol'] = $rol;
+            switch ($_SESSION['rol']) {
+                case 1:
+
+                    $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
+                    $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
                 <button class="btn btn_general" type="submit">Cerrar sesión</button>
                 </form>';
-                header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php");
-                $_SESSION['id_user'] = $documento;
-                break;
-            case 2:
-                $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
-                $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
+                    header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php");
+                    $_SESSION['id_user'] = $documento;
+                    break;
+                case 2:
+                    $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
+                    $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
                 <button class="btn btn_general" type="submit">Cerrar sesión</button>
                 </form>';
-                header("Location: /proyectoGrupoScout/views/scouts/menuScout.php");
-                $_SESSION['id_user'] = $documento;
-                break;
-            default:
+                    header("Location: /proyectoGrupoScout/views/scouts/menuScout.php");
+                    $_SESSION['id_user'] = $documento;
+                    break;
+                default:
+            }
+        } else {
+            $class = "alert alert-danger alert-dismissible fade show text-center";
+            $error = "Usuario o contraseña incorrecta.";
         }
     } else {
         $class = "alert alert-danger alert-dismissible fade show text-center";
@@ -77,7 +85,7 @@ require '../views/templates/header.php';
 ?>
 <div id="theLogin"></div>
 
-<div class="container col-md-7 col-sm-8 mt-5 mb-5 container_general" >
+<div class="container col-md-7 col-sm-8 mt-5 mb-5 container_general">
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
@@ -95,11 +103,11 @@ require '../views/templates/header.php';
 
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-user"></i>
-                    <input type="number" class="form-control text-center fw-bold input_login" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento"  autofocus maxlength="10" minlength="7"required>
+                    <input type="number" class="form-control text-center fw-bold input_login" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" autofocus maxlength="10" minlength="7" required>
                 </div>
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-lock"></i>
-                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña"  maxlength="20" minlength="8" required>
+                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" maxlength="20" minlength="8" required>
                     <!-- <input type="hidden" value="modalUsu" name="idModal"> -->
                 </div>
                 <div class="<?php echo $class ?>" role="alert">

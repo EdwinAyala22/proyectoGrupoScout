@@ -12,11 +12,11 @@ if (!isset($_SESSION['rol'])) {
 }
 ?>
 
-<title>Actualizar datos</title>
+
 
 <?php
 
-require '../templates/header.php';
+
 
 include_once '../../queries/conexion.php';
 
@@ -58,19 +58,41 @@ if (mysqli_num_rows($result) == 1) {
     echo "Error";
 }
 
-?>
+if(isset($_POST['editar'])){
+    $telefono = $_POST['telefono'];
+    $direccion = $_POST['direccion'];
+    $eps = $_POST['eps'];
+    $rh = $_POST['rh'];
+    $genero = $_POST['genero'];
+    $ciudad = $_POST['ciudad'];
+    $correo = $_POST['correo'];
 
-<a href="/proyectoGrupoScout/views/scouts/perfilScout.php" class="btn links_nav m-2">Volver</a>
-<div class="container bg-light pt-5 px-5 pb-3 containerCrud mb-5">
+
+    $consulta = "UPDATE usuarios set telefono = '$telefono', direccion = '$direccion', eps = '$eps', rh = '$rh', genero = '$genero', ciudad = '$ciudad', correo = '$correo' WHERE documento = $sid";
+    if (mysqli_query($conn,$consulta)){
+        header("Location: /proyectoGrupoScout/views/scouts/perfilScout.php/#perfil");
+    }else{
+        echo "Error";
+    }
+}
+
+
+require '../templates/header.php';
+
+?>
+<title>Actualizar datos</title>
+
+<a href="/proyectoGrupoScout/views/scouts/perfilScout.php/#perfil" class="btn links_nav m-2">Volver</a>
+<div class="container pt-5 px-5 pb-3 mb-5 container_general">
     <div class="row">
-        <h1 class="titulo fw-bold text-center mb-4">Actualizar datos básicos</h1>
+        <h1 class="titulo fw-bold text-center mb-4" id="actualizar" >Actualizar datos básicos</h1>
     </div>
 
     <!-- <div class="container w-100 mt-1 mb-1"> -->
     <div class="row align-items-stretch">
         <div class="col">
             <!-- formlario registro -->
-            <form action="" method="POST" class="form_registro justify-content-center align-items-center">
+            <form action="/proyectoGrupoScout/views/scouts/editarScout.php" method="POST" class="form_registro justify-content-center align-items-center">
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
                         <label for="nombres" class="form-label fw-bold titulo">Nombres: </label>
@@ -174,9 +196,29 @@ if (mysqli_num_rows($result) == 1) {
 
                 <div class="row">
                     <div class="col d-flex justify-content-center align-items-center p-2">
-                        <button type="submit" class="btn btn_general" name="editar">Actualizar</button>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#modificar<?php echo $sid ?>" class="btn btn_general" name="editar">Actualizar</button>
                     </div>
                 </div>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="modificar<?php echo $sid ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Notificación</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Está seguro de actualizar los datos básicos?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btnCerrar" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn crearNuevo" name="editar">Actualizar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
             </form>
         </div>
     </div>

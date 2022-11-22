@@ -138,7 +138,7 @@ require '../templates/header.php';
                         <input disabled id="correo" type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required value="<?php echo $email ?>">
                     </div>
                     <div class="">
-                        <label for="contrasena" class="form-label fw-bold titulo">Contrasena: </label>
+                        <label for="contrasena" class="form-label fw-bold titulo">Contraseña: </label>
                         <input disabled id="contrasena" type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" required value="<?php echo $pass ?>">
                     </div>
                 </div>
