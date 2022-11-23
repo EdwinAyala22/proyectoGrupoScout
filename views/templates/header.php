@@ -42,17 +42,21 @@ if (!isset($_SESSION['rol'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link href="/proyectoGrupoScout/assets/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/proyectoGrupoScout/assets/css/bootstrap-icons.css">
     <link rel="stylesheet" href="/proyectoGrupoScout/assets/css/style.css">
     <!-- <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'> -->
     <!-- <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'> -->
     <link rel="shortcut icon" href="/proyectoGrupoScout/assets/img/logo-scout-co.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/proyectoGrupoScout/assets/css/dataTables.bootstrap5.min.css">
     <!-- <script src="https://kit.fontawesome.com/aa2bae0729.js" crossorigin="anonymous"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://kit.fontawesome.com/b333d707bf.js" crossorigin="anonymous"></script>
+    <script src="/proyectoGrupoScout/assets/js/chart.js"></script>
+    <script src="/proyectoGrupoScout/assets/js/b333d707bf.js" crossorigin="anonymous"></script>
     <script lang="javascript" src="/proyectoGrupoScout/assets/js/jquery-3.6.0.min.js"></script>
+    <script lang="javascript" src="/proyectoGrupoScout/assets/js/jquery.dataTables.min.js"></script>
+    <script lang="javascript" src="/proyectoGrupoScout/assets/js/dataTables.boostrap.min.js"></script>
+
     <title>Inicio</title>
 
     <!-- <script lang="javascript">
