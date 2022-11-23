@@ -18,31 +18,28 @@ include_once '../../queries/conexion.php';
 
 // $id_admin = $_SESSION['id_user'];
 
-    $documento = $_SESSION['id_user'];
-    $query = "SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.documento = $documento";
-    $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) == 1) {
-        $mostrar = mysqli_fetch_array($result);
-        $name = $mostrar['nombres'];
-        $ape1 = $mostrar['apellido1'];
-        $ape2 = $mostrar['apellido2'];
-        $tipoD = $mostrar['tipodoc'];
-        $doc = $mostrar['documento'];
-        $f_nac = $mostrar['fecha_nacimiento'];
-        $tel = $mostrar['telefono'];
-        $dire = $mostrar['direccion'];
-        $ePS = $mostrar['eps'];
-        $rH = $mostrar['rh'];
-        $gender = $mostrar['genero'];
-        $back_group = $mostrar['grupo_anterior'];
-        $ciu = $mostrar['ciudad'];
-        $email = $mostrar['correo'];
-        $pass = $mostrar['contrasena'];
-        $rama = $mostrar['nom_rama'];
-        $rol = $mostrar['rol'];
-    } else {
-        echo "Error";
-    }
+$documento = $_SESSION['id_user'];
+$query = "SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.documento = $documento";
+$result = mysqli_query($conn, $query);
+if (mysqli_num_rows($result) == 1) {
+    $mostrar = mysqli_fetch_array($result);
+    $name = $mostrar['nombres'];
+    $ape1 = $mostrar['apellido1'];
+    $ape2 = $mostrar['apellido2'];
+    $tipoD = $mostrar['tipodoc'];
+    $doc = $mostrar['documento'];
+    $f_nac = $mostrar['fecha_nacimiento'];
+    $tel = $mostrar['telefono'];
+    $dire = $mostrar['direccion'];
+    $ePS = $mostrar['eps'];
+    $rH = $mostrar['rh'];
+    $gender = $mostrar['genero'];
+    $back_group = $mostrar['grupo_anterior'];
+    $ciu = $mostrar['ciudad'];
+    $email = $mostrar['correo'];
+} else {
+    echo "Error";
+}
 
 
 ?>
@@ -68,7 +65,7 @@ require '../templates/header.php';
                     <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid">
                 </div>
             </div>
-            <h2 class="titulo fw-bold text-center py-3">Mi Perfil</h2>
+            <h2 class="titulo fw-bold text-center py-3" id="perfil" >Mi Perfil</h2>
             <!-- formlario registro -->
             <form action="/proyectoGrupoScout/views/admin/listUsers.php?edit=<?php echo $doc ?>" method="POST" class="p-3 form_registro justify-content-center align-items-center">
                 <div class="row row-cols-md-3 row-cols-sm-1">
@@ -99,19 +96,16 @@ require '../templates/header.php';
                         <input disabled id="fecha_nacimiento" type="date" class="form-control mb-3 fw-bold input_login" name="fecha_nacimiento" placeholder="Fecha de nacimiento" title="Fecha de nacimiento" required value="<?php echo $f_nac ?>">
                     </div>
                 </div>
-                <div class="row row-cols-md-3 row-cols-sm-1">
-                    <div class="">
+                <div class="row row-cols-md-2 row-cols-sm-1">
+                    <div class="col-md-4">
                         <label for="telefono" class="form-label fw-bold titulo">Celular: </label>
                         <input disabled id="telefono" type="number" class="form-control mb-3 fw-bold input_login" name="telefono" placeholder="No. de celular" title="No. de celular" required value="<?php echo $tel ?>">
                     </div>
-                    <div class="">
+                    <div class="col-md-8">
                         <label for="direccion" class="form-label fw-bold titulo">Dirección: </label>
                         <input disabled id="direccion" type="text" class="form-control mb-3 fw-bold input_login" name="direccion" placeholder="Dirección" title="Dirección" required value="<?php echo $dire ?>">
                     </div>
-                    <div class="">
-                        <label for="eps" class="form-label fw-bold titulo">EPS: </label>
-                        <input disabled id="eps" type="text" class="form-control mb-3 fw-bold input_login" name="eps" placeholder="Nombre EPS" title="Nombre EPS" required value="<?php echo $ePS ?>">
-                    </div>
+
                 </div>
 
                 <div class="row row-cols-md-3 row-cols-sm-1">
@@ -124,12 +118,12 @@ require '../templates/header.php';
                         <input disabled id="genero" type="text" class="form-control mb-3 fw-bold input_login" name="genero" placeholder="Género" title="Género" required value="<?php echo $gender ?>">
                     </div>
                     <div class="">
-                        <label for="grupo_anterior" class="form-label fw-bold titulo">¿Grupo anterior?: </label>
-                        <input disabled id="grupo_anterior" type="text" class="form-control mb-3 fw-bold input_login" name="grupo_anterior" placeholder="¿Grupo anterior?" title="¿Grupo anterior?" required value="<?php echo $back_group ?>">
+                        <label for="eps" class="form-label fw-bold titulo">EPS: </label>
+                        <input disabled id="eps" type="text" class="form-control mb-3 fw-bold input_login" name="eps" placeholder="Nombre EPS" title="Nombre EPS" required value="<?php echo $ePS ?>">
                     </div>
                 </div>
 
-                <div class="row row-cols-md-3 row-cols-sm-1">
+                <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label for="ciudad" class="form-label fw-bold titulo">Ciudad: </label>
                         <input disabled id="ciudad" type="text" class="form-control mb-3 fw-bold input_login" name="ciudad" placeholder="Ciudad/municipio" title="Ciudad/municipio" required value="<?php echo $ciu ?>">
@@ -138,29 +132,16 @@ require '../templates/header.php';
                         <label for="correo" class="form-label fw-bold titulo">Correo: </label>
                         <input disabled id="correo" type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required value="<?php echo $email ?>">
                     </div>
-                    <div class="">
-                        <label for="contrasena" class="form-label fw-bold titulo">Contraseña: </label>
-                        <input disabled id="contrasena" type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" required value="<?php echo $pass ?>">
-                    </div>
                 </div>
-                <div class="row row-cols-md-2 row-cols-sm-1">
-                    <div class="">
-                        <label for="rama" class="form-label fw-bold titulo">Rama: </label>
-                        <input disabled id="rama" type="text" class="form-control mb-3 fw-bold input_login" name="rama" placeholder="Rama" title="Rama" required value="<?php echo $rama ?>">
-                    </div>
-                    <div class="">
-                        <label for="rol" class="form-label fw-bold titulo">Rol: </label>
-                        <input disabled id="rol" type="text" class="form-control mb-3 fw-bold input_login" name="rol" placeholder="Rol" title="Rol" required value="<?php echo $rol ?>">
+                <div class="row row-cols-md-2 d-flex justify-content-center align-items-center">
+                    <div class="d-flex justify-content-center">
+                        <a href="/proyectoGrupoScout/views/admin/editarAdmin.php" class="btn btnInscritos m-1">Actualizar datos</a>
+                        <a href="/proyectoGrupoScout/views/admin/cambiarContra.php" class="btn btnEliminar m-1">Cambiar contraseña</a>
                     </div>
                 </div>
 
 
 
-                <!-- <div class="row">
-                    <div class="col d-flex justify-content-center align-items-center p-2">
-                        <button type="submit" class="btn btn_general" name="editar">Volver</button>
-                    </div>
-                </div> -->
             </form>
         </div>
     </div>

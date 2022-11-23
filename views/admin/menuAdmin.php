@@ -63,7 +63,7 @@ require '../templates/header.php';
                 <div class="card-footer fw-bold">Reportes</div>
             </div>
         </a>
-        <a href="/proyectoGrupoScout/views/admin/perfilAdmin.php" class="text-decoration-none btnAdmin">
+        <a href="/proyectoGrupoScout/views/admin/perfilAdmin.php/#perfil" class="text-decoration-none btnAdmin">
             <div class="card cardAdmin text-center m-3">
                 <div class="card-body">
                     <img src="/proyectoGrupoScout/assets/img/Perfil.png" class="card-img-top mCardImg" alt="Contactos">
