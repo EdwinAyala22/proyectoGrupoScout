@@ -134,7 +134,7 @@ if (mysqli_num_rows($result) == 1) {
                 <div class="row row-cols-md-2 d-flex justify-content-center align-items-center">
                     <div class="d-flex justify-content-center">
                         <a href="/proyectoGrupoScout/views/scouts/editarScout.php/#actualizar" class="btn btnInscritos m-1">Actualizar datos</a>
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#cambiarContra<?php echo $sid ?>" class="btn btnEliminar m-1">Cambiar contraseña</button>
+                        <a href="/proyectoGrupoScout/views/scouts/cambiarContra.php" class="btn btnEliminar m-1">Cambiar contraseña</a>
                     </div>
                 </div>
 
@@ -172,12 +172,11 @@ if (mysqli_num_rows($result) == 1) {
                                 <input id="confirmarContrasena" type="password" class="form-control mb-3 fw-bold input_login" name="confirmarContrasena" title="Confirmar contraseña" required >
                             </div>
                         </div>
-
+                        <button type="submit" class="btn crearNuevo" name="editar">Cambiar</button>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btnCerrar" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn crearNuevo" name="editar">Cambiar</button>
                 </div>
                 </form>
             </div>
