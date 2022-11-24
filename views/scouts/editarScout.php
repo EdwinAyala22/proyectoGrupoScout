@@ -56,7 +56,22 @@ if (mysqli_num_rows($result) == 1) {
     $email = $mostrar['correo'];
     $rama = $mostrar['nom_rama'];
 } else {
-    echo "Error";
+    $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡Error!",
+        "text": "Inténtelo nuevamente",
+        "icon": "error",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#ed1b25",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/scouts/perfilScout.php/#perfil";
+        }
+    });
+    
+</script>';
 }
 
 if (isset($_POST['editar'])) {
@@ -124,7 +139,7 @@ require '../templates/header.php';
     <!-- <div class="container w-100 mt-1 mb-1"> -->
     <div class="row align-items-stretch">
         <div class="col">
-            <!-- formlario registro -->
+            <!-- formulario editar -->
             <form action="/proyectoGrupoScout/views/scouts/editarScout.php" method="POST" class="form_registro justify-content-center align-items-center">
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
@@ -261,9 +276,8 @@ require '../templates/header.php';
 
 
 <?php
+
 require '../templates/scripts.php';
-
-
 
 ?>
 

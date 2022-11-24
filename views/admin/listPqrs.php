@@ -15,6 +15,8 @@ if (!isset($_SESSION['rol'])) {
 <?php
 include_once '../../queries/conexion.php';
 
+$mensaje = "";
+
 $pqrs = "SELECT * FROM pqrs ORDER BY estado ASC";
 $result = mysqli_query($conn, $pqrs);
 $nr = mysqli_num_rows($result);
@@ -24,9 +26,40 @@ if (isset($_GET['edit'])) {
   $query = "UPDATE pqrs set estado = 1 WHERE id_pqrs = $idPQRS";
   $result2 = mysqli_query($conn, $query);
   if ($result2) {
-    header("Location: /proyectoGrupoScout/views/admin/listPqrs.php");
+    // header("Location: /proyectoGrupoScout/views/admin/listPqrs.php");
+    $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡PQRS Solucionado!",
+        "text": "El PQRS ha sido solucionado.",
+        "icon": "success",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#1e0941",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/admin/listPqrs.php";
+        }
+    });
+    
+</script>';
   }else {
-      echo "Error";
+    $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡Error!",
+        "text": "Inténtelo nuevamente",
+        "icon": "error",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#ed1b25",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/admin/listPqrs.php";
+        }
+    });
+    
+</script>';
     }
   } 
 
@@ -266,6 +299,15 @@ require '../templates/header.php';
 </div>
 
 <?php
+
+require '../templates/scripts.php';
+
+?>
+
+
+<?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 

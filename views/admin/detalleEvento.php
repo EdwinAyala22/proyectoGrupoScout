@@ -16,16 +16,41 @@ if (!isset($_SESSION['rol'])) {
 
 include_once '../../queries/conexion.php';
 
-$id = $_GET["id"];
-$evento = "SELECT * FROM f_actividades WHERE id_act = $id";
-$result = mysqli_query($conn, $evento);
-$row = mysqli_fetch_array($result);
+$clase = "";
+$mensaje = "";
+if(isset($_GET["id"])){
+    $id = $_GET["id"];
+    $evento = "SELECT * FROM f_actividades WHERE id_act = $id";
+    $result = mysqli_query($conn, $evento);
+    $row = mysqli_fetch_array($result);
+
+    $tRamas = "SELECT * FROM ramas R, ramas_actividades A where A.id_act = $id AND A.id_rama = R.id_rama";
+    $result2 = mysqli_query($conn,$tRamas);
+    
+
+}else{
+    $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡Error!",
+        "icon": "error",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#ed1b25",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/admin/listEventos.php";
+        }
+    });
+    
+</script>';
+}
+
+
+    
 
 
 
-
-$tRamas = "SELECT * FROM ramas R, ramas_actividades A where A.id_act = $id AND A.id_rama = R.id_rama";
-$result2 = mysqli_query($conn,$tRamas);
 
 ?>
 
@@ -37,9 +62,14 @@ require '../templates/header.php';
 
 ?>
 
-<a href="/proyectoGrupoScout/views/admin/listeventos.php" class="btn links_nav m-2" id="newUser">Volver</a>
+<?php
+if(isset($result2)){
 
-<div class="container mt-5 mb-5 container_general">
+
+?>
+<a href="/proyectoGrupoScout/views/admin/listeventos.php" class="btn links_nav m-2 <?php echo $clase ?>" id="newUser">Volver</a>
+
+<div class="container mt-5 mb-5 container_general <?php echo $clase ?>">
 
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
@@ -157,6 +187,24 @@ require '../templates/header.php';
 </div>
 
 <?php
+}else{
+    $clase = "visually-hidden";
+    for ($i = 0; $i <= 20; $i++) {
+        echo '</br>';
+    }
+}
+?>
+
+<?php
+
+require '../templates/scripts.php';
+
+?>
+
+
+
+<?php
+echo $mensaje;
 
 require '../templates/footer.php';
 
