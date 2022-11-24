@@ -16,6 +16,7 @@ include_once '../../queries/conexion.php';
 
 $class = "visually-hidden";
 $error = "";
+$mensaje = " ";
 
 $documento = $_SESSION['id_user'];
 // $documento = $_GET['id'];
@@ -41,10 +42,21 @@ if (isset($_POST['cambiar'])) {
             $queryCambiarContrasena = "UPDATE usuarios set contrasena = '$confirmarContrasena' WHERE documento = $documento";
             $resultadoCambiarContrasena = mysqli_query($conn, $queryCambiarContrasena);
             if ($resultadoCambiarContrasena) {
-                echo '<script type="text/javascript">
-                alert("La contraseña ha sido actualizada");
-                window.location.href="/proyectoGrupoScout/views/login.php?logout=1";
-                </script>';
+                $mensaje = '<script lang="javascript">
+                swal.fire({
+                    "title":"¡Contraseña Actualizada!",
+                    "icon": "success",
+                    "confirmButtonText": "Aceptar",
+                    "confirmButtonColor": "#1e0941",
+                    "allowOutsideClick": false,
+                    "allowEscapeKey" : false
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        window.location = "/proyectoGrupoScout/views/login.php?logout=1";
+                    }
+                });
+                
+            </script>';
             } else {
                 $class = "alert alert-danger alert-dismissible fade show text-center";
                 $error = "Error. Digite de nuevo los datos";
@@ -68,8 +80,9 @@ require '../templates/header.php';
 ?>
 
 
-<a href="/proyectoGrupoScout/views/scouts/perfilScout.php" class="btn links_nav m-2">Volver</a>
-<div class="container w-50 mt-5 mb-5 container_general">
+<a href="/proyectoGrupoScout/views/scouts/perfilScout.php/#perfil" class="btn links_nav m-2" >Volver</a>
+<div id="cambiar" ></div>
+<div class="container w-75 mt-5 mb-5 container_general">
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
@@ -115,5 +128,14 @@ require '../templates/header.php';
 </div>
 
 <?php
+require '../templates/scripts.php';
+
+?>
+
+
+<?php
+
+echo $mensaje;
+
 require '../templates/footer.php';
 ?>

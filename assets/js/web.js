@@ -30,16 +30,12 @@ window.onscroll = function(){
 }
 
 
+// alerta 
 
-//Funcion select
-
-// function seleccionarTipo(){
-//     let tipoElemento = document.getElementById("tipoElemento");
-
-//     let tipo = tipoElemento.value;
-
-//     console.log(tipo);
-    
-// }
-
-//
+function showAlert(title, description, alertType) {
+    Swal.fire(
+        title,
+        description,
+        alertType
+      )
+}

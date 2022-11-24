@@ -1,0 +1,1 @@
+<script src="/proyectoGrupoScout/assets/lib/SweetAlert2/dist/sweetalert2.all.min.js"></script>

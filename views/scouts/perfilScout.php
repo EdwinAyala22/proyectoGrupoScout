@@ -134,7 +134,7 @@ if (mysqli_num_rows($result) == 1) {
                 <div class="row row-cols-md-2 d-flex justify-content-center align-items-center">
                     <div class="d-flex justify-content-center">
                         <a href="/proyectoGrupoScout/views/scouts/editarScout.php/#actualizar" class="btn btnInscritos m-1">Actualizar datos</a>
-                        <a href="/proyectoGrupoScout/views/scouts/cambiarContra.php" class="btn btnEliminar m-1">Cambiar contraseña</a>
+                        <a href="/proyectoGrupoScout/views/scouts/cambiarContra.php/#cambiar" class="btn btnEliminar m-1">Cambiar contraseña</a>
                     </div>
                 </div>
 

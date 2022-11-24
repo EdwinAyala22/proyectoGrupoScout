@@ -56,18 +56,18 @@ require '../templates/header.php';
 
 <div class="container w-100 mt-1 mb-5 container_general">
     <div class="row align-items-stretch">
-        <div class="col m-auto d-none d-lg-block col-md-4 col-lg-4 col-xl-5">
+        <!-- <div class="col m-auto d-none d-lg-block col-md-4 col-lg-4 col-xl-5">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
-        </div>
-        <div class="col p-3">
-            <div class="row text-center d-block d-sm-block d-md-block d-lg-none">
+        </div> -->
+        <!-- <div class="col p-3"> -->
+            <!-- <div class="row text-center d-block d-sm-block d-md-block d-lg-none">
                 <div class="">
                     <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="180" class="img-fluid">
                 </div>
-            </div>
+            </div> -->
             <h2 class="titulo fw-bold text-center py-3" id="perfil" >Mi Perfil</h2>
             <!-- formlario registro -->
-            <form action="/proyectoGrupoScout/views/admin/listUsers.php?edit=<?php echo $doc ?>" method="POST" class="p-3 form_registro justify-content-center align-items-center">
+            <form action="/proyectoGrupoScout/views/admin/listUsers.php?edit=<?php echo $doc ?>" method="POST" class="px-4 form_registro justify-content-center align-items-center">
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
                         <label for="nombres" class="form-label fw-bold titulo">Nombres: </label>
@@ -135,15 +135,15 @@ require '../templates/header.php';
                 </div>
                 <div class="row row-cols-md-2 d-flex justify-content-center align-items-center">
                     <div class="d-flex justify-content-center">
-                        <a href="/proyectoGrupoScout/views/admin/editarAdmin.php" class="btn btnInscritos m-1">Actualizar datos</a>
-                        <a href="/proyectoGrupoScout/views/admin/cambiarContra.php" class="btn btnEliminar m-1">Cambiar contraseña</a>
+                        <a href="/proyectoGrupoScout/views/admin/editarAdmin.php/#actualizar" class="btn btnInscritos m-1">Actualizar datos</a>
+                        <a href="/proyectoGrupoScout/views/admin/cambiarContra.php/#cambiar" class="btn btnEliminar m-1">Cambiar contraseña</a>
                     </div>
                 </div>
 
 
 
             </form>
-        </div>
+        <!-- </div> -->
     </div>
 </div>
 

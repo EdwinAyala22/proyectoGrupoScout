@@ -17,6 +17,7 @@ include_once '../../queries/conexion.php';
 
 $class = "visually-hidden";
 $error = "";
+$mensaje = "";
 
 if (isset($_POST['crear'])) {
     $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
@@ -54,12 +55,43 @@ if (isset($_POST['crear'])) {
                     $insRamas = mysqli_query($conn,$sqlInsRama);
                 }
                 if ($insRamas){
-                    echo'<script type="text/javascript">
-                alert("Registro realizado con éxito");
-                window.location.href="/proyectoGrupoScout/views/admin/listEventos.php";
-                </script>';
+                //     echo'<script type="text/javascript">
+                // alert("Registro realizado con éxito");
+                // window.location.href="/proyectoGrupoScout/views/admin/listEventos.php";
+                // </script>';
+                $mensaje = '<script lang="javascript">
+                swal.fire({
+                    "title":"¡Evento creado!",
+                    "text": "El evento ha sido creado con éxito.",
+                    "icon": "success",
+                    "confirmButtonText": "Aceptar",
+                    "confirmButtonColor": "#1e0941",
+                    "allowOutsideClick": false,
+                    "allowEscapeKey" : false
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        window.location = "/proyectoGrupoScout/views/admin/listEventos.php";
+                    }
+                });
+                
+            </script>';
                 } else {
-                    echo "Error";
+                    $mensaje = '<script lang="javascript">
+                swal.fire({
+                    "title":"¡Error!",
+                    "text": "Inténtelo nuevamente",
+                    "icon": "error",
+                    "confirmButtonText": "Aceptar",
+                    "confirmButtonColor": "#ed1b25",
+                    "allowOutsideClick": false,
+                    "allowEscapeKey" : false
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        window.location = "/proyectoGrupoScout/views/admin/crearEvento.php";
+                    }
+                });
+                
+            </script>';
                 }
             }
         } else {
@@ -274,6 +306,14 @@ require '../templates/header.php';
 </script>
 
 <?php
+require '../templates/scripts.php';
+
+?>
+
+
+<?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 

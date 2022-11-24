@@ -49,6 +49,8 @@ if (!isset($_SESSION['rol'])) {
     <!-- <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'> -->
     <!-- <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'> -->
     <link rel="shortcut icon" href="/proyectoGrupoScout/assets/img/logo-scout-co.svg" type="image/x-icon">
+    <!-- Estilos de sweet alert  -->
+    <link rel="stylesheet" href="/proyectoGrupoScout/assets/lib/SweetAlert2/dist/sweetalert2.min.css">
     <!-- <script src="https://kit.fontawesome.com/aa2bae0729.js" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/b333d707bf.js" crossorigin="anonymous"></script>

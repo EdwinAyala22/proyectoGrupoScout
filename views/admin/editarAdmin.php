@@ -32,6 +32,7 @@ $tipoDeSangre = array(
     "O+",
     "O-"
 );
+$mensaje = " ";
 
 $sid = $_SESSION['id_user'];
 
@@ -71,9 +72,40 @@ if(isset($_POST['editar'])){
 
     $consulta = "UPDATE usuarios set telefono = '$telefono', direccion = '$direccion', eps = '$eps', rh = '$rh', genero = '$genero', ciudad = '$ciudad', correo = '$correo' WHERE documento = $sid";
     if (mysqli_query($conn,$consulta)){
-        header("Location: /proyectoGrupoScout/views/admin/perfilAdmin.php/#perfil");
+        // header("Location: /proyectoGrupoScout/views/admin/perfilAdmin.php/#perfil");
+        $mensaje = '<script lang="javascript">
+        swal.fire({
+            "title":"¡Datos actualizados!",
+            "text": "Los datos han sido actualizados",
+            "icon": "success",
+            "confirmButtonText": "Aceptar",
+            "confirmButtonColor": "#1e0941",
+            "allowOutsideClick": false,
+            "allowEscapeKey" : false
+        }).then((result)=>{
+            if (result.isConfirmed){
+                window.location = "/proyectoGrupoScout/views/admin/perfilAdmin.php/#perfil";
+            }
+        });
+        
+    </script>';
     }else{
-        echo "Error";
+        $mensaje = '<script lang="javascript">
+                swal.fire({
+                    "title":"¡Error!",
+                    "text": "Inténtelo nuevamente",
+                    "icon": "error",
+                    "confirmButtonText": "Aceptar",
+                    "confirmButtonColor": "#ed1b25",
+                    "allowOutsideClick": false,
+                    "allowEscapeKey" : false
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        window.location = "/proyectoGrupoScout/views/admin/editarAdmin.php/#actualizar";
+                    }
+                });
+                
+            </script>';
     }
 }
 
@@ -226,7 +258,15 @@ require '../templates/header.php';
     <!-- </div> -->
 
 </div>
+
 <?php
+require '../templates/scripts.php';
+
+?>
+
+<?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 
