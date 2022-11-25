@@ -47,11 +47,6 @@ if(isset($_GET["id"])){
 }
 
 
-    
-
-
-
-
 ?>
 
 <title>Detalle Evento</title>

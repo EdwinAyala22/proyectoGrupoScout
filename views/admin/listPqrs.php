@@ -85,14 +85,14 @@ require '../templates/header.php';
   <div class="ms-2"><i class=" bi bi-check-square-fill" style="color:green;"></i> = Solucionado</div>
   </div>
 
-  <table class="table table-borderless table-bordered" style="border-radius: 5px;">
+  <table class="table table-borderless table-bordered display responsive nowrap" style="width: 100%;" id="tabla">
     <thead class="cabeceraTablas text-center">
       <tr>
-        <th scope="col">Asunto</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Estado</th>
-        <th scope="col">Acciones</th>
+        <th>Asunto</th>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody class="text-center">
@@ -104,14 +104,14 @@ require '../templates/header.php';
           ?>
 
         <tr>
-          <td><?php echo $mostrar['asunto'] ?>
-          <td><?php echo $mostrar['nombres'] ?>
-          <td><?php echo $mostrar['fechaRegistro'] ?>
+          <td> <p></p> <?php echo $mostrar['asunto'] ?></td>
+          <td> <p></p> <?php echo $mostrar['nombres'] ?></td>
+          <td> <p></p> <?php echo $mostrar['fechaRegistro'] ?></td>
           <?php 
           if ( $mostrar['estado'] == 0){
-            echo '<td> <i class="bi bi-x-square-fill" style="color:red;"></i>';
+            echo '<td><p></p> <i class="bi bi-x-square-fill" style="color:red;"></i></td>';
             } else {
-                echo '<td> <i class="bi bi-check-square-fill" style="color:green;"></i>';
+                echo '<td><p></p> <i class="bi bi-check-square-fill" style="color:green;"></i></td>';
             }?>
           <td class="d-flex justify-content-center align-items-center text-center">
             
@@ -289,9 +289,9 @@ require '../templates/header.php';
         <?php
       } 
     } else {
-      echo "<tr>";
-      echo "<td colspan='6'>No hay PQRS</td>";
-      echo "</tr>";
+      // echo "<tr>";
+      // echo "<td colspan='6'>No hay PQRS</td>";
+      // echo "</tr>";
     }
       ?>
     </tbody>

@@ -51,15 +51,15 @@ $nr = mysqli_num_rows($result);
 <div class="container bg-light p-3 containerCrud mb-3">
   <h1 class="titulo fw-bold text-center m-3">Lista de progresiones</h1>
   <a class="mb-3 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php">Crear nueva progresión</a>
-  <table class="table table-borderless table-bordered" style="border-radius: 5px;">
+  <table class="table table-borderless table-bordered display responsive nowrap" style="width: 100%;" id="tabla">
     <thead class="cabeceraTablas text-center">
       <tr>
-        <th scope="col">Rama</th>
-        <th scope="col">Nombres</th>
-        <th scope="col">Apellidos</th>
-        <th scope="col">Fecha Entrega</th>
-        <th scope="col">Tipo de Adelanto</th>
-        <th scope="col">Acciones</th>
+        <th>Rama</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Fecha Entrega</th>
+        <th>Tipo de Adelanto</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody class="text-center">
@@ -71,11 +71,11 @@ $nr = mysqli_num_rows($result);
       ?>
 
           <tr>
-            <td><?php echo $mostrar['nom_rama'] ?>
-            <td><?php echo $mostrar['nombres'] ?>
-            <td><?php echo $mostrar['apellido1'] . ' ' . $mostrar['apellido2']  ?>
-            <td><?php echo $mostrar['fechaEntrega'] ?>
-            <td><?php echo $mostrar['nombreTipoAdelanto'] ?>
+            <td><p></p><?php echo $mostrar['nom_rama'] ?></td>
+            <td><p></p><?php echo $mostrar['nombres'] ?></td>
+            <td><p></p><?php echo $mostrar['apellido1'] . ' ' . $mostrar['apellido2']  ?></td>
+            <td><p></p><?php echo $mostrar['fechaEntrega'] ?></td>
+            <td><p></p><?php echo $mostrar['nombreTipoAdelanto'] ?></td>
             <td class="d-flex justify-content-center align-items-center text-center">
               <form action="./detalleProgresion.php" method="POST" class="m-0">
                 <input type="hidden" value="<?php echo $mostrar['documento'] ?>" name="documento">
@@ -118,14 +118,19 @@ $nr = mysqli_num_rows($result);
       <?php
         }
       } else {
-        echo "<tr>";
-        echo "<td colspan='6'>No hay progresiones realizadas</td>";
-        echo "</tr>";
+        // echo "<tr>";
+        // echo "<td colspan='6'>No hay progresiones realizadas</td>";
+        // echo "</tr>";
       }
       ?>
     </tbody>
   </table>
 </div>
+
+<?php
+require '../templates/scripts.php';
+
+?>
 
 <?php
 

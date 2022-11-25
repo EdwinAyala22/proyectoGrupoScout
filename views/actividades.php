@@ -109,13 +109,13 @@ $fechaActual = strtotime(date("Y-m-d H:i:s"));
                             <form action="/proyectoGrupoScout/queries/inscribir.php?ia=<?php echo $row['id_act'] ?>" method="POST">
 
                                 <div class="row p-2">
-                                    <input type="number" class="form-control" name="documento_act" placeholder="Número de documento" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required>
+                                    <input type="number" class="form-control fw-bold input_login" name="documento_act" placeholder="Número de documento" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required>
                                 </div>
                                 <div class="row p-2">
-                                    <input type="text" class="form-control" name="nombre_com" autofocus placeholder="Nombre completo" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombre completo" required>
+                                    <input type="text" class="form-control fw-bold input_login" name="nombre_com" autofocus placeholder="Nombre completo" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombre completo" required>
                                 </div>
                                 <div class="row p-2">
-                                    <input type="email" class="form-control" name="correoIns" placeholder="Correo" data-bs-toggle="tooltip" data-bs-placement="top" title="Correo" required>
+                                    <input type="email" class="form-control fw-bold input_login" name="correoIns" placeholder="Correo" data-bs-toggle="tooltip" data-bs-placement="top" title="Correo" required>
                                 </div>
                                 <div class="row p-2">
                                     <h6 class="titulo text-center"><strong>Adjuntar permisos</strong></h6>
@@ -125,7 +125,7 @@ $fechaActual = strtotime(date("Y-m-d H:i:s"));
                                 </div>
                                 <div class="row p-2">
                                     <label for="formFile" class="text-start titulo">Anexe el formato de permiso diligenciado</label>
-                                    <input class="form-control archivo" type="file" id="formFile">
+                                    <input class="form-control input_login archivo" type="file" id="formFile">
                                 </div>
                                 <input type="hidden" name="idAct" value="<?php echo $row['id_act'] ?>">
                                 <div class="modal-footer d-flex flex-wrap">

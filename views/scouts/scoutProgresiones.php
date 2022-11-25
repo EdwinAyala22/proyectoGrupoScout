@@ -32,13 +32,13 @@ $nr = mysqli_num_rows($result);
 <div class="container bg-light p-3 containerCrud mb-5 mt-5">
   <h1 class="titulo fw-bold text-center m-3">Mis progresiones</h1>
   <!-- <a class="mb-3 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php">Generar reportes</a> -->
-  <table class="table table-borderless table-bordered" style="border-radius: 5px;">
+  <table class="table table-borderless table-bordered display responsive nowrap" style="width: 100%;" id="tabla">
     <thead class="cabeceraTablas text-center">
       <tr>
-        <th scope="col">Rama</th>
-        <th scope="col">Fecha Entrega</th>
-        <th scope="col">Tipo de Adelanto</th>
-        <th scope="col">Costo</th>
+        <th>Rama</th>
+        <th>Fecha Entrega</th>
+        <th>Tipo de Adelanto</th>
+        <th>Costo</th>
         <!-- <th scope="col">Acciones</th> -->
       </tr>
     </thead>
@@ -51,10 +51,10 @@ $nr = mysqli_num_rows($result);
           ?>
 
         <tr>
-          <td><?php echo $mostrar['nom_rama'] ?>
-          <td><?php echo $mostrar['fechaEntrega'] ?>
-          <td><?php echo $mostrar['nombreTipoAdelanto'] ?>
-          <td><?php echo $mostrar['costo'] ?>
+          <td><?php echo $mostrar['nom_rama'] ?></td>
+          <td><?php echo $mostrar['fechaEntrega'] ?></td>
+          <td><?php echo $mostrar['nombreTipoAdelanto'] ?></td>
+          <td><?php echo $mostrar['costo'] ?></td>
           <!-- <td class="text-center">
             <a class="m-1 btn btnDetalles" href="./detalleEvento.php?id="> Detalles</a>
             <a class="m-1 btn btnEditar" href="./editarEvento.php?idAct="> Editar</a>
@@ -65,14 +65,21 @@ $nr = mysqli_num_rows($result);
         <?php
       } 
     } else {
-      echo "<tr>";
-      echo "<td colspan='6'>No tienes progresiones</td>";
-      echo "</tr>";
+      // echo "<tr>";
+      // echo "<td colspan='6'>No tienes progresiones</td>";
+      // echo "</tr>";
     }
       ?>
     </tbody>
   </table>
 </div>
+
+<?php
+
+require '../templates/scripts.php';
+
+?>
+
 <?php
 
 require '../templates/footer.php';

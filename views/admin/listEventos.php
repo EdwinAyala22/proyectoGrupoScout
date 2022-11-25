@@ -27,7 +27,7 @@ if (isset($_GET['delete'])) {
   $query = "DELETE FROM inscritos WHERE id_act = '$idAct'";
   $result = mysqli_query($conn, $query);
   if ($result) {
-    $queryRamEl= "DELETE FROM ramas_actividades WHERE id_act = $idAct";
+    $queryRamEl = "DELETE FROM ramas_actividades WHERE id_act = $idAct";
     $resultRamEl = mysqli_query($conn, $queryRamEl);
     if ($resultRamEl) {
       $query2 = "DELETE FROM f_actividades WHERE id_act = '$idAct'";
@@ -87,7 +87,6 @@ if (isset($_GET['delete'])) {
                 
             </script>';
   }
-
 }
 
 
@@ -106,64 +105,64 @@ require '../templates/header.php';
 <div class="container bg-light p-3 containerCrud mb-3">
   <h1 class="titulo fw-bold text-center m-3">Lista de eventos</h1>
   <a class="mb-3 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearEvento.php">Crear nuevo</a>
-  <table class="table table-borderless table-bordered" style="border-radius: 5px;">
+  <table class="table table-borderless table-bordered display responsive nowrap" style="width: 100%;" id="tabla">
     <thead class="cabeceraTablas text-center">
       <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Lugar</th>
-        <th scope="col">Costo</th>
-        <th scope="col">Fecha-Inicio</th>
-        <th scope="col">Fecha-Fin</th>
-        <th scope="col">Acciones</th>
+        <th>Nombre</th>
+        <th>Lugar</th>
+        <th>Costo</th>
+        <th>Fecha-Inicio</th>
+        <!-- <th>Fecha-Fin</th> -->
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody class="text-center">
       <?php
-      if ($nr !=0 ){
+      if ($nr != 0) {
 
         while ($mostrar = mysqli_fetch_array($result)) {
 
-          ?>
+      ?>
 
-        <tr>
-          <td><?php echo $mostrar['nombre_act'] ?>
-          <td><?php echo $mostrar['lugar'] ?>
-          <td>$<?php echo $mostrar['costo'] ?>
-          <td><?php echo $mostrar['fechaInicio'] ?>
-          <td><?php echo $mostrar['fechaFin'] ?>
-          <td class="text-center">
-            <a class="m-1 btn btnDetalles" href="./detalleEvento.php?id=<?php echo $mostrar['id_act'] ?>"> Detalles</a>
-            <a class="m-1 btn btnEditar" href="./editarEvento.php?idAct=<?php echo $mostrar['id_act'] ?>"> Editar</a>
-            <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['id_act'] ?>">Eliminar</button>
-            <a class="m-1 btn btnInscritos" href="./inscritosEvento.php?idAct=<?php echo $mostrar['id_act'] ?>"> Inscritos</a>
-          </td>
-        </tr>
-        <!-- Modal -->
-        <div class="modal fade" id="mEliminar<?php echo $mostrar['id_act'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Notificación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                ¿Desea eliminar este evento?
-                <p><?php echo $mostrar['nombre_act'] . ', elaborado por ' . $mostrar['f_elab_por'] ?></p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btnCerrar" data-bs-dismiss="modal">Cerrar</button>
-                <a href="/proyectoGrupoScout/views/admin/listEventos.php?delete=<?php echo $mostrar['id_act'] ?>" class="btn links_nav">Eliminar</a>
+          <tr>
+            <td> <p></p> <?php echo $mostrar['nombre_act'] ?></td>
+            <td> <p></p> <?php echo $mostrar['lugar'] ?></td>
+            <td> <p></p> $<?php echo $mostrar['costo'] ?></td>
+            <td> <p></p> <?php echo $mostrar['fechaInicio'] ?></td>
+           <!--  <td> <p></p> <?php $mostrar['fechaFin'] ?></td>-->
+            <td class="text-center">
+              <a class="m-1 btn btnDetalles" href="./detalleEvento.php?id=<?php echo $mostrar['id_act'] ?>"> Detalles</a>
+              <a class="m-1 btn btnEditar" href="./editarEvento.php?idAct=<?php echo $mostrar['id_act'] ?>"> Editar</a>
+              <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['id_act'] ?>">Eliminar</button>
+              <a class="m-1 btn btnInscritos" href="./inscritosEvento.php?idAct=<?php echo $mostrar['id_act'] ?>"> Inscritos</a>
+            </td>
+          </tr>
+          <!-- Modal -->
+          <div class="modal fade" id="mEliminar<?php echo $mostrar['id_act'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Notificación</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  ¿Desea eliminar este evento?
+                  <p><?php echo $mostrar['nombre_act'] . ', elaborado por ' . $mostrar['f_elab_por'] ?></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btnCerrar" data-bs-dismiss="modal">Cerrar</button>
+                  <a href="/proyectoGrupoScout/views/admin/listEventos.php?delete=<?php echo $mostrar['id_act'] ?>" class="btn links_nav">Eliminar</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <?php
-      } 
-    } else {
-      echo "<tr>";
-      echo "<td colspan='6'>No hay eventos</td>";
-      echo "</tr>";
-    }
+      <?php
+        }
+      } else {
+        // echo "<tr>";
+        // echo "<td colspan='6'>No hay eventos</td>";
+        // echo "</tr>";
+      }
       ?>
     </tbody>
   </table>
@@ -173,6 +172,7 @@ require '../templates/header.php';
 require '../templates/scripts.php';
 
 ?>
+
 
 <?php
 

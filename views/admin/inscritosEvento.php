@@ -52,9 +52,9 @@ include_once '../../queries/conexion.php';
             // $idAct = $row['id_act'];
       ?>
             <tr>
-              <td><?php echo $row['documento'] ?>
-              <td><?php echo $row['nombreC'] ?>
-              <td><?php echo $row['correoIns'] ?>
+              <td><?php echo $row['documento'] ?></td>
+              <td><?php echo $row['nombreC'] ?></td>
+              <td><?php echo $row['correoIns'] ?></td>
             </tr>
       <?php
           }

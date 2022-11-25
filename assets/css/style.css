@@ -122,7 +122,7 @@
 /* fin cards consejeros */
 
 
-.form-control {
+/* .form-control {
   height: 50px;
   border-radius: 8px;
   border: 1.5px solid #1e0941;
@@ -136,7 +136,6 @@
 }
 
 .form-select {
-  /* width: 216px; */
   height: 50px;
   border-radius: 8px;
   border: 1.5px solid #1e0941;
@@ -146,7 +145,7 @@
 .form-select:focus {
   border: 1.5px solid #1e0941;
   box-shadow: 1px 1px 5px #1e0941;
-}
+} */
 
 .btn_general {
   color: white;
@@ -253,9 +252,11 @@ input[type="number"] {
 .input_login {
   outline: none;
   border: none;
+  height: 50px;
   border-bottom: 2px solid #1e0941;
   box-shadow: none;
   background-color: #f7f7f7;
+  border-radius: 8px;
 }
 
 .input_login:focus {
@@ -263,6 +264,67 @@ input[type="number"] {
   border: none;
   border-bottom: 3px solid #1e0941;
   background-color: #f7f7f7;
+}
+
+.form-select-sm{
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #1e0941;
+  box-shadow: none;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+}
+
+.form-select-sm:focus{
+  box-shadow: none;
+  border: none;
+  border-bottom: 3px solid #1e0941;
+  background-color: #f7f7f7;
+}
+
+.form-control-sm{
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #1e0941;
+  box-shadow: none;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+}
+
+.form-control-sm:focus{
+  box-shadow: none;
+  border: none;
+  border-bottom: 3px solid #1e0941;
+  background-color: #f7f7f7;
+}
+
+.page-link{
+  color: white;
+  background-color: #1e0941;
+}
+.page-link:hover{
+  background-color: white;
+  color: #1e0941;
+  border-color: #1e0941;
+}
+
+.page-item.active .page-link{
+  z-index: 3;
+  background-color: #ed1b25;
+  color: white;
+  border-color: #ed1b25;
+}
+
+.page-item.active .page-link:focus{
+  box-shadow: none;
+}
+.page-item:last-child .page-link{
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.page-item:first-child .page-link{
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 /*Pie de páfina */
