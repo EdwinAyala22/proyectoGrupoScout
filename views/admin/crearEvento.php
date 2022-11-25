@@ -36,7 +36,7 @@ if (isset($_POST['crear'])) {
     $f_elab_por = $_POST['f_elab_por'];
     $costo = $_POST['costo'];
     $idActi = 0;
-    if ($fechaFin < $fechaInicio){
+    if ($fechaFin < $fechaInicio) {
         $class = "alert alert-danger alert-dismissible fade show text-center";
         $error = "La fecha final no puede ser antes de la fecha inicial.";
     } else {
@@ -47,19 +47,16 @@ if (isset($_POST['crear'])) {
             $resultID = mysqli_query($conn, $sqlID);
             $findID = mysqli_fetch_array($resultID);
             $idActi = $findID['id_act'];
-        
-            
-            if ($idActi != 0){
-                foreach ($ramas as $ram){
+
+
+            if ($idActi != 0) {
+                foreach ($ramas as $ram) {
                     $sqlInsRama = "INSERT INTO ramas_actividades (id_act, id_rama) values ('$idActi' , '$ram')";
-                    $insRamas = mysqli_query($conn,$sqlInsRama);
+                    $insRamas = mysqli_query($conn, $sqlInsRama);
                 }
-                if ($insRamas){
-                //     echo'<script type="text/javascript">
-                // alert("Registro realizado con éxito");
-                // window.location.href="/proyectoGrupoScout/views/admin/listEventos.php";
-                // </script>';
-                $mensaje = '<script lang="javascript">
+                if ($insRamas) {
+
+                    $mensaje = '<script lang="javascript">
                 swal.fire({
                     "title":"¡Evento creado!",
                     "text": "El evento ha sido creado con éxito.",
@@ -95,13 +92,30 @@ if (isset($_POST['crear'])) {
                 }
             }
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            // echo "Error: " . $sql . "<br>" . $conn->error;
+
+            $mensaje = '<script lang="javascript">
+                swal.fire({
+                    "title":"¡Error!",
+                    "text": "Inténtelo nuevamente",
+                    "icon": "error",
+                    "confirmButtonText": "Aceptar",
+                    "confirmButtonColor": "#ed1b25",
+                    "allowOutsideClick": false,
+                    "allowEscapeKey" : false
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        window.location = "/proyectoGrupoScout/views/admin/crearEvento.php";
+                    }
+                });
+                
+            </script>';
         }
     }
 }
 
 $tRamas = "SELECT * FROM ramas";
-$resultR = mysqli_query($conn,$tRamas);
+$resultR = mysqli_query($conn, $tRamas);
 
 $fechaActual = date("Y-m-d H:i");
 ?>
@@ -134,7 +148,7 @@ require '../templates/header.php';
                     <div class="">
                         <label for="formFile" class="text-start titulo"> <b>Seleccione la imagen del evento:</b></label>
                         <input class="form-control mb-3 input_login fw-bold" type="file" accept="image/*" id="formFile" style="height: 38px;" name="imagen" required>
-                            
+
                     </div>
                 </div>
 
@@ -156,8 +170,8 @@ require '../templates/header.php';
                         <div class="d-flex flex-wrap">
                             <?php while ($mostrarR = mysqli_fetch_array($resultR)) {
 
-                              echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]">' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
-                             } ?>
+                                echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]">' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
+                            } ?>
                         </div>
                     </div>
 
@@ -277,9 +291,16 @@ require '../templates/header.php';
 
 
         if (fileSize > 16000000) {
-            alert('El archivo no debe superar los 16MB');
-            // $class = "alert alert-danger alert-dismissible fade show text-center";
-            // $error = "El archivo no debe superar los 16MB";
+            // alert('El archivo no debe superar los 16MB');
+            swal.fire({
+                "title": "¡Error!",
+                "text": "El archivo no debe superar los 16MB",
+                "icon": "error",
+                "confirmButtonText": "Aceptar",
+                "confirmButtonColor": "#ed1b25",
+                "allowOutsideClick": false,
+                "allowEscapeKey": false
+            });
             this.value = '';
             this.files[0].name = '';
         } else {
@@ -297,7 +318,15 @@ require '../templates/header.php';
                 case 'png':
                     break;
                 default:
-                    alert('El archivo no tiene la extensión adecuada');
+                    swal.fire({
+                        "title": "¡Error!",
+                        "text": "El archivo no tiene la extensión adecuada",
+                        "icon": "error",
+                        "confirmButtonText": "Aceptar",
+                        "confirmButtonColor": "#ed1b25",
+                        "allowOutsideClick": false,
+                        "allowEscapeKey": false
+                    });
                     this.value = ''; // reset del valor
                     this.files[0].name = '';
             }

@@ -14,13 +14,13 @@ if (!isset($_SESSION['rol'])) {
 
 <?php
 include_once '../../queries/conexion.php';
-
+$mensaje = "";
 $evento = "SELECT * FROM f_actividades";
 $result = mysqli_query($conn, $evento);
 $nr = mysqli_num_rows($result);
 
-$ramas ="SELECT * FROM f_actividades A, ramas R, ramas_actividades AR WHERE A.id_act = AR.id_act AND AR.id_rama =  R.id_rama";
-$resultR = mysqli_query($conn,$ramas);
+// $ramas ="SELECT * FROM f_actividades A, ramas R, ramas_actividades AR WHERE A.id_act = AR.id_act AND AR.id_rama =  R.id_rama";
+// $resultR = mysqli_query($conn,$ramas);
 
 if (isset($_GET['delete'])) {
   $idAct = $_GET['delete'];
@@ -35,35 +35,61 @@ if (isset($_GET['delete'])) {
       if ($result2) {
         header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
       } else {
-        echo "Error eliminando el evento seleccionado.";
+        // echo "Error eliminando el evento seleccionado.";
+        $mensaje = '<script lang="javascript">
+                swal.fire({
+                    "title":"¡Error!",
+                    "icon": "error",
+                    "confirmButtonText": "Aceptar",
+                    "confirmButtonColor": "#ed1b25",
+                    "allowOutsideClick": false,
+                    "allowEscapeKey" : false
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        window.location = "/proyectoGrupoScout/views/admin/listEventos.php";
+                    }
+                });
+                
+            </script>';
       }
     } else {
-      echo "Error eliminando ramas del evento.";
+      $mensaje = '<script lang="javascript">
+                swal.fire({
+                    "title":"¡Error!",
+                    "icon": "error",
+                    "confirmButtonText": "Aceptar",
+                    "confirmButtonColor": "#ed1b25",
+                    "allowOutsideClick": false,
+                    "allowEscapeKey" : false
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        window.location = "/proyectoGrupoScout/views/admin/listEventos.php";
+                    }
+                });
+                
+            </script>';
     }
   } else {
-    echo "Error eliminando inscritos.";
+    // echo "Error eliminando inscritos.";
+    $mensaje = '<script lang="javascript">
+                swal.fire({
+                    "title":"¡Error!",
+                    "icon": "error",
+                    "confirmButtonText": "Aceptar",
+                    "confirmButtonColor": "#ed1b25",
+                    "allowOutsideClick": false,
+                    "allowEscapeKey" : false
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        window.location = "/proyectoGrupoScout/views/admin/listEventos.php";
+                    }
+                });
+                
+            </script>';
   }
-  // else {
-  //   $query2 = "DELETE FROM f_actividades WHERE id_act = '$idAct'";
-  //   $result2 = mysqli_query($conn, $query2);
-  //   if ($result2) {
-  //     header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
-  //   } else {
-  //     echo "Error";
-  //   }
-  // }
+
 }
 
-// if (isset($_GET['delete'])) {
-//   $id_act = $_GET['delete'];
-//   $query2 = "DELETE FROM f_actividades WHERE id_act = '$id_act'";
-//   $result2 = mysqli_query($conn, $query2);
-//   if ($result2) {
-//     header("Location: /proyectoGrupoScout/views/admin/listEventos.php");
-//   } else {
-//     echo "Error";
-//   }
-// }
 
 ?>
 
@@ -144,6 +170,13 @@ require '../templates/header.php';
 </div>
 
 <?php
+require '../templates/scripts.php';
+
+?>
+
+<?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 
