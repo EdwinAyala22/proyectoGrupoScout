@@ -16,6 +16,8 @@ if (!isset($_SESSION['rol'])) {
 
 include_once '../../queries/conexion.php';
 
+$mensaje = "";
+
 if (isset($_POST['crear'])) {
     $nombres = $_POST['nombres'];
     $apellido1 = $_POST['apellido1'];
@@ -36,11 +38,43 @@ if (isset($_POST['crear'])) {
     $id_rol = $_POST['id_rol'];
 
     $sql = "INSERT INTO usuarios (nombres, apellido1, apellido2, tipodoc, documento, fecha_nacimiento, telefono, direccion, eps, rh, genero, grupo_anterior, ciudad, correo, contrasena, id_rama, id_rol)  values ('$nombres','$apellido1','$apellido2','$tipodoc','$documento','$fecha_nacimiento','$telefono','$direccion','$eps','$rh','$genero','$grupo_anterior','$ciudad','$correo','$contrasena','$id_rama','$id_rol')";
-    $result = mysqli_query($conn,$sql);
+    $result = mysqli_query($conn, $sql);
     if ($result) {
-        header("Location: /proyectoGrupoScout/views/admin/listUsers.php");
+        // header("Location: /proyectoGrupoScout/views/admin/listUsers.php");
+        $mensaje = '<script lang="javascript">
+        swal.fire({
+            "title":"¡Usuario creado!",
+            "text": "El usuario ha sido creado con éxito.",
+            "icon": "success",
+            "confirmButtonText": "Aceptar",
+            "confirmButtonColor": "#1e0941",
+            "allowOutsideClick": false,
+            "allowEscapeKey" : false
+        }).then((result)=>{
+            if (result.isConfirmed){
+                window.location = "/proyectoGrupoScout/views/admin/listUsers.php";
+            }
+        });
+        
+    </script>';
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $mensaje = '<script lang="javascript">
+        swal.fire({
+            "title":"¡Error!",
+            "icon": "error",
+            "text": "Error, inténtelo nuevamente.",
+            "confirmButtonText": "Aceptar",
+            "confirmButtonColor": "#ed1b25",
+            "allowOutsideClick": false,
+            "allowEscapeKey" : false
+        }).then((result)=>{
+            if (result.isConfirmed){
+                window.location = "/proyectoGrupoScout/views/admin/crearUsuario.php";
+            }
+        });
+        
+    </script>';
+        
     }
 }
 
@@ -186,6 +220,14 @@ require '../templates/header.php';
 </div>
 
 <?php
+
+require '../templates/scripts.php'
+
+?>
+
+<?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 

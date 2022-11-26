@@ -13,6 +13,7 @@ if (!isset($_SESSION['rol'])) {
 include_once '../../queries/conexion.php';
 $documento = $_POST['documento'];
 $id_t_adelanto = $_POST['id_t_adelanto'];
+$mensaje = "";
 // $nombres = $_POST['nombres'];
 // $apellidos = $_POST['apellidos'];
 
@@ -24,21 +25,50 @@ if (isset($_POST['editarP'])) {
     $costo = $_POST['costo'];
     $queryU = "UPDATE segui_plan_adelanto set fechaEntrega = '$fechaEntrega', id_t_adelanto = '$id_t_adelanto', lugarEntrega = '$lugar', dirigente = '$dirigente', costo = '$costo'   WHERE documento = $documento AND id_t_adelanto = '$idAdeAnterior'";
     $resultU = mysqli_query($conn, $queryU);
-     if ($resultU){
-        echo'<script type="text/javascript">
-                alert("La progresión se ha modificado con éxito.");
-                window.location.href="/proyectoGrupoScout/views/admin/progresiones.php";
+    if ($resultU) {
+        
+        $mensaje = '<script lang="javascript">
+                swal.fire({
+                    "title":"¡Progresión actualizada!",
+                    "text": "La progresión ha sido actualizada con éxito.",
+                    "icon": "success",
+                    "confirmButtonText": "Aceptar",
+                    "confirmButtonColor": "#1e0941",
+                    "allowOutsideClick": false,
+                    "allowEscapeKey" : false
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        window.location = "/proyectoGrupoScout/views/admin/progresiones.php";
+                    }
+                });
+                
+            </script>';
+    } else {
+        $mensaje = '<script lang="javascript">
+                    swal.fire({
+                        "title":"¡Error!",
+                        "icon": "error",
+                        "text": "Error, inténtelo nuevamente.",
+                        "confirmButtonText": "Aceptar",
+                        "confirmButtonColor": "#ed1b25",
+                        "allowOutsideClick": false,
+                        "allowEscapeKey" : false
+                    }).then((result)=>{
+                        if (result.isConfirmed){
+                            window.location = "/proyectoGrupoScout/views/admin/progresiones.php";
+                        }
+                    });
+                    
                 </script>';
-     } else {
-        echo "Error al tratar de modificar la progresión.";
-     }
+        
+    }
 }
 
- 
 
-    
-    
-    
+
+
+
+
 
 $query1 = "SELECT * FROM usuarios U, segui_plan_adelanto S, tipodeadelanto T WHERE U.documento = S.documento AND S.id_t_adelanto = T.id_t_adelanto AND S.documento = $documento AND S.id_t_adelanto = $id_t_adelanto";
 $result1 = mysqli_query($conn, $query1);
@@ -94,11 +124,11 @@ $result = mysqli_query($conn, $query);
             <form action="/proyectoGrupoScout/views/admin/editarProgresion.php" method="POST" class="p-3 form_registro justify-content-center align-items-center">
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                    <label class="form-label fw-bold titulo">Nombres: </label>
+                        <label class="form-label fw-bold titulo">Nombres: </label>
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombre" value="<?php echo $mostrar['nombres'] ?>" readonly>
                     </div>
                     <div class="">
-                    <label class="form-label fw-bold titulo">Apellido: </label>
+                        <label class="form-label fw-bold titulo">Apellido: </label>
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="apellidos" placeholder="Apellidos" data-bs-toggle="tooltip" data-bs-placement="top" title="Apellidos" value="<?php echo $mostrar['apellido1'] ?>" readonly>
                     </div>
 
@@ -106,27 +136,27 @@ $result = mysqli_query($conn, $query);
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                    <label class="form-label fw-bold titulo">No. de documento: </label>
+                        <label class="form-label fw-bold titulo">No. de documento: </label>
                         <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" value="<?php echo $mostrar['documento'] ?>" readonly>
                     </div>
                     <div class="">
-                    <label class="form-label fw-bold titulo">Fecha de entrega: </label>
+                        <label class="form-label fw-bold titulo">Fecha de entrega: </label>
                         <input type="date" class="form-control mb-3 fw-bold input_login" name="fechaEntrega" placeholder="Fecha de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Fecha de entrega" value="<?php echo $mostrar['fechaEntrega'] ?>" required>
-                        
+
                     </div>
                 </div>
-                
+
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                    <label class="form-label fw-bold titulo">Rama anterior:</label>
-                    <?php echo $mostrarR['nom_rama'] ?></span>
+                        <label class="form-label fw-bold titulo">Rama anterior:</label>
+                        <?php echo $mostrarR['nom_rama'] ?></span>
                     </div>
 
-                    
-                    <div class="" >
-                    <label class="form-label fw-bold titulo">Progresión anterior:</label>
-                    <?php echo $mostrar['nombreTipoAdelanto']  ?>
-                    <input type="hidden" class="form-control mb-3 fw-bold input_login" name="idAdelantoAnterior" placeholder="Fecha de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Fecha de entrega" value="<?php echo $mostrar['id_t_adelanto'] ?>">
+
+                    <div class="">
+                        <label class="form-label fw-bold titulo">Progresión anterior:</label>
+                        <?php echo $mostrar['nombreTipoAdelanto']  ?>
+                        <input type="hidden" class="form-control mb-3 fw-bold input_login" name="idAdelantoAnterior" placeholder="Fecha de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Fecha de entrega" value="<?php echo $mostrar['id_t_adelanto'] ?>">
 
                     </div>
 
@@ -149,7 +179,7 @@ $result = mysqli_query($conn, $query);
 
                     </div>
 
-                    
+
                     <div class="" id="progresion-seleccionada">
                         <!-- COMBOBOX PROGRESIÓN-->
                         <!-- <select id="progresion-seleccionada" class="form-select mb-3 fw-bold input_login" name="progresion-seleccionada" required data-bs-toggle="tooltip" data-bs-placement="top" title="Progresión">
@@ -174,7 +204,7 @@ $result = mysqli_query($conn, $query);
 
                 <div class="row ">
                     <div class="">
-                    <label for="costo" class="form-label fw-bold titulo">Costo: </label>
+                        <label for="costo" class="form-label fw-bold titulo">Costo: </label>
                         <input type="Number" class="form-control mb-3 fw-bold input_login" name="costo" placeholder="Costo" data-bs-toggle="tooltip" data-bs-placement="top" title="Costo" value="<?php echo $mostrar['costo'] ?>" maxlength="10" pattern="[0-9]" required>
                     </div>
                 </div>
@@ -189,6 +219,14 @@ $result = mysqli_query($conn, $query);
 </div>
 
 <?php
+
+require '../templates/scripts.php'
+
+?>
+
+<?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 

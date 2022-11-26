@@ -139,7 +139,7 @@ require '../templates/header.php';
                     </div>
                     <div class="">
                         <label for="contrasena" class="form-label fw-bold titulo">Contraseña: </label>
-                        <input disabled id="contrasena" type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" required value="<?php echo $pass ?>">
+                        <input disabled id="contrasena" type="text" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" required value="<?php echo $pass ?>">
                     </div>
                 </div>
                 <div class="row row-cols-md-2 row-cols-sm-1">

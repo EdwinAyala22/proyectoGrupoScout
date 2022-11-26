@@ -61,7 +61,7 @@ $nr = mysqli_num_rows($result);
             <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar">Eliminar</button>
           </td> -->
         </tr>
-        <!-- Modal -->
+        
         <?php
       } 
     } else {

@@ -17,7 +17,7 @@ if (!isset($_SESSION['rol'])) {
 include_once '../../queries/conexion.php';
 $query = "SELECT * FROM ramas";
 $result_ramas = mysqli_query($conn, $query);
-
+$mensaje = "";
 
 $consulta = 'SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.id_rol = 2';
 $result = mysqli_query($conn, $consulta);
@@ -31,7 +31,21 @@ if (isset($_GET['delete'])) {
 
         header("Location: /proyectoGrupoScout/views/admin/listUsers.php");
     } else {
-        echo "Error";
+        $mensaje = '<script lang="javascript">
+        swal.fire({
+            "title":"¡Error!",
+            "icon": "error",
+            "confirmButtonText": "Aceptar",
+            "confirmButtonColor": "#ed1b25",
+            "allowOutsideClick": false,
+            "allowEscapeKey" : false
+        }).then((result)=>{
+            if (result.isConfirmed){
+                window.location = "/proyectoGrupoScout/views/admin/listEventos.php";
+            }
+        });
+        
+    </script>';
     }
 }
 
@@ -94,12 +108,24 @@ require '../templates/header.php';
             while ($mostrar = mysqli_fetch_array($result)) {
             ?>
                 <tr>
-                    <td> <p></p> <?php echo $mostrar['nombres'] ?></td>
-                    <td> <p></p> <?php echo $mostrar['apellido1'] . ' ' . $mostrar['apellido2'] ?></td>
-                    <td> <p></p> <?php echo $mostrar['tipodoc'] ?></td>
-                    <td> <p></p> <?php echo $mostrar['documento'] ?></td>
-                    <td> <p></p> <?php echo $mostrar['correo'] ?></td>
-                    <td> <p></p> <?php echo $mostrar['nom_rama'] ?></td>
+                    <td>
+                        <p></p> <?php echo $mostrar['nombres'] ?>
+                    </td>
+                    <td>
+                        <p></p> <?php echo $mostrar['apellido1'] . ' ' . $mostrar['apellido2'] ?>
+                    </td>
+                    <td>
+                        <p></p> <?php echo $mostrar['tipodoc'] ?>
+                    </td>
+                    <td>
+                        <p></p> <?php echo $mostrar['documento'] ?>
+                    </td>
+                    <td>
+                        <p></p> <?php echo $mostrar['correo'] ?>
+                    </td>
+                    <td>
+                        <p></p> <?php echo $mostrar['nom_rama'] ?>
+                    </td>
                     <td class="text-center">
                         <a class="m-1 btn btnDetalles" href="/proyectoGrupoScout/views/admin/detalleUsuario.php?det=<?php echo $mostrar['documento'] ?>">Detalles</a>
                         <a class="m-1 btn btnEditar" href="/proyectoGrupoScout/views/admin/editarUsuario.php?edit=<?php echo $mostrar['documento'] ?>">Editar</a>
@@ -139,6 +165,8 @@ require '../templates/scripts.php';
 
 
 <?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 

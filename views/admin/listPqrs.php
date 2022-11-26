@@ -26,7 +26,7 @@ if (isset($_GET['edit'])) {
   $query = "UPDATE pqrs set estado = 1 WHERE id_pqrs = $idPQRS";
   $result2 = mysqli_query($conn, $query);
   if ($result2) {
-    // header("Location: /proyectoGrupoScout/views/admin/listPqrs.php");
+    
     $mensaje = '<script lang="javascript">
     swal.fire({
         "title":"¡PQRS Solucionado!",
