@@ -29,13 +29,3 @@ window.onscroll = function(){
 
 }
 
-
-// alerta 
-
-function showAlert(title, description, alertType) {
-    Swal.fire(
-        title,
-        description,
-        alertType
-      )
-}

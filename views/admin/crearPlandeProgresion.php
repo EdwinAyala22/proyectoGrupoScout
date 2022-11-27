@@ -33,10 +33,7 @@ if (isset($_POST['crearP'])) {
     $rs = mysqli_query($conn, $sql);
     $rows = mysqli_num_rows($rs);
     if ($rows != 1) {
-        // echo '<script type="text/javascript">
-        //     alert("Error, el usuario no existe");
-        //     window.location.href="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php";
-        //     </script>';
+        
         $mensaje = '<script lang="javascript">
             swal.fire({
                 "title":"¡Error!",
@@ -56,10 +53,7 @@ if (isset($_POST['crearP'])) {
     } else {
         $consulta = "INSERT INTO segui_plan_adelanto (fechaEntrega, documento, id_t_adelanto, lugarEntrega, dirigente, costo) VALUES ('$fechaEntrega', '$doc', '$id_adelanto', '$lugarEntrega', '$dirigente', '$costo')";
         if (mysqli_query($conn, $consulta)) {
-            // echo '<script type="text/javascript">
-            //     alert("Registro realizado con éxito");
-            //     window.location.href="/proyectoGrupoScout/views/admin/progresiones.php";
-            //     </script>';
+            
             $mensaje = '<script lang="javascript">
                 swal.fire({
                     "title":"¡Progresión creada!",
@@ -77,10 +71,7 @@ if (isset($_POST['crearP'])) {
                 
             </script>';
         } else {
-            // echo '<script type="text/javascript">
-            //     alert("Error");
-            //     window.location.href="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php";
-            //     </script>';
+            
             $mensaje = '<script lang="javascript">
                     swal.fire({
                         "title":"¡Error!",

@@ -27,7 +27,7 @@ if(isset($_POST['id_rama'])){
     echo $select;
 }else{
     echo'<script type="text/javascript">
-                alert("Error.");
+                alert("No se puede acceder a este sitio.");
                 window.location.href="/proyectoGrupoScout/";
                 </script>';
 }

@@ -18,11 +18,6 @@ $error = "";
 $mensaje = " ";
 
 $documento = $_SESSION['id_user'];
-// $documento = $_GET['id'];
-
-// if (empty($documento)) {
-//     header("Location: /proyectoGrupoScout/views/login.php");
-// }
 
 
 if (isset($_POST['cambiar'])) {

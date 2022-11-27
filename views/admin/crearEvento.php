@@ -92,7 +92,7 @@ if (isset($_POST['crear'])) {
                 }
             }
         } else {
-            // echo "Error: " . $sql . "<br>" . $conn->error;
+            
 
             $mensaje = '<script lang="javascript">
                 swal.fire({
