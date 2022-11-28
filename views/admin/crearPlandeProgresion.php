@@ -51,6 +51,18 @@ if (isset($_POST['crearP'])) {
             
         </script>';
     } else {
+        $sql2 = "SELECT * FROM segui_plan_adelanto WHERE documento = '$doc'";
+        $rs2 = mysqli_query($conn, $sql2);
+        // $mostrarU = mysqli_fetch_array($rs2);
+        $mismoAdelanto = "0";
+        while ($mostrarU = mysqli_fetch_array($rs2)) {
+            if ($mostrarU['id_t_adelanto'] == $id_adelanto) {
+                $mismoAdelanto = 1;
+            }
+        }
+
+        if ($mismoAdelanto == 0){
+
         $consulta = "INSERT INTO segui_plan_adelanto (fechaEntrega, documento, id_t_adelanto, lugarEntrega, dirigente, costo) VALUES ('$fechaEntrega', '$doc', '$id_adelanto', '$lugarEntrega', '$dirigente', '$costo')";
         if (mysqli_query($conn, $consulta)) {
             
@@ -89,6 +101,24 @@ if (isset($_POST['crearP'])) {
                     
                 </script>';
         }
+    } else {
+        $mensaje = '<script lang="javascript">
+                    swal.fire({
+                        "title":"¡Error!",
+                        "icon": "error",
+                        "text": "Error, el scout ya tiene esta progresión.",
+                        "confirmButtonText": "Aceptar",
+                        "confirmButtonColor": "#ed1b25",
+                        "allowOutsideClick": false,
+                        "allowEscapeKey" : false
+                    }).then((result)=>{
+                        if (result.isConfirmed){
+                            window.location = "/proyectoGrupoScout/views/admin/crearPlandeProgresion.php";
+                        }
+                    });
+                    
+                </script>';
+    }
     }
 }
 

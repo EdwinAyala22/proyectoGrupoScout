@@ -23,6 +23,17 @@ if (isset($_POST['editarP'])) {
     $lugar = $_POST['lugarEntrega'];
     $dirigente = $_POST['dirigente'];
     $costo = $_POST['costo'];
+
+    $sql2 = "SELECT * FROM segui_plan_adelanto WHERE documento = '$documento'";
+    $rs2 = mysqli_query($conn, $sql2);
+    // $mostrarU = mysqli_fetch_array($rs2);
+    $mismoAdelanto = "0";
+    while ($mostrarU = mysqli_fetch_array($rs2)) {
+        if ($mostrarU['id_t_adelanto'] == $id_t_adelanto) {
+            $mismoAdelanto = 1;
+        }
+    }
+    if ($mismoAdelanto == 0) {
     $queryU = "UPDATE segui_plan_adelanto set fechaEntrega = '$fechaEntrega', id_t_adelanto = '$id_t_adelanto', lugarEntrega = '$lugar', dirigente = '$dirigente', costo = '$costo'   WHERE documento = $documento AND id_t_adelanto = '$idAdeAnterior'";
     $resultU = mysqli_query($conn, $queryU);
     if ($resultU) {
@@ -62,6 +73,24 @@ if (isset($_POST['editarP'])) {
                 </script>';
         
     }
+} else {
+    $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡Error!",
+        "icon": "error",
+        "text": "Error, el scout ya tiene esta progresión.",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#ed1b25",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/admin/progresiones.php";
+        }
+    });
+    
+</script>';
+}
 }
 
 

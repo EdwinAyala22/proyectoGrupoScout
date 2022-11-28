@@ -17,9 +17,15 @@ include_once '../../queries/conexion.php';
 
 $class = "visually-hidden";
 $error = "";
+$class1 = "visually-hidden";
+$error1 = "";
 $mensaje = "";
 
+
 if (isset($_POST['crear'])) {
+    
+    if (isset($_POST['ramasEvento'])) {
+
     $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
     $responsable = $_POST['responsable'];
     $objetivo_act = $_POST['objetivo_act'];
@@ -112,6 +118,10 @@ if (isset($_POST['crear'])) {
             </script>';
         }
     }
+} else {
+    $class1 = "alert alert-danger alert-dismissible fade show text-center";
+    $error1 = "Seleccione al menos una rama.";
+}
 }
 
 $tRamas = "SELECT * FROM ramas";
@@ -174,6 +184,10 @@ require '../templates/header.php';
                             } ?>
                         </div>
                     </div>
+                <div class="<?php echo $class1 ?>" role="alert">
+                    <?php echo $error1 ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
 
                 </div>
                 <div class="row row-cols-md-2 row-cols-sm-1">

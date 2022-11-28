@@ -18,6 +18,8 @@ include_once '../../queries/conexion.php';
 
 $class = "visually-hidden";
 $error = "";
+$class1 = "visually-hidden";
+$error1 = "";
 $mensaje = "";
 
 // $clase = "";
@@ -89,6 +91,7 @@ if (isset($_GET['idAct'])) {
 }
 
 if (isset($_POST['editarEv'])) {
+    if (isset($_POST['ramasEvento'])) {
     $id = $_GET["idAct"];
     // $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
     $responsable = $_POST['responsable'];
@@ -198,6 +201,10 @@ if (isset($_POST['editarEv'])) {
             </script>';
         }
     }
+} else {
+    $class1 = "alert alert-danger alert-dismissible fade show text-center";
+    $error1 = "Seleccione al menos una rama.";
+}
 }
 
 
@@ -285,6 +292,10 @@ if (isset($resultR)) {
                             ?>
                         </div>
                     </div>
+                <div class="<?php echo $class1 ?>" role="alert">
+                    <?php echo $error1 ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
 
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
