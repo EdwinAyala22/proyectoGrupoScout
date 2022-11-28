@@ -39,6 +39,7 @@ if (isset($_GET['det'])) {
         $pass = $mostrar['contrasena'];
         $rama = $mostrar['nom_rama'];
         $rol = $mostrar['rol'];
+        $idRol= $mostrar['id_rol'];
     } else {
         echo "Error";
     }
@@ -53,8 +54,18 @@ if (isset($_GET['det'])) {
 require '../templates/header.php';
 
 ?>
+<?php
 
-<a href="/proyectoGrupoScout/views/admin/listUsers.php" class="btn links_nav m-2" id="newUser">Volver</a>
+
+if($idRol == 3 ){
+    echo "<a href='/proyectoGrupoScout/views/admin/interesados.php' class='btn links_nav m-2'>Volver</a>";
+}else{
+    if($idRol==2){
+        echo "<a href='/proyectoGrupoScout/views/admin/listUsers.php' class='btn links_nav m-2' id='newUser'>Volver</a>";
+    }
+}
+
+?>
 
 <div class="container w-100 mt-1 mb-5 container_general">
     <div class="row align-items-stretch">

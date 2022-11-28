@@ -34,7 +34,7 @@ if (isset($_SESSION['rol'])) {
 if (isset($_POST['documento']) && isset($_POST['contrasena'])) {
     $documento = $_POST['documento'];
     $contrasena =  $_POST['contrasena'];
-
+    $id_rol = 2;
     $db = new Database();
     $query = $db->connect()->prepare('SELECT * FROM usuarios WHERE documento =:documento');
     $query->execute(['documento' => $documento]);
@@ -46,26 +46,32 @@ if (isset($_POST['documento']) && isset($_POST['contrasena'])) {
         if ($contrasena === $queryContrasena) {
 
             $rol = $row[16];
-            $_SESSION['rol'] = $rol;
-            switch ($_SESSION['rol']) {
-                case 1:
 
-                    $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
-                    $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
+            if ($rol === 3) {
+                $class = "alert alert-danger alert-dismissible fade show text-center";
+                $error = "Usuario pendiente de autorización";
+            } else {
+                $_SESSION['rol'] = $rol;
+                switch ($_SESSION['rol']) {
+                    case 1:
+
+                        $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
+                        $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
                 <button class="btn btn_general" type="submit">Cerrar sesión</button>
                 </form>';
-                    header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php");
-                    $_SESSION['id_user'] = $documento;
-                    break;
-                case 2:
-                    $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
-                    $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
+                        header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php");
+                        $_SESSION['id_user'] = $documento;
+                        break;
+                    case 2:
+                        $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
+                        $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
                 <button class="btn btn_general" type="submit">Cerrar sesión</button>
                 </form>';
-                    header("Location: /proyectoGrupoScout/views/scouts/menuScout.php");
-                    $_SESSION['id_user'] = $documento;
-                    break;
-                default:
+                        header("Location: /proyectoGrupoScout/views/scouts/menuScout.php");
+                        $_SESSION['id_user'] = $documento;
+                        break;
+                    default:
+                }
             }
         } else {
             $class = "alert alert-danger alert-dismissible fade show text-center";

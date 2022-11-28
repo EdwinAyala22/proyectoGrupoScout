@@ -28,4 +28,3 @@ window.onscroll = function(){
     }
 
 }
-

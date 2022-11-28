@@ -51,6 +51,7 @@ if (!isset($_SESSION['rol'])) {
     <h1 class="fw-bold text-center titulo text-wrap">PRODUCTOS</h1>
 </div>
 
+
 <div class="container d-flex justify-content-center align-items-center flex-wrap mt-2 mb-4">
 
     <?php
@@ -70,9 +71,7 @@ if (!isset($_SESSION['rol'])) {
 
 </div>
 
-<div id="button-up">
-    <i class="fas fa-chevron-up"></i>
-</div>
+
 
 <?php
 require '../views/templates/footer.php';
