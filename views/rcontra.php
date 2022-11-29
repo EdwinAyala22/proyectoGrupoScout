@@ -22,6 +22,7 @@ if (!isset($_SESSION['rol'])) {
     $btn2 = $logoutBtn;
 }
 
+$mensaje = "";
 $class = "visually-hidden";
 $error = "";
 
@@ -36,10 +37,22 @@ if (isset($_POST['recuperar'])) {
     if ($nr != 0) {
         $sqlContra = "UPDATE usuarios SET contrasena = '$contrasena' WHERE documento = '$documento' AND correo = '$correo'";
         $resultContra = mysqli_query($conn, $sqlContra);
-        echo '<script type="text/javascript">
-                alert("Contraseña actualizada");
-                window.location.href="/proyectoGrupoScout/views/login.php";
-                </script>';
+        $mensaje = '<script lang="javascript">
+        swal.fire({
+            "title":"¡Contraseña recuperada!",
+            "text": "La contraseña se ha recuperado con éxito.",
+            "icon": "success",
+            "confirmButtonText": "Aceptar",
+            "confirmButtonColor": "#1e0941",
+            "allowOutsideClick": false,
+            "allowEscapeKey" : false
+        }).then((result)=>{
+            if (result.isConfirmed){
+                window.location = "/proyectoGrupoScout/views/login.php/#theLogin";
+            }
+        });
+        
+    </script>';
         
     } else {
         $class = "alert alert-danger alert-dismissible fade show text-center";
@@ -95,5 +108,14 @@ if (isset($_POST['recuperar'])) {
 </div>
 
 <?php
+
+require '../views/templates/scripts.php'
+
+?>
+
+<?php
+
+echo $mensaje;
+
 require '../views/templates/footer.php';
 ?>

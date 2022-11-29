@@ -34,7 +34,6 @@ if (isset($_SESSION['rol'])) {
 if (isset($_POST['documento']) && isset($_POST['contrasena'])) {
     $documento = $_POST['documento'];
     $contrasena =  $_POST['contrasena'];
-    $id_rol = 2;
     $db = new Database();
     $query = $db->connect()->prepare('SELECT * FROM usuarios WHERE documento =:documento');
     $query->execute(['documento' => $documento]);

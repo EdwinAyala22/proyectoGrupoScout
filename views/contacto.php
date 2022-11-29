@@ -3,13 +3,7 @@
 session_start();
 
 require_once '../queries/conexion.php';
-// if (!isset($_SESSION['rol'])) {
-//     $btn1 = $iniciarBtn;
-//     $btn2 = $registrarBtn;
-// } else {
-//     $btn1 = $menuBtn;
-//     $btn2 = $logoutBtn;
-// }
+
 $mensaje = "";
 
 if (isset($_POST['pqrs'])) {
@@ -21,13 +15,10 @@ if (isset($_POST['pqrs'])) {
     $query = "INSERT INTO pqrs (nombres, correo, asunto, detalles) VALUES ('$nombres', '$correo', '$asunto', '$detalles')";
 
     if (mysqli_query($conn, $query)) {
-        // echo '<script type="text/javascript">
-        // alert("Ha sido enviado con éxito");
-        // window.location.href="/proyectoGrupoScout/";
-        // </script>';
+
         $mensaje = '<script lang="javascript">
         swal.fire({
-            "title":"PQRS enviado!",
+            "title":"¡PQRS enviado!",
             "text": "El PQRS ha sido enviado con éxito.",
             "icon": "success",
             "confirmButtonText": "Aceptar",
