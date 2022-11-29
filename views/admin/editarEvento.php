@@ -16,6 +16,8 @@ if (!isset($_SESSION['rol'])) {
 
 include_once '../../queries/conexion.php';
 
+date_default_timezone_set('America/Bogota');
+
 $class = "visually-hidden";
 $error = "";
 $class1 = "visually-hidden";

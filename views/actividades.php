@@ -12,6 +12,8 @@ if (!isset($_SESSION['rol'])) {
 }
 include_once '../queries/conexion.php';
 
+date_default_timezone_set('America/Bogota');
+
 $sql = "SELECT * FROM f_actividades";
 $result = mysqli_query($conn, $sql);
 $nr = mysqli_num_rows($result);
