@@ -14,25 +14,25 @@ if (!isset($_SESSION['rol'])) {
 <title>Inscritos</title>
 <?php
 
-require '../templates/header.php';
 
 include_once '../../queries/conexion.php';
+
+require '../templates/header.php';
+
 ?>
 
 <a href="/proyectoGrupoScout/views/admin/listEventos.php" class="btn links_nav m-2" id="newUser">Volver</a>
 
-<div class="container d-flex justify-content-center mt-2 mb-5 flex-wrap bg-light p-3 containerCrud mb-3">
+<div class="container bg-light p-3 containerCrud mb-3">
 
-  <div class="row">
-    <h1 class="titulo fw-bold">Inscritos actividad</h1>
-  </div>
+  <h1 class="titulo fw-bold text-center m-3">Inscritos actividad</h1>
 
-  <table class="table table-borderless table-bordered" style="border-radius: 5px;">
+  <table class="table table-borderless table-bordered display responsive nowrap" id="tabla" style="width: 100%;">
     <thead class="cabeceraTablas text-center">
       <tr>
-        <th scope="col">Documento</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Correo</th>
+        <th>Documento</th>
+        <th>Nombre</th>
+        <th>Correo</th>
       </tr>
     </thead>
     <tbody class="text-center">
@@ -46,7 +46,7 @@ include_once '../../queries/conexion.php';
         $sql = "SELECT * FROM inscritos  WHERE id_act = $id_act";
         $result = mysqli_query($conn, $sql);
         $nr = mysqli_num_rows($result);
-        if ($nr !=0 ) {
+        if ($nr != 0) {
 
           while ($row = mysqli_fetch_array($result)) {
             // $idAct = $row['id_act'];
@@ -59,9 +59,9 @@ include_once '../../queries/conexion.php';
       <?php
           }
         } else {
-          echo "<tr>";
-          echo "<td colspan='3'>No hay inscritos</td>";
-          echo "</tr>";
+          // echo "<tr>";
+          // echo "<td colspan='3'>No hay inscritos</td>";
+          // echo "</tr>";
         }
       }
 
@@ -69,6 +69,10 @@ include_once '../../queries/conexion.php';
     </tbody>
   </table>
 </div>
+
+<?php
+require '../templates/scripts.php';
+?>
 
 <?php
 require '../templates/footer.php';

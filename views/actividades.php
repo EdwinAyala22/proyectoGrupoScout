@@ -127,7 +127,7 @@ $fechaActual = strtotime(date("Y-m-d H:i:s"));
                                 </div>
                                 <div class="row p-2">
                                     <label for="formFile" class="text-start titulo">Anexe el formato de permiso diligenciado</label>
-                                    <input class="form-control input_login archivo" type="file" id="formFile">
+                                    <input class="form-control form-control-sm archivo" type="file" id="formFile">
                                 </div>
                                 <input type="hidden" name="idAct" value="<?php echo $row['id_act'] ?>">
                                 <div class="modal-footer d-flex flex-wrap">
