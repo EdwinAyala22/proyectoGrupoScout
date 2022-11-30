@@ -25,9 +25,9 @@ if (isset($_POST['inscribir'])) {
             // echo "no te podes inscribir, sos admin";
             $mensaje = '<script lang="javascript">
         swal.fire({
-            "title":"¡Error!",
-            "icon": "error",
-            "text": "Error, sólo los scouts pueden inscribirse en las actividades.",
+            "title":"¡Atención!",
+            "icon": "warning",
+            "text": "Sólo los scouts pueden inscribirse en las actividades.",
             "confirmButtonText": "Aceptar",
             "confirmButtonColor": "#ed1b25",
             "allowOutsideClick": false,
@@ -126,7 +126,7 @@ if (isset($_POST['inscribir'])) {
                                 swal.fire({
                                     "title":"¡Error!",
                                     "icon": "error",
-                                    "text": "Error al intentar inscribirse en la actividad",
+                                    "text": "Error al intentar inscribirse en la actividad.",
                                     "confirmButtonText": "Aceptar",
                                     "confirmButtonColor": "#ed1b25",
                                     "allowOutsideClick": false,
@@ -161,9 +161,9 @@ if (isset($_POST['inscribir'])) {
             } else {
                 $mensaje = '<script lang="javascript">
         swal.fire({
-            "title":"¡Error!",
-            "icon": "error",
-            "text": "Error, el usuario no está registrado",
+            "title":"¡Atención!",
+            "icon": "warning",
+            "text": "Usted no se encuentra registrado.",
             "confirmButtonText": "Aceptar",
             "confirmButtonColor": "#ed1b25",
             "allowOutsideClick": false,
@@ -183,7 +183,7 @@ if (isset($_POST['inscribir'])) {
         swal.fire({
             "title":"¡Atención!",
             "icon": "warning",
-            "html": "Para poder inscribirse en las actividades debe <b>iniciar sesión</b>",
+            "html": "Para poder inscribirse en las actividades debe <b>iniciar sesión.</b>",
             "confirmButtonText": "Aceptar",
             "confirmButtonColor": "#ed1b25",
             "allowOutsideClick": false,
