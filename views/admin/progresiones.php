@@ -50,7 +50,9 @@ $nr = mysqli_num_rows($result);
 
 <div class="container bg-light p-3 containerCrud mb-3">
   <h1 class="titulo fw-bold text-center m-3">Lista de progresiones</h1>
-  <a class="mb-3 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php">Crear nueva progresión</a>
+  <div class="d-flex justify-content-start align-items-center gap-3">
+    <a class="mb-3 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearPlandeProgresion.php">Crear nueva progresión</a>
+  </div>
   <table class="table table-borderless table-bordered display responsive nowrap" style="width: 100%;" id="tabla">
     <thead class="cabeceraTablas text-center">
       <tr>
@@ -76,19 +78,23 @@ $nr = mysqli_num_rows($result);
             <td><p></p><?php echo $mostrar['apellido1'] . ' ' . $mostrar['apellido2']  ?></td>
             <td><p></p><?php echo $mostrar['fechaEntrega'] ?></td>
             <td><p></p><?php echo $mostrar['nombreTipoAdelanto'] ?></td>
-            <td class="d-flex justify-content-center align-items-center text-center">
-              <form action="./detalleProgresion.php" method="POST" class="m-0">
-                <input type="hidden" value="<?php echo $mostrar['documento'] ?>" name="documento">
-                <input type="hidden" value="<?php echo $mostrar['id_t_adelanto'] ?>" name="id_t_adelanto">
-                <button type="submit" class="btn btnDetalles m-1">Detalles</button>
-              </form>
-              <form action="./editarProgresion.php" method="POST" class="m-0">
-                <input type="hidden" value="<?php echo $mostrar['documento'] ?>" name="documento">
-                <input type="hidden" value="<?php echo $mostrar['id_t_adelanto'] ?>" name="id_t_adelanto">
-                <button type="submit" class="btn btnEditar m-1">Editar</button>
-              </form>
-              
-              <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['documento'].''.$mostrar['id_t_adelanto'] ?>">Eliminar</button>
+            <td>
+              <div class="d-flex justify-content-center">
+
+                <form action="./detalleProgresion.php" method="POST" class="m-0">
+                  <input type="hidden" value="<?php echo $mostrar['documento'] ?>" name="documento">
+                  <input type="hidden" value="<?php echo $mostrar['id_t_adelanto'] ?>" name="id_t_adelanto">
+                  <button type="submit" class="btn btnDetalles m-1">Detalles</button>
+                </form>
+                <form action="./editarProgresion.php" method="POST" class="m-0">
+                  <input type="hidden" value="<?php echo $mostrar['documento'] ?>" name="documento">
+                  <input type="hidden" value="<?php echo $mostrar['id_t_adelanto'] ?>" name="id_t_adelanto">
+                  <button type="submit" class="btn btnEditar m-1">Editar</button>
+                </form>
+                
+                <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['documento'].''.$mostrar['id_t_adelanto'] ?>">Eliminar</button>
+                
+              </div>
             </td>
           </tr>
           <!-- Modal -->

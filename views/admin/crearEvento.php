@@ -210,7 +210,7 @@ require '../templates/header.php';
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="lugar" placeholder="Lugar" title="Lugar" minlength="20" maxlength="50" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="lugar" placeholder="Lugar" title="Lugar" minlength="3" maxlength="50" required>
                     </div>
                     <div class="">
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" placeholder="Nombre de la actividad" title="Nombrea actividad" minlength="10" maxlength="200" required>

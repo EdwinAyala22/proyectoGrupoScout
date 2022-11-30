@@ -22,7 +22,7 @@ require '../views/templates/header.php';
     <div class="flip-card m-4" style="width: 15rem; height: 15rem;">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img src="/proyectoGrupoScout/assets/img/consejero1.jpeg" class="card-img-top rounded" alt="...">
+                <img src="/proyectoGrupoScout/assets/img/avatarScout.png" class="card-img-top rounded" alt="...">
             </div>
             <div class="flip-card-back p-3 d-flex justify-content-center align-items-center text-center flex-wrap card-body">
                 <div class="text-start">
@@ -37,7 +37,7 @@ require '../views/templates/header.php';
     <div class="flip-card m-4" style="width: 15rem; height: 15rem;">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img src="/proyectoGrupoScout/assets/img/consejero2.jpeg" class="card-img-top rounded" alt="...">
+                <img src="/proyectoGrupoScout/assets/img/avatarScout.png" class="card-img-top rounded" alt="...">
             </div>
             <div class="flip-card-back p-3 d-flex justify-content-center align-items-center text-center flex-wrap card-body">
                 <div class="text-start">
@@ -51,7 +51,7 @@ require '../views/templates/header.php';
     <div class="flip-card m-4" style="width: 15rem; height: 15rem;">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img src="/proyectoGrupoScout/assets/img/consejero3.jpeg" class="card-img-top rounded" alt="...">
+                <img src="/proyectoGrupoScout/assets/img/avatarScout.png" class="card-img-top rounded" alt="...">
             </div>
             <div class="flip-card-back p-3 d-flex justify-content-center align-items-center text-center flex-wrap card-body">
                 <div class="text-start">
@@ -65,7 +65,7 @@ require '../views/templates/header.php';
     <div class="flip-card  m-4" style="width: 15rem; height: 15rem;">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img src="/proyectoGrupoScout/assets/img/consejero1.jpeg" class="card-img-top rounded" alt="...">
+                <img src="/proyectoGrupoScout/assets/img/avatarScout.png" class="card-img-top rounded" alt="...">
             </div>
             <div class="flip-card-back p-3 d-flex justify-content-center align-items-center text-center flex-wrap card-body">
                 <div class="text-start">
