@@ -29,7 +29,7 @@ $tipoDeSangre = array(
 
 $query = "SELECT * FROM ramas";
 $result_ramas = mysqli_query($conn, $query);
-
+$clase = "";
 
 if (isset($_GET['edit'])) {
     $documento = $_GET['edit'];
@@ -72,6 +72,8 @@ if (isset($_GET['edit'])) {
         
     </script>';
     }
+}else{
+    $clase = "visually-hidden";
 }
 
 if (isset($_POST['editar'])) {
@@ -144,7 +146,7 @@ require '../templates/header.php';
 
 <a href="/proyectoGrupoScout/views/admin/listUsers.php" class="btn links_nav m-2" id="newUser">Volver</a>
 
-<div class="container w-100 mt-1 mb-5 container_general">
+<div class="container w-100 mt-1 mb-5 container_general <?php echo $clase ?>">
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-4 col-lg-4 col-xl-5">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
