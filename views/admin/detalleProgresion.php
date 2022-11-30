@@ -16,14 +16,40 @@ if (!isset($_SESSION['rol'])) {
 
 include_once '../../queries/conexion.php';
 
-$documento = $_POST['documento'];
-$id_t_adelanto = $_POST['id_t_adelanto'];
+$mensaje = "";
+$clase =  "";
+if (isset($_POST['documento'])) {
 
-$query = "SELECT * FROM usuarios U, segui_plan_adelanto S, tipodeadelanto T WHERE U.documento = S.documento AND S.id_t_adelanto = T.id_t_adelanto AND S.documento = $documento AND S.id_t_adelanto = $id_t_adelanto";
-$result = mysqli_query($conn, $query);
-$nr = mysqli_num_rows($result);
+    $documento = $_POST['documento'];
+    $id_t_adelanto = $_POST['id_t_adelanto'];
 
-$mostrar = mysqli_fetch_array($result);
+    $query = "SELECT * FROM usuarios U, segui_plan_adelanto S, tipodeadelanto T WHERE U.documento = S.documento AND S.id_t_adelanto = T.id_t_adelanto AND S.documento = $documento AND S.id_t_adelanto = $id_t_adelanto";
+    $result = mysqli_query($conn, $query);
+    $nr = mysqli_num_rows($result);
+
+    $mostrar = mysqli_fetch_array($result);
+} else {
+
+    $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡Error!",
+        "icon": "error",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#ed1b25",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/admin/progresiones.php";
+        }
+    });
+    
+</script>';
+
+    $clase = "visually-hidden";
+}
+
+
 
 // print_r($mostrar);
 
@@ -39,7 +65,7 @@ require '../templates/header.php';
 ?>
 
 <a href="/proyectoGrupoScout/views/admin/progresiones.php" class="btn links_nav m-2">Volver</a>
-<div class="container w-75 mb-5 container_general">
+<div class="container w-75 mb-5 container_general <?php echo $clase ?> ">
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
@@ -145,6 +171,14 @@ require '../templates/header.php';
 
 
 <?php
+
+require '../templates/scripts.php';
+
+?>
+
+<?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 

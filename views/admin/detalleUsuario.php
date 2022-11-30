@@ -15,6 +15,8 @@ if (!isset($_SESSION['rol'])) {
 
 include_once '../../queries/conexion.php';
 
+$mensaje = "";
+$clase = "";
 
 if (isset($_GET['det'])) {
     $documento = $_GET['det'];
@@ -39,10 +41,45 @@ if (isset($_GET['det'])) {
         $pass = $mostrar['contrasena'];
         $rama = $mostrar['nom_rama'];
         $rol = $mostrar['rol'];
-        $idRol= $mostrar['id_rol'];
+        $idRol = $mostrar['id_rol'];
     } else {
-        echo "Error";
+        // echo "Error";
+        $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡Error!",
+        "icon": "error",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#ed1b25",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/admin/listEventos.php";
+        }
+    });
+    
+</script>';
+        $clase = "visually-hidden";
     }
+    
+
+}else{
+    $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡No se puede acceder!",
+        "icon": "warning",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#ed1b25",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/admin/listUsers.php";
+        }
+    });
+    
+</script>';
+        $clase = "visually-hidden";
 }
 
 ?>
@@ -56,19 +93,22 @@ require '../templates/header.php';
 ?>
 <?php
 
-
-if($idRol == 3 ){
-    echo "<a href='/proyectoGrupoScout/views/admin/interesados.php' class='btn links_nav m-2'>Volver</a>";
-}else{
-    if($idRol==2){
-        echo "<a href='/proyectoGrupoScout/views/admin/listUsers.php' class='btn links_nav m-2' id='newUser'>Volver</a>";
+if(isset($idRol)){
+    if ($idRol == 3) {
+        echo "<a href='/proyectoGrupoScout/views/admin/interesados.php' class='btn links_nav m-2'>Volver</a>";
+    } else {
+        if ($idRol == 2) {
+            echo "<a href='/proyectoGrupoScout/views/admin/listUsers.php' class='btn links_nav m-2' id='newUser'>Volver</a>";
+        }
     }
+}else{
+    echo "<a href='' class='btn links_nav m-2' id='newUser'>Volver</a>";
 }
 
 ?>
 
 <div class="container w-100 mt-1 mb-5 container_general">
-    <div class="row align-items-stretch">
+    <div class="row align-items-stretch <?php echo $clase ?> ">
         <div class="col m-auto d-none d-lg-block col-md-4 col-lg-4 col-xl-5">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
         </div>
@@ -164,19 +204,21 @@ if($idRol == 3 ){
                     </div>
                 </div>
 
-
-
-                <!-- <div class="row">
-                    <div class="col d-flex justify-content-center align-items-center p-2">
-                        <button type="submit" class="btn btn_general" name="editar">Volver</button>
-                    </div>
-                </div> -->
             </form>
         </div>
     </div>
 </div>
 
 <?php
+
+require '../templates/scripts.php'
+
+?>
+
+
+<?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 

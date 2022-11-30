@@ -17,7 +17,8 @@ include_once '../../queries/conexion.php';
 
 
 // $id_admin = $_SESSION['id_user'];
-
+$mensaje = "";
+$clase = "";
 $documento = $_SESSION['id_user'];
 $query = "SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.documento = $documento";
 $result = mysqli_query($conn, $query);
@@ -38,7 +39,23 @@ if (mysqli_num_rows($result) == 1) {
     $ciu = $mostrar['ciudad'];
     $email = $mostrar['correo'];
 } else {
-    echo "Error";
+    // echo "Error";
+    $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡Error!",
+        "icon": "error",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#ed1b25",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/admin/menuAdmin.php";
+        }
+    });
+    
+</script>';
+    $clase = "visually-hidden";
 }
 
 
@@ -54,7 +71,7 @@ require '../templates/header.php';
 
 <a href="/proyectoGrupoScout/views/admin/menuAdmin.php" class="btn links_nav m-2" id="newUser">Volver</a>
 
-<div class="container w-100 mt-1 mb-5 container_general">
+<div class="container w-100 mt-1 mb-5 container_general <?php echo $clase ?>">
     <div class="row align-items-stretch">
         <!-- <div class="col m-auto d-none d-lg-block col-md-4 col-lg-4 col-xl-5">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
@@ -147,7 +164,16 @@ require '../templates/header.php';
     </div>
 </div>
 
+
 <?php
+
+require '../templates/scripts.php'
+
+?>
+
+<?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 

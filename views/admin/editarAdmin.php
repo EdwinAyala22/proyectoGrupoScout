@@ -57,7 +57,22 @@ if (mysqli_num_rows($result) == 1) {
     $rama = $mostrar['nom_rama'];
 
 } else {
-    echo "Error";
+    // echo "Error";
+    $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡Error!",
+        "icon": "error",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#ed1b25",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/admin/perfilAdmin.php";
+        }
+    });
+    
+</script>';
 }
 
 if(isset($_POST['editar'])){
