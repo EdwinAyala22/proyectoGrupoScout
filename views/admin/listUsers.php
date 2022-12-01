@@ -63,7 +63,7 @@ require '../templates/header.php';
 
 <div class="container bg-light p-3 containerCrud mb-3">
     <h1 class="titulo fw-bold text-center m-3">Lista de usuarios</h1>
-    <div class="d-flex justify-content-start align-items-center gap-3">
+    <div class="d-flex justify-content-start align-items-center flex-wrap gap-3">
 
         <a class="mb-3 btn crearNuevo" href="/proyectoGrupoScout/views/admin/crearUsuario.php/#newUser">Crear nuevo</a>
         <a target="_blank" class="mb-3 btn btnDetalles" href="/proyectoGrupoScout/views/reportes/r_usuarios.php">Reporte usuarios PDF</a>

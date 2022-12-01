@@ -130,11 +130,13 @@ require '../templates/header.php';
             <td> <p></p> $<?php echo $mostrar['costo'] ?></td>
             <td> <p></p> <?php echo $mostrar['fechaInicio'] ?></td>
            <!--  <td> <p></p> <?php $mostrar['fechaFin'] ?></td>-->
-            <td class="text-center">
-              <a class="m-1 btn btnDetalles" href="./detalleEvento.php?id=<?php echo $mostrar['id_act'] ?>"> Detalles</a>
-              <a class="m-1 btn btnEditar" href="./editarEvento.php?idAct=<?php echo $mostrar['id_act'] ?>"> Editar</a>
-              <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['id_act'] ?>">Eliminar</button>
-              <a class="m-1 btn btnInscritos" href="./inscritosEvento.php?idAct=<?php echo $mostrar['id_act'] ?>"> Inscritos</a>
+            <td>
+              <div class="d-flex justify-content-center align-items-center flex-wrap" >
+                <a class="m-1 btn btnDetalles" href="./detalleEvento.php?id=<?php echo $mostrar['id_act'] ?>"> Detalles</a>
+                <a class="m-1 btn btnEditar" href="./editarEvento.php?idAct=<?php echo $mostrar['id_act'] ?>"> Editar</a>
+                <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['id_act'] ?>">Eliminar</button>
+                <a class="m-1 btn btnInscritos" href="./inscritosEvento.php?idAct=<?php echo $mostrar['id_act'] ?>"> Inscritos</a>
+              </div>
             </td>
           </tr>
           <!-- Modal -->
