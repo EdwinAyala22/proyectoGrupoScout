@@ -20,6 +20,8 @@ if (!isset($_SESSION['rol'])) {
 
 include_once '../../queries/conexion.php';
 
+$mensaje = "";
+
 if (isset($_POST['eliminar'])) {
   $documento = $_POST['documento'];
   $id_t_adelanto = $_POST['id_t_adelanto'];
@@ -29,7 +31,23 @@ if (isset($_POST['eliminar'])) {
   if ($resultado) {
     header("Location: /proyectoGrupoScout/views/admin/progresiones.php");
   } else {
-    echo "Error";
+    // echo "Error";
+    $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡Error!",
+        "text": "Error, intente nuevamente.",
+        "icon": "error",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#ed1b25",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/admin/progresiones.php";
+        }
+    });
+    
+</script>';
   }
 }
 
@@ -139,6 +157,8 @@ require '../templates/scripts.php';
 ?>
 
 <?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 
