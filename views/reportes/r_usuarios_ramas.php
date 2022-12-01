@@ -79,8 +79,3 @@ while ($row=$result->fetch_assoc()) {
 
 ?>
 <link rel="shortcut icon" href="/proyectoGrupoScout/assets/img/logo-scout-co.svg" type="image/x-icon">
-
-
-
-
-?>

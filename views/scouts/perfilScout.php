@@ -16,12 +16,13 @@ if (!isset($_SESSION['rol'])) {
 
 <?php
 
-require '../templates/header.php';
+
 
 include_once '../../queries/conexion.php';
 
 
 $sid = $_SESSION['id_user'];
+$mensaje = "";
 
 $query = "SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.documento = $sid";
 $result = mysqli_query($conn, $query);
@@ -44,7 +45,24 @@ if (mysqli_num_rows($result) == 1) {
     $rama = $mostrar['nom_rama'];
 } else {
     echo "Error";
+    $mensaje = '<script lang="javascript">
+    swal.fire({
+        "title":"¡Error!",
+        "icon": "error",
+        "confirmButtonText": "Aceptar",
+        "confirmButtonColor": "#ed1b25",
+        "allowOutsideClick": false,
+        "allowEscapeKey" : false
+    }).then((result)=>{
+        if (result.isConfirmed){
+            window.location = "/proyectoGrupoScout/views/scouts/menuScout.php";
+        }
+    });
+    
+</script>';
 }
+
+require '../templates/header.php';
 
 ?>
 
@@ -152,6 +170,14 @@ if (mysqli_num_rows($result) == 1) {
 
 </div>
 <?php
+
+require '../templates/scripts.php';
+
+?>
+
+<?php
+
+echo $mensaje;
 
 require '../templates/footer.php';
 

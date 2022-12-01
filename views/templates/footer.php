@@ -19,10 +19,10 @@
             <div class="box">
                 <h2>SÍGUENOS</h2>
                 <div class="red-social">
-                    <a href="#" class="fa fa-facebook"></a>
-                    <a href="#" class="fa fa-instagram"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-youtube"></a>
+                    <a href="https://www.facebook.com/Grupo.Scout.662.Leon.Blanco/" target="_blank" class="fa fa-facebook"></a>
+                    <a href="https://instagram.com/gruposcoutleonblanco?igshid=ZmRlMzRkMDU=" target="_blank" class="fa fa-instagram"></a>
+                    <!-- <a href="#" class="fa fa-twitter"></a> -->
+                    <a href="https://youtube.com/@grupoleonblancopalmira2162" target="_blank" class="fa fa-youtube"></a>
                 </div>
             </div>
         </div>

@@ -14,13 +14,13 @@ include_once '../queries/conexion.php';
 
 
 
-if (!isset($_SESSION['rol'])) {
-    $btn1 = $iniciarBtn;
-    $btn2 = $registrarBtn;
-} else {
-    $btn1 = $menuBtn;
-    $btn2 = $logoutBtn;
-}
+// if (!isset($_SESSION['rol'])) {
+//     $btn1 = $iniciarBtn;
+//     $btn2 = $registrarBtn;
+// } else {
+//     $btn1 = $menuBtn;
+//     $btn2 = $logoutBtn;
+// }
 
 $mensaje = "";
 $class = "visually-hidden";

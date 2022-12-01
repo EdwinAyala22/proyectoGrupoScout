@@ -33,7 +33,7 @@ if (isset($_POST['generar'])) {
     $ramas = "SELECT * FROM ramas_actividades WHERE id_act = $_act_id";
     $sqlRamas = mysqli_query($conn, $ramas);
     $arrayRamas = array();
-    while ($guardarRamas = mysqli_fetch_array($sqlRamas)){
+    while ($guardarRamas = mysqli_fetch_array($sqlRamas)) {
         $arrayRamas[] = $guardarRamas['id_rama'];
     }
     $cant_ramas = count($arrayRamas);
@@ -47,11 +47,11 @@ if (isset($_POST['generar'])) {
     //Scouts no inscritos
     $posRama = 0;
     $NOInscritos = 0;
-    for ($i = 1; $i <= $cant_ramas ; $i ++){
-        $sqlNo ="SELECT COUNT(*) NoAsistieron FROM usuarios WHERE id_rama = $arrayRamas[$posRama]";
+    for ($i = 1; $i <= $cant_ramas; $i++) {
+        $sqlNo = "SELECT COUNT(*) NoAsistieron FROM usuarios WHERE id_rama = $arrayRamas[$posRama]";
         $resultNO = mysqli_query($conn, $sqlNo);
         $NO_Inscritos = mysqli_fetch_array($resultNO);
-        if ($NO_Inscritos){
+        if ($NO_Inscritos) {
             $NOInscritos = $NOInscritos + $NO_Inscritos['NoAsistieron'];
         } else {
             echo "Error consulta no asistieron.";
@@ -60,9 +60,6 @@ if (isset($_POST['generar'])) {
     }
 
     $Total = $NOInscritos - $NInscritos;
-
-
-
 }
 
 ?>
@@ -76,20 +73,20 @@ if (isset($_POST['generar'])) {
         <canvas id="myChart" class="m-3"></canvas>
     </div> -->
     <div style="width: 450px;" class="shadow bg-light p-5 rounded">
-        
+
         <form action="/proyectoGrupoScout/views/graficas/graficas.php" method="POST">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-5 d-flex justify-content-center align-items-center mb-3">
                     <select class="form-select fw-bold input_login" name="id_act" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la actividad">
-                    <option disabled selected value>Seleccionar actividad</option>
+                        <option disabled selected value>Seleccionar actividad</option>
                         <?php
-                            while ($mostrar = mysqli_fetch_array($result_sql_act)) { ?>
+                        while ($mostrar = mysqli_fetch_array($result_sql_act)) { ?>
 
-                                <option value="<?php echo $mostrar['id_act']; ?>"><?php echo $mostrar['nombre_act'];?></option>
-                            
-                                
-                            <?php    
-                            }
+                            <option value="<?php echo $mostrar['id_act']; ?>"><?php echo $mostrar['nombre_act']; ?></option>
+
+
+                        <?php
+                        }
                         ?>
                     </select>
                 </div>
@@ -159,7 +156,7 @@ if (isset($_POST['generar'])) {
             'No asistieron'
         ],
         datasets: [{
-            label: 'My First Dataset',
+            label: 'Scouts',
             data: [<?php echo $NInscritos ?>, <?php echo $Total ?>],
             backgroundColor: [
                 'rgb(30, 9, 65)',
