@@ -74,6 +74,47 @@ if (isset($_POST['editarP'])) {
         
     }
 } else {
+    if ($idAdeAnterior == $id_t_adelanto) {
+        $queryU2 = "UPDATE segui_plan_adelanto set fechaEntrega = '$fechaEntrega', lugarEntrega = '$lugar', dirigente = '$dirigente', costo = '$costo'   WHERE documento = $documento AND id_t_adelanto = '$idAdeAnterior'";
+    $resultU2 = mysqli_query($conn, $queryU2);
+    if ($resultU2) {
+        
+        $mensaje = '<script lang="javascript">
+                swal.fire({
+                    "title":"¡Progresión actualizada!",
+                    "text": "La progresión ha sido actualizada con éxito.",
+                    "icon": "success",
+                    "confirmButtonText": "Aceptar",
+                    "confirmButtonColor": "#1e0941",
+                    "allowOutsideClick": false,
+                    "allowEscapeKey" : false
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        window.location = "/proyectoGrupoScout/views/admin/progresiones.php";
+                    }
+                });
+                
+            </script>';
+    } else {
+        $mensaje = '<script lang="javascript">
+                    swal.fire({
+                        "title":"¡Error!",
+                        "icon": "error",
+                        "text": "Error, inténtelo nuevamente.",
+                        "confirmButtonText": "Aceptar",
+                        "confirmButtonColor": "#ed1b25",
+                        "allowOutsideClick": false,
+                        "allowEscapeKey" : false
+                    }).then((result)=>{
+                        if (result.isConfirmed){
+                            window.location = "/proyectoGrupoScout/views/admin/progresiones.php";
+                        }
+                    });
+                    
+                </script>';
+        
+    }
+    } else {
     $mensaje = '<script lang="javascript">
     swal.fire({
         "title":"¡Error!",
@@ -90,6 +131,7 @@ if (isset($_POST['editarP'])) {
     });
     
 </script>';
+    }
 }
 }
 
