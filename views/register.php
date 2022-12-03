@@ -8,6 +8,10 @@ session_start();
 
 include_once '../queries/conexion.php';
 
+date_default_timezone_set('America/Bogota');
+$fechaActual = date("Y-m-d");
+$fechaLimite = date("Y-m-d",strtotime($fechaActual."- 5 year"));
+
 $mensaje = "";
 
 if (isset($_POST['crear'])) {
@@ -141,7 +145,7 @@ require '../views/templates/header.php';
                         <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" title="Número de documento" minlength="7" maxlength="10" pattern="[0-9]" required>
                     </div>
                     <div class="form-floating">
-                        <input type="date" class="form-control mb-3 fw-bold input_login" id="floatingInput" name="fecha_nacimiento" title="Fecha de nacimiento" required>
+                        <input type="date" class="form-control mb-3 fw-bold input_login" id="floatingInput" name="fecha_nacimiento" title="Fecha de nacimiento" max="<?php echo $fechaLimite ?>" required>
                         <label class="ms-2 fw-bold titulo" for="floatingInput"> <small>Fecha de nacimiento</small></label>
                     </div>
                 </div>

@@ -15,6 +15,11 @@ if (!isset($_SESSION['rol'])) {
 <?php
 
 include_once '../../queries/conexion.php';
+
+date_default_timezone_set('America/Bogota');
+$fechaActual = date("Y-m-d");
+$fechaLimite = date("Y-m-d",strtotime($fechaActual."- 5 year"));
+
 $mensaje = "";
 $tipoDeSangre = array(
     "A+",
@@ -212,7 +217,7 @@ require '../templates/header.php';
                     </div>
                     <div class="">
                         <label for="fecha_nacimiento" class="form-label fw-bold titulo">Fecha de nacimiento: </label>
-                        <input type="date" class="form-control mb-3 fw-bold input_login" name="fecha_nacimiento" placeholder="Fecha de nacimiento" title="Fecha de nacimiento" required value="<?php echo $f_nac ?>">
+                        <input type="date" class="form-control mb-3 fw-bold input_login" name="fecha_nacimiento" placeholder="Fecha de nacimiento" title="Fecha de nacimiento" required value="<?php echo $f_nac ?>" max="<?php echo $fechaLimite ?>">
                     </div>
                 </div>
                 <div class="row row-cols-md-3 row-cols-sm-1">
