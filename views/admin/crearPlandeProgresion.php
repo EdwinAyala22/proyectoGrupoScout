@@ -168,7 +168,7 @@ require '../templates/header.php';
 
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
-                        <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" minlength="7" maxlength="10" pattern="[0-9]" required>
+                        <input type="number" class="form-control mb-3 fw-bold input_login validarNum" name="documento" placeholder="No. de documento" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" minlength="7" maxlength="12" required>
                     </div>
                     <div class="form-floating">
                         <input type="date" class="form-control mb-3 fw-bold input_login" name="fechaEntrega" placeholder="Fecha de entrega" data-bs-toggle="tooltip" data-bs-placement="top" title="Fecha de entrega" required>
@@ -216,7 +216,7 @@ require '../templates/header.php';
 
                 <div class="row ">
                     <div class="">
-                        <input type="Number" class="form-control mb-3 fw-bold input_login" name="costo" placeholder="Costo" data-bs-toggle="tooltip" data-bs-placement="top" title="Costo" maxlength="10" pattern="[0-9]" required>
+                        <input type="Number" class="form-control mb-3 fw-bold input_login validarNum" name="costo" placeholder="Costo" data-bs-toggle="tooltip" data-bs-placement="top" title="Costo" maxlength="10" required>
                     </div>
                 </div>
 
@@ -236,7 +236,22 @@ require '../templates/header.php';
 require '../templates/scripts.php';
 
 ?>
+<script lang="javascript">
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.oninput = () => {
+            if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);
+        }
+    });
 
+    jQuery(document).ready(function() {
+        jQuery('.validarNum').keypress(function(tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) {
+                return false;
+            }
+        });
+    });
+
+</script>
 <?php
 
 echo $mensaje;

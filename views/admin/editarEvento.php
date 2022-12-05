@@ -436,6 +436,19 @@ require '../templates/scripts.php';
             }
         }
     });
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.oninput = () => {
+            if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);
+        }
+    });
+
+    jQuery(document).ready(function() {
+        jQuery('.validarNum').keypress(function(tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) {
+                return false;
+            }
+        });
+    });
 </script>
 
 

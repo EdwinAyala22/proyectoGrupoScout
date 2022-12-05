@@ -243,7 +243,7 @@ require '../templates/header.php';
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="f_elab_por" placeholder="Actividad elaborada por" title="Actividad elaborada por" minlength="6" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
                     <div class="">
-                        <input type="number" class="form-control mb-3 fw-bold input_login" name="costo" placeholder="Costo actividad" title="Costo actividad" maxlength="10" pattern="[0-9]" required>
+                        <input type="number" class="form-control mb-3 fw-bold input_login validarNum" name="costo" placeholder="Costo actividad" title="Costo actividad" maxlength="10" required>
                     </div>
                 </div>
 
@@ -348,6 +348,21 @@ require '../templates/header.php';
             }
         }
     });
+
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.oninput = () => {
+            if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);
+        }
+    });
+
+    jQuery(document).ready(function() {
+        jQuery('.validarNum').keypress(function(tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) {
+                return false;
+            }
+        });
+    });
+
 </script>
 
 <?php

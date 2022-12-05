@@ -108,11 +108,11 @@ require '../views/templates/header.php';
 
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-user"></i>
-                    <input type="number" class="form-control text-center fw-bold input_login" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" autofocus maxlength="10" minlength="7" required>
+                    <input type="number" class="form-control text-center fw-bold input_login validarNum" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" autofocus minlength="7" maxlength="12"  required>
                 </div>
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-lock"></i>
-                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" maxlength="20" minlength="8" required>
+                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña"  minlength="8" maxlength="20" required>
                     <!-- <input type="hidden" value="modalUsu" name="idModal"> -->
                 </div>
                 <div class="<?php echo $class ?>" role="alert">
@@ -120,7 +120,7 @@ require '../views/templates/header.php';
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 <div class="mb-4 text-center">
-                    <p class="titulo fst-italic">¿Olvidaste la contraseña? <a href="/proyectoGrupoScout/views/rcontra.php" class="titulo fw-bold link_login">Click aquí</a></p>
+                    <p class="titulo fst-italic">¿Olvidaste la contraseña? <a href="/proyectoGrupoScout/views/rcontra.php/#rcontra" class="titulo fw-bold link_login">Click aquí</a></p>
                 </div>
                 <div class="mb-4 text-center">
                     <button type="submit" class="btn btn_general">INGRESAR</button>
@@ -134,7 +134,22 @@ require '../views/templates/header.php';
     </div>
 </div>
 
+<script lang="javascript">
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.oninput = () => {
+            if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);
+        }
+    });
 
+    jQuery(document).ready(function() {
+        jQuery('.validarNum').keypress(function(tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) {
+                return false;
+            }
+        });
+    });
+
+</script>
 
 <?php
 require '../views/templates/footer.php';

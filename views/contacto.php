@@ -75,7 +75,7 @@ require '../views/templates/header.php';
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="nombres" autofocus placeholder="Nombres" data-bs-toggle="tooltip" data-bs-placement="top" title="Nombre" required minlength="3" maxlength="100">
                     </div>
                     <div class="">
-                        <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" data-bs-toggle="tooltip" data-bs-placement="top" title="Correo" required>
+                        <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" maxlength="50" data-bs-toggle="tooltip" data-bs-placement="top" title="Correo" required pattern="[a-z0-9_]+([.][a-z0-9_]+)*@[a-z0-9_]+([.][a-z0-9_]+)*[.][a-z]{1,5}">
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@ require '../views/templates/header.php';
 
                 <div class="row">
                     <div class="">
-                        <textarea class="form-control mb-3 fw-bold input_login" name="detalles" placeholder="Detalle..." title="Detalle..." required minlength="30" maxlength="800"></textarea>
+                        <textarea class="form-control mb-3 fw-bold input_login" name="detalles" placeholder="Detalle..." title="Detalle..." required minlength="20" maxlength="800"></textarea>
                     </div>
                 </div>
 

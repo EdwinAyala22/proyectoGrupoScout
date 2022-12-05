@@ -99,15 +99,15 @@ require '../templates/header.php';
                 <div class="row">
                     <div class="">
                         <label for="contrasena" class="form-label fw-bold titulo">Contraseña anterior: </label>
-                        <input id="contrasena" type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" title="Contraseña anterior" required minlength="8" autofocus>
+                        <input id="contrasena" type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" title="Contraseña anterior" required minlength="8" maxlength="20" autofocus>
                     </div>
                     <div class="">
                         <label for="nuevaContrasena" class="form-label fw-bold titulo">Nueva contraseña: </label>
-                        <input id="nuevaContrasena" type="password" class="form-control mb-3 fw-bold input_login" name="nuevaContrasena" title="Nueva contraseña" minlength="8" required>
+                        <input id="nuevaContrasena" type="password" class="form-control mb-3 fw-bold input_login" name="nuevaContrasena" title="Nueva contraseña" minlength="8" maxlength="20" required>
                     </div>
                     <div class="">
                         <label for="confirmarContrasena" class="form-label fw-bold titulo">Confirmar contraseña: </label>
-                        <input id="confirmarContrasena" type="password" class="form-control mb-3 fw-bold input_login" name="confirmarContrasena" title="Confirmar contraseña" minlength="8" required>
+                        <input id="confirmarContrasena" type="password" class="form-control mb-3 fw-bold input_login" name="confirmarContrasena" title="Confirmar contraseña" minlength="8" maxlength="20" required>
                     </div>
                 </div>
                 <div class="<?php echo $class ?>" role="alert">

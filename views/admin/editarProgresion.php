@@ -208,7 +208,7 @@ $result = mysqli_query($conn, $query);
                 <div class="row row-cols-md-2 row-cols-sm-1">
                     <div class="">
                         <label class="form-label fw-bold titulo">No. de documento: </label>
-                        <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" value="<?php echo $mostrar['documento'] ?>" readonly>
+                        <input type="number" class="form-control mb-3 fw-bold input_login validarNum" name="documento" placeholder="No. de documento" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" value="<?php echo $mostrar['documento'] ?>" readonly>
                     </div>
                     <div class="">
                         <label class="form-label fw-bold titulo">Fecha de entrega: </label>
@@ -276,7 +276,7 @@ $result = mysqli_query($conn, $query);
                 <div class="row ">
                     <div class="">
                         <label for="costo" class="form-label fw-bold titulo">Costo: </label>
-                        <input type="Number" class="form-control mb-3 fw-bold input_login" name="costo" placeholder="Costo" data-bs-toggle="tooltip" data-bs-placement="top" title="Costo" value="<?php echo $mostrar['costo'] ?>" maxlength="10" pattern="[0-9]" required>
+                        <input type="Number" class="form-control mb-3 fw-bold input_login validarNum" name="costo" placeholder="Costo" data-bs-toggle="tooltip" data-bs-placement="top" title="Costo" value="<?php echo $mostrar['costo'] ?>" maxlength="10" required>
                     </div>
                 </div>
                 <div class="row">
@@ -294,6 +294,22 @@ $result = mysqli_query($conn, $query);
 require '../templates/scripts.php'
 
 ?>
+<script lang="javascript">
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.oninput = () => {
+            if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);
+        }
+    });
+
+    jQuery(document).ready(function() {
+        jQuery('.validarNum').keypress(function(tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) {
+                return false;
+            }
+        });
+    });
+
+</script>
 
 <?php
 

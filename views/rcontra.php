@@ -64,7 +64,7 @@ if (isset($_POST['recuperar'])) {
 ?>
 
 <div class="container w-75 mt-5 mb-5 container_general">
-    <div class="row align-items-stretch">
+    <div class="row align-items-stretch" id="rcontra">
         <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
         </div>
@@ -81,11 +81,11 @@ if (isset($_POST['recuperar'])) {
 
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-user"></i>
-                    <input type="number" class="form-control text-center fw-bold input_login" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required maxlength="10" minlength="7" pattern="[0-9]" autofocus>
+                    <input type="number" class="form-control text-center fw-bold input_login validarNum" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" required minlength="7" maxlength="12" autofocus>
                 </div>
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-envelope"></i>
-                    <input type="email" class="form-control text-center fw-bold input_login" name="correo" placeholder="Correo" data-bs-toggle="tooltip" data-bs-placement="top" title="Correo" required>
+                    <input type="email" class="form-control text-center fw-bold input_login" name="correo" placeholder="Correo" data-bs-toggle="tooltip" data-bs-placement="top" title="Correo" required pattern="[a-z0-9_]+([.][a-z0-9_]+)*@[a-z0-9_]+([.][a-z0-9_]+)*[.][a-z]{1,5}">
                 </div>
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-lock"></i>
@@ -99,7 +99,7 @@ if (isset($_POST['recuperar'])) {
                     <button type="submit" name="recuperar" class="btn btn_general">Recuperar</button>
                 </div>
                 <div class="mb-4 text-center">
-                    <p class="titulo fst-italic"> Volver a <a href="/proyectoGrupoScout/views/login.php" class="titulo fw-bold link_login">Inicio de sesión</a></p>
+                    <p class="titulo fst-italic"> Volver a <a href="/proyectoGrupoScout/views/login.php/#theLogin" class="titulo fw-bold link_login">Inicio de sesión</a></p>
                 </div>
             </form>
 
@@ -112,7 +112,22 @@ if (isset($_POST['recuperar'])) {
 require '../views/templates/scripts.php'
 
 ?>
+<script lang="javascript">
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.oninput = () => {
+            if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);
+        }
+    });
 
+    jQuery(document).ready(function() {
+        jQuery('.validarNum').keypress(function(tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) {
+                return false;
+            }
+        });
+    });
+
+</script>
 <?php
 
 echo $mensaje;

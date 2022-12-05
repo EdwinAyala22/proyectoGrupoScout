@@ -172,7 +172,7 @@ require '../templates/header.php';
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
                         <label for="telefono" class="form-label fw-bold titulo">Celular: </label>
-                        <input id="telefono" type="number" class="form-control mb-3 fw-bold input_login" name="telefono" placeholder="No. de celular" title="No. de celular" minlength="10" maxlength="10" required value="<?php echo $tel ?>">
+                        <input id="telefono" type="number" class="form-control mb-3 fw-bold input_login validarNum" name="telefono" placeholder="No. de celular" title="No. de celular" minlength="10" maxlength="10" required value="<?php echo $tel ?>">
                     </div>
                     <div class="">
                         <label for="direccion" class="form-label fw-bold titulo">Dirección: </label>
@@ -232,7 +232,7 @@ require '../templates/header.php';
                     </div>
                     <div class="">
                         <label for="correo" class="form-label fw-bold titulo">Correo: </label>
-                        <input id="correo" type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required value="<?php echo $email ?>">
+                        <input id="correo" type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required value="<?php echo $email ?>" pattern="[a-z0-9_]+([.][a-z0-9_]+)*@[a-z0-9_]+([.][a-z0-9_]+)*[.][a-z]{1,5}">
                     </div>
                     <div class="">
                         <label for="rama" class="form-label fw-bold titulo">Rama: </label>
@@ -280,16 +280,22 @@ require '../templates/header.php';
 require '../templates/scripts.php';
 
 ?>
-
-<!-- <script lang="javascript">
-    swal.fire({
-        "title": "¡Datos actualizados!",
-        "text": "Los datos han sido actualizados",
-        "icon": "success",
-        "confirmButtonText": "<a href='/proyectoGrupoScout/views/scouts/perfilScout.php' class='btn crearNuevo'> OK </a>"
+<script lang="javascript">
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.oninput = () => {
+            if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);
+        }
     });
-</script> -->
 
+    jQuery(document).ready(function() {
+        jQuery('.validarNum').keypress(function(tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) {
+                return false;
+            }
+        });
+    });
+
+</script>
 <?php
 echo $mensaje;
 require '../templates/footer.php';

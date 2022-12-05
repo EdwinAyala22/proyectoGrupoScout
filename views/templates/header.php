@@ -4,7 +4,7 @@ $btnInicio = "block";
 $btnRegistro = "Registrarse";
 
 $iniciarBtn = '<a href="/proyectoGrupoScout/views/login.php/#theLogin" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Iniciar Sesión</a>';
-$registrarBtn = '<a href="/proyectoGrupoScout/views/register.php" class="btn links_nav">Registro<?php echo $btnRegistro ?></a>';
+$registrarBtn = '<a href="/proyectoGrupoScout/views/register.php/#registro" class="btn links_nav">Registro<?php echo $btnRegistro ?></a>';
 
 $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
 $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1" class="mb-0">

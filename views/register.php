@@ -10,7 +10,7 @@ include_once '../queries/conexion.php';
 
 date_default_timezone_set('America/Bogota');
 $fechaActual = date("Y-m-d");
-$fechaLimite = date("Y-m-d",strtotime($fechaActual."- 5 year"));
+$fechaLimite = date("Y-m-d", strtotime($fechaActual . "- 5 year"));
 
 $mensaje = "";
 
@@ -57,7 +57,7 @@ if (isset($_POST['crear'])) {
         $sql = "INSERT INTO usuarios (nombres, apellido1, apellido2, tipodoc, documento, fecha_nacimiento, telefono, direccion, eps, rh, genero, grupo_anterior, ciudad, correo, contrasena, id_rama, id_rol)  values ('$nombres','$apellido1','$apellido2','$tipodoc','$documento','$fecha_nacimiento','$telefono','$direccion','$eps','$rh','$genero','$grupo_anterior','$ciudad','$correo','$contrasena','$id_rama','$id_rol')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            
+
             $mensaje = '<script lang="javascript">
         swal.fire({
             "title":"¡Registro realizado!",
@@ -105,7 +105,7 @@ require '../views/templates/header.php';
 
 
 <div class="container w-100 mt-5 mb-5 container_general">
-    <div class="row align-items-stretch">
+    <div class="row align-items-stretch" id="registro">
         <div class="col m-auto d-none d-lg-block col-md-4 col-lg-4 col-xl-5">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">
         </div>
@@ -142,7 +142,7 @@ require '../views/templates/header.php';
                         </select>
                     </div>
                     <div class="">
-                        <input type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" title="Número de documento" minlength="7" maxlength="10" pattern="[0-9]" required>
+                        <input type="number" class="form-control mb-3 fw-bold input_login validarNum" name="documento" placeholder="No. de documento" title="Número de documento" minlength="7" maxlength="10" required>
                     </div>
                     <div class="form-floating">
                         <input type="date" class="form-control mb-3 fw-bold input_login" id="floatingInput" name="fecha_nacimiento" title="Fecha de nacimiento" max="<?php echo $fechaLimite ?>" required>
@@ -151,13 +151,13 @@ require '../views/templates/header.php';
                 </div>
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
-                        <input type="number" class="form-control mb-3 fw-bold input_login" name="telefono" placeholder="No. de celular" title="No. de celular" minlength="7" maxlength="15" pattern="[0-9]" required>
+                        <input type="number" class="form-control mb-3 fw-bold input_login validarNum" name="telefono" placeholder="No. de celular" title="No. de celular" min="0" maxlength="10" pattern="[0-9]" required>
                     </div>
                     <div class="">
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="direccion" placeholder="Dirección" title="Dirección" minlength="4" maxlength="300" required>
                     </div>
                     <div class="">
-                        <input type="text" class="form-control mb-3 fw-bold input_login" name="eps" placeholder="Nombre EPS" title="Nombre EPS" minlength="3" maxlength="200" required>
+                        <input type="text" class="form-control mb-3 fw-bold input_login" name="eps" placeholder="Nombre EPS" title="Nombre EPS" minlength="3" maxlength="50" required>
                     </div>
                 </div>
 
@@ -192,7 +192,7 @@ require '../views/templates/header.php';
                         <input type="text" class="form-control mb-3 fw-bold input_login" name="ciudad" placeholder="Ciudad/municipio" title="Ciudad/municipio" minlength="3" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                     </div>
                     <div class="">
-                        <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" maxlength="50" required>
+                        <input type="email" class="form-control mb-3 fw-bold input_login validarCorreo" name="correo" placeholder="Correo" title="Correo" maxlength="50" required pattern="[a-z0-9_]+([.][a-z0-9_]+)*@[a-z0-9_]+([.][a-z0-9_]+)*[.][a-z]{1,5}">
                     </div>
                     <div class="">
                         <input type="password" class="form-control mb-3 fw-bold input_login" name="contrasena" placeholder="Contraseña" title="Contraseña" minlength="8" maxlength="20" required>
@@ -220,6 +220,23 @@ require '../views/templates/header.php';
 require '../views/templates/scripts.php'
 
 ?>
+
+<script lang="javascript">
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.oninput = () => {
+            if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);
+        }
+    });
+
+    jQuery(document).ready(function() {
+        jQuery('.validarNum').keypress(function(tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) {
+                return false;
+            }
+        });
+    });
+
+</script>
 
 <?php
 

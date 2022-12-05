@@ -213,7 +213,7 @@ require '../templates/header.php';
                     </div>
                     <div class="">
                         <label for="documento" class="form-label fw-bold titulo">No. de documento: </label>
-                        <input disabled type="number" class="form-control mb-3 fw-bold input_login" name="documento" placeholder="No. de documento" title="Número de documento" required value="<?php echo $doc ?>" minlength="7" maxlength="10" pattern="[0-9]">
+                        <input disabled type="number" class="form-control mb-3 fw-bold input_login validarNum" name="documento" placeholder="No. de documento" title="Número de documento" required value="<?php echo $doc ?>" minlength="7" maxlength="12">
                     </div>
                     <div class="">
                         <label for="fecha_nacimiento" class="form-label fw-bold titulo">Fecha de nacimiento: </label>
@@ -223,7 +223,7 @@ require '../templates/header.php';
                 <div class="row row-cols-md-3 row-cols-sm-1">
                     <div class="">
                         <label for="telefono" class="form-label fw-bold titulo">Celular: </label>
-                        <input type="number" class="form-control mb-3 fw-bold input_login" name="telefono" placeholder="No. de celular" title="No. de celular" required value="<?php echo $tel ?>" minlength="7" maxlength="15" pattern="[0-9]">
+                        <input type="number" class="form-control mb-3 fw-bold input_login validarNum" name="telefono" placeholder="No. de celular" title="No. de celular" required value="<?php echo $tel ?>" minlength="7" maxlength="10">
                     </div>
                     <div class="">
                         <label for="direccion" class="form-label fw-bold titulo">Dirección: </label>
@@ -287,7 +287,7 @@ require '../templates/header.php';
                     </div>
                     <div class="">
                         <label for="correo" class="form-label fw-bold titulo">Correo: </label>
-                        <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required value="<?php echo $email ?>" maxlength="50">
+                        <input type="email" class="form-control mb-3 fw-bold input_login" name="correo" placeholder="Correo" title="Correo" required value="<?php echo $email ?>" maxlength="50" pattern="[a-z0-9_]+([.][a-z0-9_]+)*@[a-z0-9_]+([.][a-z0-9_]+)*[.][a-z]{1,5}">
                     </div>
                     <div class="">
                         <label for="cpntrasena" class="form-label fw-bold titulo">Contraseña: </label>
@@ -352,7 +352,22 @@ require '../templates/header.php';
 require '../templates/scripts.php';
 
 ?>
+<script lang="javascript">
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.oninput = () => {
+            if (input.value.length > input.maxLength) input.value = input.value.slice(0, input.maxLength);
+        }
+    });
 
+    jQuery(document).ready(function() {
+        jQuery('.validarNum').keypress(function(tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) {
+                return false;
+            }
+        });
+    });
+
+</script>
 <?php
 
 echo $mensaje;
