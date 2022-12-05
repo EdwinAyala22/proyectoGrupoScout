@@ -1,3 +1,4 @@
+<title>Reportes y gráfico</title>
 <?php
 
 session_start();
@@ -63,7 +64,6 @@ if (isset($_POST['generar'])) {
 }
 
 ?>
-<title>Gráficas</title>
 
 
 <a href="/proyectoGrupoScout/views/admin/menuAdmin.php" class="btn links_nav m-2">Volver</a>
@@ -105,7 +105,20 @@ if (isset($_POST['generar'])) {
 
 
 <script>
-    const labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'];
+    const labels = [
+        'Enero', 
+        'Febrero', 
+        'Marzo', 
+        'Abril', 
+        'Mayo', 
+        'Junio', 
+        'Julio', 
+        'Agosto', 
+        'Septiembre', 
+        'Octubre', 
+        'Noviembre', 
+        'Diciembre'
+    ];
     const data = {
         labels: labels,
         datasets: [{
