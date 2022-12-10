@@ -21,50 +21,8 @@ $result_ramas = mysqli_query($conn, $query);
 $mensaje = "";
 $fechaActual = date("Y-m-d");
 
-$consulta = 'SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.id_rol = 3';
+$consulta = 'SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_rama AND U.id_rol= L.id_rol AND U.id_rol = 4';
 $result = mysqli_query($conn, $consulta);
-
-
-if (isset($_POST['delete'])) {
-    $documento = $_POST['document'];
-    $query = "DELETE FROM usuarios WHERE documento = '$documento'";
-    $resultado = mysqli_query($conn, $query);
-    if ($resultado) {
-        // header("Location: /proyectoGrupoScout/views/admin/interesados.php");
-        $mensaje = '<script lang="javascript">
-        swal.fire({
-            "title":"¡Usuario eliminado!",
-            "text": "El usuario ha sido eliminado con éxito",
-            "icon": "success",
-            "confirmButtonText": "Aceptar",
-            "confirmButtonColor": "#1e0941",
-            "allowOutsideClick": false,
-            "allowEscapeKey" : false
-        }).then((result)=>{
-            if (result.isConfirmed){
-                window.location = "/proyectoGrupoScout/views/admin/interesados.php";
-            }
-        });
-        
-    </script>';
-    } else {
-        $mensaje = '<script lang="javascript">
-        swal.fire({
-            "title":"¡Error!",
-            "icon": "error",
-            "confirmButtonText": "Aceptar",
-            "confirmButtonColor": "#ed1b25",
-            "allowOutsideClick": false,
-            "allowEscapeKey" : false
-        }).then((result)=>{
-            if (result.isConfirmed){
-                window.location = "/proyectoGrupoScout/views/admin/interesados.php";
-            }
-        });
-        
-    </script>';
-    }
-}
 
 
 if (isset($_POST['habilitar'])) {
@@ -108,7 +66,7 @@ if (isset($_POST['habilitar'])) {
             "allowEscapeKey" : false
         }).then((result)=>{
             if (result.isConfirmed){
-                window.location = "/proyectoGrupoScout/views/admin/interesados.php";
+                window.location = "/proyectoGrupoScout/views/admin/inhabilitados.php";
             }
         });
         
@@ -125,7 +83,7 @@ if (isset($_POST['habilitar'])) {
         "allowEscapeKey" : false
     }).then((result)=>{
         if (result.isConfirmed){
-            window.location = "/proyectoGrupoScout/views/admin/interesados.php";
+            window.location = "/proyectoGrupoScout/views/admin/inhabilitados.php";
         }
     });
     
@@ -135,7 +93,7 @@ if (isset($_POST['habilitar'])) {
 
 
 ?>
-<title>Interesados</title>
+<title>Inhabilitados</title>
 
 <?php
 
@@ -146,7 +104,7 @@ require '../templates/header.php';
 <a href="/proyectoGrupoScout/views/admin/listUsers.php" class="btn links_nav m-2">Volver</a>
 
 <div class="container bg-light p-3 containerCrud mb-3">
-    <h1 class="titulo fw-bold text-center m-3">Lista de personas interesadas</h1>
+    <h1 class="titulo fw-bold text-center m-3">Lista de Scouts Inhabilitados</h1>
 
     <table class="table table-borderless table-bordered display responsive nowrap" id="tabla" style="width: 100%;">
         <thead class="cabeceraTablas text-center">
@@ -189,31 +147,9 @@ require '../templates/header.php';
                     <td class="text-center">
                         <a class="m-1 btn btnDetalles" href="/proyectoGrupoScout/views/admin/detalleUsuario.php?det=<?php echo $mostrar['documento'] ?>">Detalles</a>
                         <button type="button" class="m-1 btn btnSolucionar" data-bs-toggle="modal" data-bs-target="#mHabilitar<?php echo $mostrar['documento'] ?>">Habilitar</button>
-                        <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['documento'] ?>">Eliminar</button>
                     </td>
                 </tr>
-                <!-- Modal -->
-                <div class="modal fade" id="mEliminar<?php echo $mostrar['documento'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Notificación</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="fw-bold titulo" > <b>¿Desea eliminar esta persona interesada en el grupo?</b> </p>
-                                <p> <b>-</b> <?php echo $mostrar['nombres'] . ' ' . $mostrar['apellido1'] . ' ' . $mostrar['apellido2'] ?></p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btnCerrar" data-bs-dismiss="modal">Cerrar</button>
-                                <form action="./interesados.php" method="POST">
-                                    <input type="hidden" name="document" value="<?php echo $mostrar['documento'] ?>">
-                                    <button type="submit" name="delete" class="btn links_nav">Eliminar</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <!-- Modal -->
                 <div class="modal fade" id="mHabilitar<?php echo $mostrar['documento'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -224,11 +160,11 @@ require '../templates/header.php';
                             </div>
                             <div class="modal-body">
 
-                                <form action="./interesados.php" method="POST">
+                                <form action="./inhabilitados.php" method="POST">
                                     <label for="hab" class="form-label fw-bold titulo">Por favor asigne una rama al usuario que desea habilitar:</label>
                                     <p class="titulo"> <b>Nombre:</b> <?php echo $mostrar['nombres'] . ' ' . $mostrar['apellido1'] . ' ' . $mostrar['apellido2'] ?></p>
                                     <!-- <p class="titulo"> <b>Edad:</b> </p> -->
-                                    <select id="rama" class="form-select fw-bold input_login" name="id_rama" required data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la rama">
+                                    <select id="rama" class="form-select fw-bold input_login" name="id_rama" data-bs-toggle="tooltip" data-bs-placement="top" title="Seleccione la rama" required>
                                         <option disabled selected value>Seleccionar rama</option>
                                         <option value="1">Lobatos</option>
                                         <option value="2">Scouts</option>

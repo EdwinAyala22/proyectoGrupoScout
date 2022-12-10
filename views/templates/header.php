@@ -107,7 +107,7 @@ if (!isset($_SESSION['rol'])) {
                         <a class="nav-link text-center" href="/proyectoGrupoScout/views/miembros.php">Miembros scouts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-center" href="/proyectoGrupoScout/views/contacto.php">Contáctenos</a>
+                        <a class="nav-link text-center" href="/proyectoGrupoScout/views/contacto.php/#contacto">Contáctenos</a>
                     </li>
                     <li class="nav-item text-center">
                         <a class="nav-link fas fa-map-marker-alt" href="https://goo.gl/maps/3xtKRSvRhEG4kThS8" target="blank"></a>

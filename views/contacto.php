@@ -56,7 +56,7 @@ require '../views/templates/header.php';
 
 ?>
 
-<div class="container w-75 mt-5 mb-5 container_general">
+<div class="container w-75 mt-5 mb-5 container_general" id="contacto">
     <div class="row align-items-stretch">
         <div class="col m-auto d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
             <img src="/proyectoGrupoScout/assets/img/LOGO_GS.png" alt="" width="350" class="d-flex m-auto">

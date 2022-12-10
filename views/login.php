@@ -50,26 +50,32 @@ if (isset($_POST['documento']) && isset($_POST['contrasena'])) {
                 $class = "alert alert-danger alert-dismissible fade show text-center";
                 $error = "Usuario pendiente de autorización";
             } else {
-                $_SESSION['rol'] = $rol;
-                switch ($_SESSION['rol']) {
-                    case 1:
+                if ($rol === 4) {
+                    $class = "alert alert-danger alert-dismissible fade show text-center";
+                    $error = "Usuario inhabilitado.Por favor envíe una solicitud para habilitarlo, a través de este
+                     <a href='/proyectoGrupoScout/views/contacto.php/#contacto' class='alert-link titulo fw-bold link_login fst-italic' >formulario.</a>";
+                } else {
+                    $_SESSION['rol'] = $rol;
+                    switch ($_SESSION['rol']) {
+                        case 1:
 
-                        $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
-                        $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
+                            $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
+                            $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
                 <button class="btn btn_general" type="submit">Cerrar sesión</button>
                 </form>';
-                        header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php");
-                        $_SESSION['id_user'] = $documento;
-                        break;
-                    case 2:
-                        $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
-                        $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
+                            header("Location: /proyectoGrupoScout/views/admin/menuAdmin.php");
+                            $_SESSION['id_user'] = $documento;
+                            break;
+                        case 2:
+                            $menuBtn = '<a href="/proyectoGrupoScout/views/login.php" class="btn links_nav me-2" style="display: <?php echo $btnInicio ?>;" >Menú</a>';
+                            $logoutBtn = '<form method="POST" action="/proyectoGrupoScout/views/login.php?logout=1">
                 <button class="btn btn_general" type="submit">Cerrar sesión</button>
                 </form>';
-                        header("Location: /proyectoGrupoScout/views/scouts/menuScout.php");
-                        $_SESSION['id_user'] = $documento;
-                        break;
-                    default:
+                            header("Location: /proyectoGrupoScout/views/scouts/menuScout.php");
+                            $_SESSION['id_user'] = $documento;
+                            break;
+                        default:
+                    }
                 }
             }
         } else {
@@ -108,11 +114,11 @@ require '../views/templates/header.php';
 
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-user"></i>
-                    <input type="number" class="form-control text-center fw-bold input_login validarNum" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" autofocus minlength="7" maxlength="12"  required>
+                    <input type="number" class="form-control text-center fw-bold input_login validarNum" name="documento" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="top" title="Número de documento" autofocus minlength="7" maxlength="12" required>
                 </div>
                 <div class="mb-4 iconos_login">
                     <i class="login__icon fas fa-lock"></i>
-                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña"  minlength="8" maxlength="20" required>
+                    <input type="password" class="form-control text-center fw-bold input_login" name="contrasena" placeholder="Contraseña" data-bs-toggle="tooltip" data-bs-placement="top" title="Contraseña" minlength="8" maxlength="20" required>
                     <!-- <input type="hidden" value="modalUsu" name="idModal"> -->
                 </div>
                 <div class="<?php echo $class ?>" role="alert">
@@ -148,7 +154,6 @@ require '../views/templates/header.php';
             }
         });
     });
-
 </script>
 
 <?php

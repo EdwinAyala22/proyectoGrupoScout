@@ -93,17 +93,32 @@ require '../templates/header.php';
 ?>
 <?php
 
-if(isset($idRol)){
-    if ($idRol == 3) {
+
+switch($idRol){
+    case 2:
+        echo "<a href='/proyectoGrupoScout/views/admin/listUsers.php' class='btn links_nav m-2' id='newUser'>Volver</a>";
+        break;
+    case 3:
         echo "<a href='/proyectoGrupoScout/views/admin/interesados.php' class='btn links_nav m-2'>Volver</a>";
-    } else {
-        if ($idRol == 2) {
-            echo "<a href='/proyectoGrupoScout/views/admin/listUsers.php' class='btn links_nav m-2' id='newUser'>Volver</a>";
-        }
-    }
-}else{
-    echo "<a href='' class='btn links_nav m-2' id='newUser'>Volver</a>";
+        break;
+    case 4:
+        echo "<a href='/proyectoGrupoScout/views/admin/inhabilitados.php' class='btn links_nav m-2'>Volver</a>";
+        break;
+    default:
+        echo "<a href='' class='btn links_nav m-2' id='newUser'>Volver</a>";
+
 }
+// if(isset($idRol)){
+//     if ($idRol == 3) {
+//         echo "<a href='/proyectoGrupoScout/views/admin/interesados.php' class='btn links_nav m-2'>Volver</a>";
+//     } else {
+//         if ($idRol == 2) {
+//             echo "<a href='/proyectoGrupoScout/views/admin/listUsers.php' class='btn links_nav m-2' id='newUser'>Volver</a>";
+//         }
+//     }
+// }else{
+//     echo "<a href='' class='btn links_nav m-2' id='newUser'>Volver</a>";
+// }
 
 ?>
 

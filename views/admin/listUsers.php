@@ -23,13 +23,31 @@ $consulta = 'SELECT * FROM usuarios U, ramas R, roles L WHERE U.id_rama = R.id_r
 $result = mysqli_query($conn, $consulta);
 
 
-if (isset($_GET['delete'])) {
-    $documento = $_GET['delete'];
-    $query = "DELETE FROM usuarios WHERE documento = '$documento'";
-    $result = mysqli_query($conn, $query);
-    if ($result) {
+if (isset($_POST['inhabilitar'])) {
+    $documento = $_POST['documento'];
+    $newRol = 4;
+    $newRama = 9;
+    $query = "UPDATE usuarios set id_rol = '$newRol', id_rama = '$newRama' WHERE documento = '$documento'";
+    $result_inh = mysqli_query($conn, $query);
+    if ($result_inh) {
 
-        header("Location: /proyectoGrupoScout/views/admin/listUsers.php");
+        // header("Location: /proyectoGrupoScout/views/admin/listUsers.php");
+        $mensaje = '<script lang="javascript">
+        swal.fire({
+            "title":"¡Usuario Inhabilitado!",
+            "text": "El usuario ha sido inhabilitado con éxito.",
+            "icon": "success",
+            "confirmButtonText": "Aceptar",
+            "confirmButtonColor": "#1e0941",
+            "allowOutsideClick": false,
+            "allowEscapeKey" : false
+        }).then((result)=>{
+            if (result.isConfirmed){
+                window.location = "/proyectoGrupoScout/views/admin/listUsers.php";
+            }
+        });
+        
+    </script>';
     } else {
         $mensaje = '<script lang="javascript">
         swal.fire({
@@ -41,7 +59,7 @@ if (isset($_GET['delete'])) {
             "allowEscapeKey" : false
         }).then((result)=>{
             if (result.isConfirmed){
-                window.location = "/proyectoGrupoScout/views/admin/listEventos.php";
+                window.location = "/proyectoGrupoScout/views/admin/listUsers.php";
             }
         });
         
@@ -88,6 +106,7 @@ require '../templates/header.php';
 
         </div>
         <a href="/proyectoGrupoScout/views/admin/interesados.php" class="btn btnDetalles mb-3">Interesados</a>
+        <a href="/proyectoGrupoScout/views/admin/inhabilitados.php" class="btn btnDetalles mb-3">Inhabilitados</a>
     </div>
     <table class="table table-borderless table-bordered display responsive nowrap" id="tabla" style="width: 100%;">
         <thead class="cabeceraTablas text-center">
@@ -129,7 +148,7 @@ require '../templates/header.php';
                     <td class="text-center">
                         <a class="m-1 btn btnDetalles" href="/proyectoGrupoScout/views/admin/detalleUsuario.php?det=<?php echo $mostrar['documento'] ?>">Detalles</a>
                         <a class="m-1 btn btnEditar" href="/proyectoGrupoScout/views/admin/editarUsuario.php?edit=<?php echo $mostrar['documento'] ?>">Editar</a>
-                        <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['documento'] ?>">Eliminar</button>
+                        <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['documento'] ?>">Inhabilitar</button>
                     </td>
                 </tr>
                 <!-- Modal -->
@@ -141,12 +160,15 @@ require '../templates/header.php';
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                ¿Desea eliminar este usuario?
-                                <p><?php echo $mostrar['nombres'] . ' ' . $mostrar['apellido1'] ?></p>
+                                ¿Desea inhabilitar este usuario?
+                                <p> <b>-</b> <?php echo $mostrar['nombres'] . ' ' . $mostrar['apellido1'] ?></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btnCerrar" data-bs-dismiss="modal">Cerrar</button>
-                                <a href="/proyectoGrupoScout/views/admin/listUsers.php?delete=<?php echo $mostrar['documento'] ?>" class="btn links_nav">Eliminar</a>
+                                <form action="./listUsers.php" method="POST">
+                                    <input type="hidden" name="documento" value="<?php echo $mostrar['documento'] ?>">
+                                    <button type="submit" name="inhabilitar" class="btn links_nav">Inhabilitar</button>
+                                </form>
                             </div>
                         </div>
                     </div>
