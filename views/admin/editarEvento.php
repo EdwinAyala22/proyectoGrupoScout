@@ -17,6 +17,9 @@ if (!isset($_SESSION['rol'])) {
 include_once '../../queries/conexion.php';
 
 date_default_timezone_set('America/Bogota');
+$fechaActual = date("Y-m-d H:i");
+$fechaActualCom = date("Y-m-d H:i:s");
+
 
 $class = "visually-hidden";
 $error = "";
@@ -64,6 +67,17 @@ if (isset($_GET['idAct'])) {
                 
             </script>';
     }
+
+    if (strtotime($feInicio) < strtotime($fechaActualCom)){
+        $requiredFe = " ";
+        $readonlyFe = "readonly";
+        $fechaActualFe = " ";
+    } else {
+        $requiredFe = "required";
+        $fechaActualFe = $fechaActual;
+        $readonlyFe = "     ";
+    }
+
     $tRamas = "SELECT * FROM ramas";
     $resultR = mysqli_query($conn, $tRamas);
 
@@ -211,7 +225,8 @@ if (isset($_POST['editarEv'])) {
 
 
 
-$fechaActual = date("Y-m-d H:i");
+// echo $fechaActual;
+// echo $feInicio;
 
 ?>
 
@@ -261,7 +276,7 @@ if (isset($resultR)) {
                         </div>
                         <div class="">
                             <label class="form-label fw-bold titulo">Objetivo Evento: </label>
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="objetivo_act" type="text" value="<?php echo $obj ?>" minlength="20" maxlength="200" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="objetivo_act" type="text" value="<?php echo $obj ?>" minlength="10" maxlength="200" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                         </div>
 
 
@@ -269,7 +284,7 @@ if (isset($resultR)) {
                     <div class="row">
                         <div class="">
                             <label class="form-label fw-bold titulo">Area: </label>
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="area" type="text" value="<?php echo $ar ?>" minlength="15" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="area" type="text" value="<?php echo $ar ?>" minlength="5" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
                         </div>
                     </div>
 
@@ -302,7 +317,7 @@ if (isset($resultR)) {
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <label class="form-label fw-bold titulo">Fecha y Hora-Inicio: </label>
-                            <input type="datetime-local" class="form-control mb-3 fw-bold input_login" name="fechaInicioo" type="text" value="<?php echo $feInicio ?>" min="<?php echo $fechaActual ?>" required>
+                            <input type="datetime-local" class="form-control mb-3 fw-bold input_login" name="fechaInicioo" type="text" value="<?php echo $feInicio ?>" min="<?php echo $fechaActualFe ?>" <?php echo $requiredFe . " " . $readonlyFe ?>>
 
                         </div>
                         <div class="">
@@ -322,7 +337,7 @@ if (isset($resultR)) {
                         </div>
                         <div class="">
                             <label class="form-label fw-bold titulo">Nombre Evento: </label>
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" type="text" value="<?php echo $nom_act ?>" minlength="10" maxlength="200" required>
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" type="text" value="<?php echo $nom_act ?>" minlength="3" maxlength="200" required>
                         </div>
                     </div>
 
