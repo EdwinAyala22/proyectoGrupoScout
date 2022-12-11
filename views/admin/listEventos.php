@@ -149,11 +149,15 @@ require '../templates/header.php';
                 </div>
                 <div class="modal-body">
                   ¿Desea eliminar este evento?
-                  <p><?php echo $mostrar['nombre_act'] . ', elaborado por ' . $mostrar['f_elab_por'] ?></p>
+                  <p> <b>-</b> <?php echo $mostrar['nombre_act'] . ', elaborado por ' . $mostrar['f_elab_por'] ?></p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btnCerrar" data-bs-dismiss="modal">Cerrar</button>
-                  <a href="/proyectoGrupoScout/views/admin/listEventos.php?delete=<?php echo $mostrar['id_act'] ?>" class="btn links_nav">Eliminar</a>
+                  <form action="/proyectoGrupoScout/queries/enviarCorreosCancelacion.php" method="POST">
+                    <input type="hidden" name="id_act" value="<?php echo $mostrar['id_act'] ?>" >
+                    <input type="hidden" name="nombreAct" value="<?php echo $mostrar['nombre_act'] ?>" >
+                    <button type="submit" name="eliminarEvento" class="btn links_nav">Eliminar</button>
+                  </form>
                 </div>
               </div>
             </div>
