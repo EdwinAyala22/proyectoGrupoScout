@@ -72,10 +72,12 @@ if (isset($_GET['idAct'])) {
         $requiredFe = " ";
         $readonlyFe = "readonly";
         $fechaActualFe = " ";
+        $listRamas = 2; 
     } else {
         $requiredFe = "required";
         $fechaActualFe = $fechaActual;
         $readonlyFe = "     ";
+        $listRamas = 1;
     }
 
     $tRamas = "SELECT * FROM ramas";
@@ -88,6 +90,9 @@ if (isset($_GET['idAct'])) {
         $arrayRamas[] = $ramasAct['id_rama'];
     }
     $contador = count($arrayRamas);
+
+    $tRamasLista = "SELECT * FROM ramas R, ramas_actividades A where A.id_act = $id_act AND A.id_rama = R.id_rama";
+    $result2 = mysqli_query($conn,$tRamasLista);
 } else {
     $mensaje = '<script lang="javascript">
                 swal.fire({
@@ -107,13 +112,15 @@ if (isset($_GET['idAct'])) {
 }
 
 if (isset($_POST['editarEv'])) {
-    if (isset($_POST['ramasEvento'])) {
+    if (isset($_POST['ramasEvento']) || $listRamas == 2) {
     $id = $_GET["idAct"];
     // $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
     $responsable = $_POST['responsable'];
     $objetivo_act = $_POST['objetivo_act'];
     $area = $_POST['area'];
-    $ramas = $_POST['ramasEvento'];
+    if (isset($_POST['ramasEvento'])){
+        $ramas = $_POST['ramasEvento'];
+    }
     $fechaIniciio = $_POST['fechaInicioo'];
     $fechaFiin = $_POST['fechaFiin'];
     $lugar = $_POST['lugar'];
@@ -130,7 +137,7 @@ if (isset($_POST['editarEv'])) {
         $error = "La fecha final no puede ser antes de la fecha inicial.";
     } else {
         $consulta = "UPDATE f_actividades set responsable = '$responsable', objetivo_act = '$objetivo_act', area = '$area', fechaInicio = '$fechaIniciio', fechaFin = '$fechaFiin', lugar = '$lugar', nombre_act = '$nombre_act', descri_act = '$descri_act', materiales = '$materiales', fact_riesgo = '$fact_riesgo', evaluacion_act = '$evaluacion_act', f_elab_por = '$f_elab_por', costo = '$costo' WHERE id_act = $id";
-        if (mysqli_query($conn, $consulta)) {
+        if (mysqli_query($conn, $consulta) && $listRamas == 1) {
             $elimRamas = "DELETE FROM ramas_actividades WHERE id_act = $id";
             $resultElim = mysqli_query($conn, $elimRamas);
             if ($resultElim) {
@@ -198,7 +205,26 @@ if (isset($_POST['editarEv'])) {
             </script>';
             }
         } else {
-            // echo "Error al modificar los datos.";
+            if (mysqli_query($conn, $consulta)) {
+                $mensaje = '<script lang="javascript">
+                swal.fire({
+                    "title":"¡Evento actualizado!",
+                    "text": "El evento ha sido actualizado con éxito.",
+                    "icon": "success",
+                    "confirmButtonText": "Aceptar",
+                    "confirmButtonColor": "#1e0941",
+                    "allowOutsideClick": false,
+                    "allowEscapeKey" : false
+                }).then((result)=>{
+                    if (result.isConfirmed){
+                        window.location = "/proyectoGrupoScout/views/admin/listEventos.php";
+                    }
+                });
+                
+            </script>';
+            } else {
+
+            
             $mensaje = '<script lang="javascript">
                 swal.fire({
                     "title":"¡Error!",
@@ -215,11 +241,12 @@ if (isset($_POST['editarEv'])) {
                 });
                 
             </script>';
+            }
         }
     }
 } else {
-    $class1 = "alert alert-danger alert-dismissible fade show text-center";
-    $error1 = "Seleccione al menos una rama.";
+        $class1 = "alert alert-danger alert-dismissible fade show text-center";
+        $error1 = "Seleccione al menos una rama.";
 }
 }
 
@@ -272,11 +299,11 @@ if (isset($resultR)) {
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <label class="form-label fw-bold titulo">Responsable: </label>
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="responsable" type="text" value="<?php echo $resp ?>" minlength="10" maxlength="50" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="responsable" type="text" value="<?php echo $resp ?>" minlength="10" maxlength="50" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" <?php echo $requiredFe . " " . $readonlyFe ?>>
                         </div>
                         <div class="">
                             <label class="form-label fw-bold titulo">Objetivo Evento: </label>
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="objetivo_act" type="text" value="<?php echo $obj ?>" minlength="10" maxlength="200" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="objetivo_act" type="text" value="<?php echo $obj ?>" minlength="10" maxlength="200" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" <?php echo $requiredFe . " " . $readonlyFe ?>>
                         </div>
 
 
@@ -284,7 +311,7 @@ if (isset($resultR)) {
                     <div class="row">
                         <div class="">
                             <label class="form-label fw-bold titulo">Area: </label>
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="area" type="text" value="<?php echo $ar ?>" minlength="5" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="area" type="text" value="<?php echo $ar ?>" minlength="5" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" <?php echo $requiredFe . " " . $readonlyFe ?>>
                         </div>
                     </div>
 
@@ -292,6 +319,15 @@ if (isset($resultR)) {
                         <label class="text-start titulo form-label fw-bold">Ramas: </label>
                         <div class="d-flex flex-wrap">
                             <?php
+
+                            if ($listRamas == 2) {
+                            echo '<ul class="m-0 px-3">';
+                            while ($mostrarR = mysqli_fetch_array($result2)) {
+                                echo  '<li class="">'. $mostrarR['nom_rama'] . "</li>";
+                            }
+                            echo "<br>";
+                            echo '</ul>';
+                        } else {
                             while ($mostrarR = mysqli_fetch_array($resultR)) {
                                 $checked = "";
                                 $pAr = 0;
@@ -304,8 +340,9 @@ if (isset($resultR)) {
                                     }
                                 }
                                 echo  '<label class="ms-1"><input class="form-check-input me-1" type="checkbox" id="' . $mostrarR['id_rama'] . '" value="' . $mostrarR['id_rama'] . '" name="ramasEvento[]"' . $checked . '>' . $mostrarR['nom_rama'] . '</label> <span class="mx-2 fw-bold">|</span><br> ';
-                            }
+                        }
 
+                        }
                             ?>
                         </div>
                     </div>
@@ -333,30 +370,30 @@ if (isset($resultR)) {
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <label class="form-label fw-bold titulo">Lugar: </label>
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="lugar" type="text" value="<?php echo $lug ?>" minlength="20" maxlength="50" required>
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="lugar" type="text" value="<?php echo $lug ?>" minlength="3" maxlength="50" required>
                         </div>
                         <div class="">
                             <label class="form-label fw-bold titulo">Nombre Evento: </label>
-                            <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" type="text" value="<?php echo $nom_act ?>" minlength="3" maxlength="200" required>
+                            <input type="text" class="form-control mb-3 fw-bold input_login" name="nombre_act" type="text" value="<?php echo $nom_act ?>" minlength="3" maxlength="200" <?php echo $requiredFe . " " . $readonlyFe ?>>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="">
                             <label class="form-label fw-bold titulo">Descripcion Evento: </label>
-                            <input class="form-control mb-3 fw-bold input_login" name="descri_act" type="text" value="<?php echo $des_act ?>" minlength="30" maxlength="700" required></input>
+                            <input class="form-control mb-3 fw-bold input_login" name="descri_act" type="text" value="<?php echo $des_act ?>" minlength="30" maxlength="700" <?php echo $requiredFe . " " . $readonlyFe ?>></input>
                         </div>
                     </div>
                     <div class="row">
                         <div class="">
                             <label class="form-label fw-bold titulo">Materiales: </label>
-                            <input class="form-control mb-3 fw-bold input_login" name="materiales" type="text" value="<?php echo $mat ?>" maxlength="400" required></input>
+                            <input class="form-control mb-3 fw-bold input_login" name="materiales" type="text" value="<?php echo $mat ?>" maxlength="400" <?php echo $requiredFe . " " . $readonlyFe ?>></input>
                         </div>
                     </div>
                     <div class="row">
                         <div class="">
                             <label class="form-label fw-bold titulo">Factor de Riesgo: </label>
-                            <input class="form-control mb-3 fw-bold input_login" name="fact_riesgo" type="text" value="<?php echo $f_riesgo ?>" maxlength="400" required></input>
+                            <input class="form-control mb-3 fw-bold input_login" name="fact_riesgo" type="text" value="<?php echo $f_riesgo ?>" maxlength="400" <?php echo $requiredFe . " " . $readonlyFe ?>></input>
                         </div>
                     </div>
                     <div class="row">
@@ -369,11 +406,11 @@ if (isset($resultR)) {
                     <div class="row row-cols-md-2 row-cols-sm-1">
                         <div class="">
                             <label class="form-label fw-bold titulo">Evento Elaborado Por: </label>
-                            <input class="form-control mb-3 fw-bold input_login" name="f_elab_por" type="text" value="<?php echo $f_e_por ?>" minlength="6" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" required>
+                            <input class="form-control mb-3 fw-bold input_login" name="f_elab_por" type="text" value="<?php echo $f_e_por ?>" minlength="6" maxlength="100" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+" <?php echo $requiredFe . " " . $readonlyFe ?>>
                         </div>
                         <div class="">
                             <label class="form-label fw-bold titulo">Costo Evento: </label>
-                            <input class="form-control mb-3 fw-bold input_login" name="costo" type="number" value="<?php echo $cos ?>" maxlength="10" pattern="[0-9]" required>
+                            <input class="form-control mb-3 fw-bold input_login" name="costo" type="number" value="<?php echo $cos ?>" maxlength="10" pattern="[0-9]" <?php echo $requiredFe . " " . $readonlyFe ?>>
                         </div>
                     </div>
 
