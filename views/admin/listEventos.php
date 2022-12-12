@@ -14,6 +14,10 @@ if (!isset($_SESSION['rol'])) {
 
 <?php
 include_once '../../queries/conexion.php';
+date_default_timezone_set('America/Bogota');
+$fechaActual = date("Y-m-d H:i");
+$fechaActualCom = date("Y-m-d H:i:s");
+
 $mensaje = "";
 $evento = "SELECT * FROM f_actividades";
 $result = mysqli_query($conn, $evento);
@@ -134,7 +138,17 @@ require '../templates/header.php';
               <div class="d-flex justify-content-center align-items-center flex-wrap" >
                 <a class="m-1 btn btnDetalles" href="./detalleEvento.php?id=<?php echo $mostrar['id_act'] ?>"> Detalles</a>
                 <a class="m-1 btn btnEditar" href="./editarEvento.php?idAct=<?php echo $mostrar['id_act'] ?>"> Editar</a>
-                <button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar<?php echo $mostrar['id_act'] ?>">Eliminar</button>
+                <?php
+                if (strtotime($mostrar['fechaInicio']) > strtotime($fechaActualCom)){
+                echo '<button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar'. $mostrar['id_act'] . '">Eliminar</button>';
+                } else 
+                { 
+                echo '<button type="button" class="m-1 btn btnEliminar" data-bs-toggle="modal" data-bs-target="#mEliminar'. $mostrar['id_act'] . '"disabled>Eliminar</button>';
+
+                }
+
+                ?>
+
                 <a class="m-1 btn btnInscritos" href="./inscritosEvento.php?idAct=<?php echo $mostrar['id_act'] ?>"> Inscritos</a>
               </div>
             </td>
